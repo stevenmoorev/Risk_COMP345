@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #pragma once
 #include <iostream>
 #include <vector>
@@ -13,18 +7,9 @@ using std::string;
 using std::vector;
 #ifndef COUNTRY_H_
 #define COUNTRY_H_
-
 class Player;
-
-class Country {
-
-private:
-	string countryName;
-	int numberOfArmies;
-	vector<Country*> neighbors;
-	Player* owner;
-	Continent* continent;
-
+class Country 
+{
 public:
 	Country();
 	Country(const string& countryName);
@@ -44,6 +29,13 @@ public:
 	bool BelongsToAContinent();
 	Continent* GetContinent() const;
 	void SetContinent(Continent* continent);
+
+private:
+	string countryName;
+	int numberOfArmies;
+	vector<Country*> neighbors;
+	Player* owner;
+	Continent* continent;
 };
 
 #endif;
