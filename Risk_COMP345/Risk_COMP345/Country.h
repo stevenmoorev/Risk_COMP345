@@ -29,6 +29,10 @@ public:
 	bool BelongsToAContinent();
 	Continent* GetContinent() const;
 	void SetContinent(Continent* continent);
+	void setX(int x);
+	void setY(int y);
+	int getX();
+	int getY();
 
 private:
 	string countryName;
@@ -36,6 +40,8 @@ private:
 	vector<Country*> neighbors;
 	Player* owner;
 	Continent* continent;
+	int xPos;
+	int yPos;
 };
 
 #endif;

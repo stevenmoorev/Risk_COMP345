@@ -90,6 +90,26 @@ void Country::SetContinent(Continent *continent1)
 	}
 }
 
+void Country::setX(int x) 
+{
+	xPos = x;
+}
+
+void Country::setY(int y)
+{
+	yPos = y;
+}
+
+int Country::getX()
+{
+	return xPos;
+}
+
+int Country::getY()
+{
+	return yPos;
+}
+
 
 
 
