@@ -57,7 +57,7 @@ Map Load() {
 			//cout << country.getCountryName();
 
 			auto it = std::find(neighbors.begin(), neighbors.end(), new Country(countryName));
-			//if the country is not already created in the neighbor vector
+			//if the country is not already created in the neighbor vector, create a new country for it
 			if (it == neighbors.end())
 			{
 				countries.push_back(new Country(countryName));
@@ -123,7 +123,7 @@ Map Load() {
 				cout << "\n";
 				c = c + 1;
 			}
-
+			//the country object was already created as an neighbor; hence use it from the neighbors stack
 			else {
 				auto index = std::distance(neighbors.begin(), it);
 				cout << neighbors[index]->getCountryName();
@@ -208,8 +208,12 @@ Map Load() {
 	cout << "\n";
 	//vector<Country*>Map2= map.GetAllCountries();
 	//****************************************trying to verify how many countries are part of each continent which currently gives 1 
+	bool countryPerContinent = true;
 	for (unsigned int x = 0; x < map.GetMapContinents().size(); x++) {
 		cout << map.GetMapContinents()[x]->GetCountryCount();
+		if (map.GetMapContinents()[x]->GetCountryCount() <= 0) {
+			bool countryPerContinent = false;
+		};
 		cout << "\n";
 		cout << "FLAG2 + \n";
 	}
@@ -218,7 +222,14 @@ Map Load() {
 	cout << countries[0]->isNeighborOf(neighbors[4]);
 	//vector<Country*> GetCountries() const;
 	system("pause");
-	return map;
+	//if ()
+	if (countryPerContinent == true) {
+		return map;
+	}
+	else {
+		cout << "The provided map doesn't fit the game requirements";
+		exit(0);
+	}
 }
 int main(){
 	Load();
