@@ -40,6 +40,12 @@ int Map::GetContinentCount() const
 	return mapContinents.size();
 }
 
+int Map::GetCountryCount() const
+{
+	vector<Country*> c = Map::GetAllCountries();
+	return c.size();
+}
+
 vector<Continent*> Map::GetMapContinents() const
 {
 	return mapContinents;

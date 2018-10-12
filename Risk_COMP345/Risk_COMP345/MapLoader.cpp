@@ -231,6 +231,8 @@ Map Load() {
 		exit(0);
 	}
 }
+/*
 int main(){
 	Load();
 }
+*/

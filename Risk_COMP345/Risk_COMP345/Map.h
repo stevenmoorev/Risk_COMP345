@@ -11,6 +11,7 @@ public:
 	void AddContinentToMap(Continent* newContinent);
 	void RemoveContinentFromMap(Continent* continent);
 	int GetContinentCount() const;
+	int GetCountryCount() const;
 	std::vector<Continent*> GetMapContinents() const;
 	std::vector<Country*> GetAllCountries() const;
 

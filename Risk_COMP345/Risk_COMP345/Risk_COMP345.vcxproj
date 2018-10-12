@@ -115,16 +115,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Cards.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="Country.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cards.cpp" />
     <ClCompile Include="Continent.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapDriver.cpp" />
+    <ClCompile Include="MapLoader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
