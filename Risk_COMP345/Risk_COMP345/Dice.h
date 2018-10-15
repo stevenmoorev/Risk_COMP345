@@ -15,6 +15,8 @@ private:
 	void saveResult(int result);
 
 public:
+	Dice();
+	~Dice();
     int rollDice();
 	vector<int> throwDice(int numOfDice);
 	void printdiceNumberCount();

@@ -1,8 +1,14 @@
 #include <iostream>
-#include <string> 
+#include <string>
 #include "Dice.h"
 using namespace std;
+Dice::Dice()
+{
+}
 
+Dice::~Dice()
+{
+}
 
 int Dice::rollDice() {
 	return rand() % 6 + 1;
