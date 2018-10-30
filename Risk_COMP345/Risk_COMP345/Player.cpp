@@ -39,6 +39,9 @@ vector<Country*> Player::getCountries() {
 	return countries;
 }
 
+void Player::addCountry(Country* newCountry) {
+	countries.push_back(newCountry);
+}
 
 //for demo
 ////////////////////////////////////

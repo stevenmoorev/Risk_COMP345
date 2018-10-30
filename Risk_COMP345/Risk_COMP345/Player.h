@@ -37,7 +37,7 @@ public:
 	string getName();
 	int getArmies();
 	vector<Country*> getCountries();
-
+	void addCountry(Country* newCountry);
 	void rollDice(); // for a1 demo
 	void showCards(); // for a1 demo
 

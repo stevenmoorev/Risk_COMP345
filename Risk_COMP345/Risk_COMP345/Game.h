@@ -11,7 +11,7 @@ public:
 	Game();
 	void setup();
 	void setNumberOfPlayers();
-	bool isMapValid();
+	//bool isMapValid();
 	void assignCountries();
 private:
 	vector<Player*> players;
