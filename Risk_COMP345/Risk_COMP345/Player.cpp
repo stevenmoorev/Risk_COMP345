@@ -56,6 +56,17 @@ void Player::addCountry(Country* newCountry) {
 	countries.push_back(newCountry);
 }
 
+Country* Player::getCountry(string n) {
+	for (int i = 0; i < countries.size(); i++)
+	{
+		if (countries[i]->getCountryName() == n)
+		{
+			return countries[i];
+		}
+	}
+	return NULL;
+}
+
 //for demo
 ////////////////////////////////////
 ////////////////////////////////// 

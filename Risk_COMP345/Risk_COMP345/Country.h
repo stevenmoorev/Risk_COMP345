@@ -33,6 +33,7 @@ public:
 	void setY(int y);
 	int getX();
 	int getY();
+	void addArmy();
 
 private:
 	string countryName;

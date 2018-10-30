@@ -42,7 +42,7 @@ public:
 	void addCountry(Country* newCountry);
 	void rollDice(); // for a1 demo
 	void showCards(); // for a1 demo
-
+	Country* getCountry(string n);
 };
 
 #endif

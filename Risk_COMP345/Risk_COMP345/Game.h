@@ -13,6 +13,8 @@ public:
 	void setNumberOfPlayers();
 	//bool isMapValid();
 	void assignCountries();
+	void placeInitialArmies();
+	void assignOneRound();
 private:
 	vector<Player*> players;
 	bool gameOver; 

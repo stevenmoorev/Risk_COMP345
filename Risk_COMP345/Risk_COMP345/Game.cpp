@@ -9,6 +9,7 @@ Game::Game()
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
+	placeInitialArmies();
 }
 
 void Game::setup()
@@ -100,5 +101,37 @@ void Game::assignCountries()
 			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
 		cout << endl;
+	}
+}
+
+void Game::placeInitialArmies() 
+{
+	int numberOfInitialArmiesLeft = players[0]->getArmies();
+	bool allArmiesAllocated = false;
+	while (!allArmiesAllocated) {
+		assignOneRound();
+		numberOfInitialArmiesLeft--;
+		if (numberOfInitialArmiesLeft == 0) {
+			allArmiesAllocated = true;
+		}
+	}
+}
+
+void Game::assignOneRound() 
+{
+	string choice;
+	for (int i = 0; i < players.size(); i++)
+	{
+		cout << "It is Player" << i << "'s, " << players[i]->getName() << ",  turn to assign an army to a country" << endl;
+		cout << "Here are your choices: " << endl;
+		int sizeOfCountriesList = players[i]->getCountries().size();
+		for (int j = 0; j < sizeOfCountriesList; j++)
+		{
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+		}
+		cout << "Enter the name of the country to add an army to it" << endl;
+		cin >> choice;
+		players[i]->getCountry(choice)->addArmy();
+		players[i]->removeAnArmy();
 	}
 }
