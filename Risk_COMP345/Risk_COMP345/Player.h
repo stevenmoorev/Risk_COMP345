@@ -33,9 +33,11 @@ public:
 	~Player();
 	Player(string);
 	Player(string, vector<Country*>);
+	Player(string, int);
 
 	string getName();
 	int getArmies();
+	void removeAnArmy();
 	vector<Country*> getCountries();
 	void addCountry(Country* newCountry);
 	void rollDice(); // for a1 demo

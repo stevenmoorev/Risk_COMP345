@@ -19,12 +19,25 @@ Player::Player(string n) {
 	dices = new Dice();
 }
 
+Player::Player(string n, int a) {
+	name = n;
+	unavailable_armies = a;
+	hand = new Hand();
+	dices = new Dice();
+}
+
 Player::Player(string n, vector<Country*> c) {
 	name = n;
 	unavailable_armies = 0;
 	hand = new Hand();
 	dices = new Dice();
 	countries = c;
+}
+
+void Player::removeAnArmy() {
+	if (unavailable_armies > 0) {
+		unavailable_armies--;
+	}
 }
 
 string Player::getName() {

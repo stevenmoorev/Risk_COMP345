@@ -28,6 +28,7 @@ void Game::setNumberOfPlayers()
 {
 	int MAX_PLAYERS = 6;
 	int numberOfPlayers;
+	int armyAllocation;
 	cout << "How many players are in the game? There is a maximum of 6. " << endl;
 	cin >> numberOfPlayers;
 
@@ -38,16 +39,33 @@ void Game::setNumberOfPlayers()
 		cin >> numberOfPlayers;
 	}
 	cout << endl;
-
+	//determine the number of armies they get to place
+	switch (numberOfPlayers) 
+	{
+	case 2:
+		armyAllocation = 40;
+		break;
+	case 3:
+		armyAllocation = 35;
+		break;
+	case 4:
+		armyAllocation = 30;
+		break;
+	case 5:
+		armyAllocation = 25;
+		break;
+	case 6:
+		armyAllocation = 20;
+		break;
+	}
 	string name;
-
 	// create our players
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		cout << "PLEASE ENTER NAME OF PLAYER " << i << ": ";
 		cout << endl;
 		cin >> name;
-		Player* currentPlayer = new Player(name);
+		Player* currentPlayer = new Player(name, armyAllocation);
 		players.push_back(currentPlayer);
 	}
 
@@ -58,7 +76,6 @@ void Game::setNumberOfPlayers()
 		cout << i << ") " << players[i]->getName() << endl;
 	}
 	cout << "Welcome to the game, and may the odds be in your favor!" << endl << endl;
-	system("pause");
 }
 
 void Game::assignCountries()
