@@ -60,6 +60,10 @@ void Country::setNumberOfArmies(const int& ammount) {
 	numberOfArmies = ammount;
 }
 
+void Country::addArmy() {
+	numberOfArmies++;
+}
+
 int Country::getNumberOfArmies() {
 	return numberOfArmies;
 }
