@@ -15,6 +15,7 @@ public:
 	void assignCountries();
 	void placeInitialArmies();
 	void assignOneRound();
+	void attackPhase(int playerNumber);
 private:
 	vector<Player*> players;
 	bool gameOver; 
