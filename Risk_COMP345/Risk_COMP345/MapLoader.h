@@ -14,7 +14,7 @@
 
 class MapLoader
 {
-public: 
+public:
 	MapLoader();
 	~MapLoader();
 	void Load();
