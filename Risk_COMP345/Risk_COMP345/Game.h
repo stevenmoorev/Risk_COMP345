@@ -10,13 +10,22 @@ class Game
 public:
 	Game();
 	void setup();
+    void chooseMap();
+    //bool isMapValid();
 	void setNumberOfPlayers();
-	//bool isMapValid();
 	void assignCountries();
 	void placeInitialArmies();
 	void assignOneRound();
+   
 private:
 	vector<Player*> players;
 	bool gameOver; 
 	Map* worldMap;
+};
+
+class Reinforcement
+{
+public:
+    int getA(Player* p); //number of armies to put on map
+    void placeArmies(); //put armies until there are no more
 };

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+
 #include "Game.h"
 
 using namespace std;
@@ -15,7 +16,13 @@ Game::Game()
 void Game::setup()
 {
 	setNumberOfPlayers();
-	// second thing, load map
+    
+    //get all files in the Maps directory
+    //and choose
+    chooseMap();
+    
+    
+    // second thing, load map
 	//if (isMapValid()) {
 	//	assignCountries();
 	//}
@@ -79,6 +86,13 @@ void Game::setNumberOfPlayers()
 	cout << "Welcome to the game, and may the odds be in your favor!" << endl << endl;
 }
 
+void Game::chooseMap(){
+    
+    
+}
+
+
+
 void Game::assignCountries()
 {
 	vector<Country*> countries = worldMap->GetAllCountries();
@@ -127,11 +141,19 @@ void Game::assignOneRound()
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout <<"Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
 		cout << "Enter the name of the country to add an army to it" << endl;
 		cin >> choice;
 		players[i]->getCountry(choice)->addArmy();
 		players[i]->removeAnArmy();
 	}
+}
+
+int Reinforcement::getA(Player *p)
+{
+    int owned = (p->getCountries().size())/ 3;
+    //getcountries returns a vector of continent countries
+    //if all of the countries belong to one person, give him the bonus
+    //iterate between all of the countries owned and the countries 
 }

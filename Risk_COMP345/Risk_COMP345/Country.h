@@ -45,7 +45,4 @@ private:
 	int yPos;
 };
 
-#endif;
-
-
-
+#endif
