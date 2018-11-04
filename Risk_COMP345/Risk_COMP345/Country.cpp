@@ -64,6 +64,14 @@ void Country::addArmy() {
 	numberOfArmies++;
 }
 
+void Country::addMovedArmy(int movedArmy) {
+	numberOfArmies = (numberOfArmies + movedArmy);
+}
+
+void Country::removeArmy(int removeArmy) {
+	numberOfArmies = (numberOfArmies - removeArmy);
+}
+
 int Country::getNumberOfArmies() {
 	return numberOfArmies;
 }
