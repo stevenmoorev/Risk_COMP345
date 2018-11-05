@@ -40,18 +40,21 @@ int main() {
 	myGame->addDemoPlayers(p2);
 	//Godzilla has canada, superman has USA and mexico
 	p1->addCountry(c1);
+	c1->setOwner(p1);
 	p2->addCountry(c2);
+	c2->setOwner(p2);
 	p2->addCountry(c3);
+	c3->setOwner(p2);
 	cout << "We have two Players. Player 1 is Godzilla, and Player 2 is Superman." << endl;
 	cout << "Godzilla owns Canada, and Superman owns USA and Mexico." << endl;
 	//now we test the attacking phase:
-	cout << "We will now add" << endl;
+	cout << "We will now add 1 army to each country" << endl;
 	//add armies
-	myGame->addArmiesToCountry(1, c1);
-	myGame->addArmiesToCountry(1, c2);
-	myGame->addArmiesToCountry(1, c3);
+	myGame->addArmiesToCountry(3, c1);
+	myGame->addArmiesToCountry(5, c2);
+	myGame->addArmiesToCountry(5, c3);
 
-
+	myGame->attackPhase(0);
 
 	//try to attack mexico from canada, invalid
 	//attack usa from canada, valid.

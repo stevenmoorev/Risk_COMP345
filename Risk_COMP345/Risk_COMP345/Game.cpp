@@ -181,9 +181,11 @@ void Game::attackPhase(int attackerPlayerNum)
 		
 		//Player selects a owned country
 		while (countryNotEnoughArmy) {
-			cout << "Please select one of your own countries, type the exact name" << endl;
-			cin >> countrySelectedIn;
-			countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
+			do {
+				cout << "Please select one of your own countries, type the exact name" << endl;
+				cin >> countrySelectedIn;
+				countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
+			} while (countrySelected == NULL);
 			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName())->getNumberOfArmies() < 2)
 			{
 				cout << "You do not have enough armies in the region to attack! Must have atleast 2. Try Again";
@@ -201,11 +203,13 @@ void Game::attackPhase(int attackerPlayerNum)
 			cout << i << " - ";
 			cout << ListOfneighbors[i]->getCountryName() << endl;
 		}
-		cin >> neighborSelectedIndex;
+		do {
+			cin >> neighborSelectedIndex;
+		} while (neighborSelectedIndex >= ListOfneighbors.size());
 
 		//Roll correct number of dices to attack selected neighbor country
 		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName());
-		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName());
+		defenderCountry = (ListOfneighbors[neighborSelectedIndex]);
 		neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
 		attackerNumberOfArmy = attackerCountry->getNumberOfArmies();
 		defenderNumberOfArmy = defenderCountry->getNumberOfArmies();
@@ -220,7 +224,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do {
 				cout << "\n ATTACKER - The country has 3 armies. Choose to throw 1 or 2 dices" << endl;
 				cin >> attNumDices;
-			} while (attNumDices == 1 && attNumDices == 2);
+			} while (attNumDices < 1 || attNumDices > 2);
 			attDicesRolled = players[attackerPlayerNum]->rollDice(attNumDices);
 		}
 		if (attackerNumberOfArmy > 3)
@@ -228,7 +232,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do {
 				cout << "\n ATTACKER - The country has a lot armies. Choose to throw 1, 2 or 3 dices" << endl;
 				cin >> attNumDices;
-			} while (attNumDices >= 1 && attNumDices <= 3);
+			} while (attNumDices < 1 || attNumDices > 3);
 			attDicesRolled = players[attackerPlayerNum]->rollDice(attNumDices);
 		}
 		if (defenderNumberOfArmy == 1) {
@@ -240,7 +244,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do { 
 				cout << "\n DEFENDER - please select 1 or 2 dices" << endl; 
 				cin >> defNumDices;
-			} while (defNumDices >= 1 && defNumDices <= 2);
+			} while (defNumDices < 1 || defNumDices > 2);
 			defDicesRolled = neighborPlayer->rollDice(defNumDices);
 		}
 
