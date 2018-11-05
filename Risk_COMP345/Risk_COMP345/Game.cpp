@@ -24,7 +24,7 @@ Game::Game(Map* newMap)
 void Game::setup()
 {
 	setNumberOfPlayers();
-	string x = "C:/Users/pcabr/Downloads/aden/aden.map";
+	string x = "/Maps/Aden.map";
 	setNumberOfPlayers();
 	MapLoader* map = new MapLoader();
 	worldMap = map->MapLoad(x);
