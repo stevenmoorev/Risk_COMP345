@@ -16,6 +16,7 @@ public:
 	void assignCountries();
 	void placeInitialArmies();
 	void assignOneRound();
+	void reinforcementPhase(int playerNumber);
 	void attackPhase(int playerNumber);
 	void fortificationPhase(int playerNumber);
 	void addDemoPlayers(Player* player);
