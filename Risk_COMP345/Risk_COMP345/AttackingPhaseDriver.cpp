@@ -36,6 +36,8 @@ int main() {
 	
 	Player* p1 = new Player("Godzilla");
 	Player* p2 = new Player("Superman");
+	myGame->addDemoPlayers(p1);
+	myGame->addDemoPlayers(p2);
 	//Godzilla has canada, superman has USA and mexico
 	p1->addCountry(c1);
 	p2->addCountry(c2);
@@ -45,9 +47,9 @@ int main() {
 	//now we test the attacking phase:
 	cout << "We will now add" << endl;
 	//add armies
-	c1->addArmy();
-	c2->addArmy();
-	c3->addArmy();
+	myGame->addArmiesToCountry(1, c1);
+	myGame->addArmiesToCountry(1, c2);
+	myGame->addArmiesToCountry(1, c3);
 
 
 

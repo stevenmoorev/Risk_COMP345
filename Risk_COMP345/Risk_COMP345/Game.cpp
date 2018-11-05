@@ -16,9 +16,9 @@ Game::Game(Map* newMap)
 {
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
-	setup();
+	//setup();
 	worldMap = newMap;
-	placeInitialArmies();
+	//placeInitialArmies();
 }
 
 void Game::setup()
@@ -393,4 +393,12 @@ void Game::fortificationPhase(int playerNumber) {
 //For Demo
 void Game::addDemoPlayers(Player* player) {
 	players.push_back(player);
+}
+
+void Game::addArmiesToCountry(int amount, Country* c) 
+{
+	for (int i = 0; i < amount; i++) 
+	{
+		c->addArmy();
+	}
 }
