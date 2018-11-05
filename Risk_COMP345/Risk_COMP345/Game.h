@@ -9,6 +9,7 @@ class Game
 {
 public:
 	Game();
+	Game(Map* gameMap);
 	void setup();
 	void setNumberOfPlayers();
 	//bool isMapValid();

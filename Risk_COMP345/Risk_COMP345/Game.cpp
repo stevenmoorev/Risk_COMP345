@@ -12,6 +12,15 @@ Game::Game()
 	placeInitialArmies();
 }
 
+Game::Game(Map* newMap)
+{
+	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
+	gameOver = false; // game is obviously not over, it has just started
+	setup();
+	worldMap = newMap;
+	placeInitialArmies();
+}
+
 void Game::setup()
 {
 	setNumberOfPlayers();
