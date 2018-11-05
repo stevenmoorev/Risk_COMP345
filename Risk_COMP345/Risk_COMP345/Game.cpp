@@ -24,6 +24,10 @@ Game::Game(Map* newMap)
 void Game::setup()
 {
 	setNumberOfPlayers();
+	string x = "C:/Users/pcabr/Downloads/aden/aden.map";
+	setNumberOfPlayers();
+	MapLoader* map = new MapLoader();
+	worldMap = map->MapLoad(x);
 	// second thing, load map
 	//if (isMapValid()) {
 	//	assignCountries();

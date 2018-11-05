@@ -78,7 +78,7 @@ bool Graph::DFS(int v)
 }
 
 
-Map MapLoader(string const &path) {
+Map* MapLoader::MapLoad(string const &path) {
 	string junk;
 	string continentName;
 	string countryName;
@@ -102,7 +102,7 @@ Map MapLoader(string const &path) {
 		continents.push_back(new Continent(continentName, 5));
 		getline(in, score, '\n');
 
-		
+
 
 		//cout << continentName + "\n";
 		//cout << score + "\n";
@@ -152,7 +152,7 @@ Map MapLoader(string const &path) {
 					if (continentName == continents[i]->GetName())
 					{
 
-						
+
 						//cout << "Continent name ";
 						//cout << continents[i]->GetName();
 						//cout << "Continent SIZE + object ID:   " << continents[i] <<endl;
@@ -228,7 +228,7 @@ Map MapLoader(string const &path) {
 					{
 
 						continents[i]->AddCountry(neighbors[index5]);
-						
+
 						//cout << "Country memory address:" << &country;
 						//cout << country.BelongsToAContinent();
 						// country count =1 ????????
@@ -273,12 +273,11 @@ Map MapLoader(string const &path) {
 
 	}
 
-	Map map;
 	for (unsigned int i = 0; i < continents.size(); i++)
 	{
 		{
 			//cout << continents[i]->GetCountryCount() + "\n";
-			map.AddContinentToMap(continents[i]);
+			map->AddContinentToMap(continents[i]);
 			//cout << "FLAG1";
 			//cout << "\n";
 		}
@@ -287,9 +286,9 @@ Map MapLoader(string const &path) {
 	//vector<Country*>Map2= map.GetAllCountries();
 	//verify how many countries are part of each continent which currently gives 1 
 	bool countryPerContinent = true;
-	for (unsigned int x = 0; x < map.GetMapContinents().size(); x++) {
+	for (unsigned int x = 0; x < map->GetMapContinents().size(); x++) {
 
-		if (map.GetMapContinents()[x]->GetCountryCount() <= 0) {
+		if (map->GetMapContinents()[x]->GetCountryCount() <= 0) {
 			bool countryPerContinent = false;
 		};
 	}
@@ -302,10 +301,10 @@ Map MapLoader(string const &path) {
 	//cout << map.GetCountryCount();
 
 	//graph construction
-	Graph countriesConnection(map.GetCountryCount());
-	for (unsigned int x = 0; x < map.GetAllCountries().size(); x++) {
+	Graph countriesConnection(map->GetCountryCount());
+	for (unsigned int x = 0; x < map->GetAllCountries().size(); x++) {
 
-		vector<Country*> v = map.GetAllCountries();
+		vector<Country*> v = map->GetAllCountries();
 
 		auto it69 = find_if(v.begin(), v.end(), [&](Country* n) {return n->getCountryName() == v[x]->getCountryName();});
 		auto index69 = std::distance(v.begin(), it69);
@@ -319,20 +318,19 @@ Map MapLoader(string const &path) {
 		}
 	}
 
-	
+
 	if (countryPerContinent == true && countriesConnection.DFS(0)) {
 		cout << "Map Created" << endl;
-
 		return map;
-		cout << map.GetCountryCount();
+		//cout << map.GetCountryCount();
 	}
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
 }
-//int main() {
-//
-//	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
-//	MapLoader(path1);
-//
-//}
+/*int main() {
+
+	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+	MapLoader(path1);
+
+}*/

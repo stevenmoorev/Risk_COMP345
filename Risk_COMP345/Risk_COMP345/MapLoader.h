@@ -1,9 +1,7 @@
 #pragma once
-#include "Map.h"
 
 #include "Continent.h"
 #include "Country.h"
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -17,7 +15,10 @@
 class MapLoader
 {
 public:
-	MapLoader();
 	~MapLoader();
-	Map Load();
+	void Load();
+	Map* MapLoad(string const & path);
+
+private:
+	Map* map;
 };
