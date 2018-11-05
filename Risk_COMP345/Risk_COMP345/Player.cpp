@@ -75,6 +75,13 @@ Country* Player::getCountry(string n) {
 	return NULL;
 }
 
+vector<int> Player::rollDice(int numDice) {
+	vector<int> results = dices->throwDice(numDice);
+	sort(results.begin(), results.begin() + results.size());
+	return results;
+}
+
+
 //for demo
 ////////////////////////////////////
 ////////////////////////////////// 

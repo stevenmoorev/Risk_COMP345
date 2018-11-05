@@ -34,6 +34,8 @@ public:
 	int getX();
 	int getY();
 	void addArmy();
+	void addMovedArmy(int movedArmy);
+	void removeArmy(int removeArmy);
 
 private:
 	string countryName;

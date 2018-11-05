@@ -41,6 +41,7 @@ public:
 	void removeAnArmy();
 	vector<Country*> getCountries();
 	void addCountry(Country* newCountry);
+	vector<int> rollDice(int);
 	void rollDice(); // for a1 demo
 	void showCards(); // for a1 demo
 	Country* getCountry(string n);
