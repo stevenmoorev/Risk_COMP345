@@ -21,9 +21,10 @@ public:
     int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
     int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
     Map chooseMap();
+    Map* worldMap;
 
 private:
 	vector<Player*> players;
 	bool gameOver; 
-	Map* worldMap;
+	
 };

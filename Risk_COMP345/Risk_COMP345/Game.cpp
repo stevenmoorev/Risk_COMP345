@@ -10,7 +10,7 @@ Game::Game()
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
-	placeInitialArmies();
+	//placeInitialArmies();
 }
 
 Game::Game(Map* newMap)
@@ -506,10 +506,12 @@ Map Game::chooseMap(){
     if (answer == 1){
         MapLoader* ml = new MapLoader("/Users/stevenmoore/Documents/GitHub/Risk_COMP345/Risk_COMP345/Risk_COMP345/Maps/Aden.map");
         m = ml->getMap();
+        worldMap = &m;
     }
     if (answer == 2){
         MapLoader* ml = new MapLoader("/Users/stevenmoore/Desktop/Risk_COMP345/Risk_COMP345/Risk_COMP345/Canada.map");
         m = ml->getMap();
+        worldMap = &m;
     }
     return m;
 }

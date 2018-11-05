@@ -19,4 +19,5 @@ public:
 
 private:
 	std::vector<Continent*> mapContinents;
+    
 };

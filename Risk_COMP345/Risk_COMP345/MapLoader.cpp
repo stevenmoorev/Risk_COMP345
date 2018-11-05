@@ -114,7 +114,7 @@ MapLoader::MapLoader(string const &path) {
 
 		
 
-		cout << continentName + "\n";
+		//cout << continentName + "\n";
 		//cout << score + "\n";
 	}
 	//cout << continents.size();

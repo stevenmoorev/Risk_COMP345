@@ -59,7 +59,9 @@ vector<Country*> Map::GetAllCountries() const
 		for (int j = 0; j < mapContinents[i]->GetCountries().size(); j++)
 		{
 			allC.push_back(mapContinents[i]->GetCountries()[j]);
+            cout << mapContinents[i]->GetCountries()[j] << endl;
 		}
 	}
+    //mapCountries = allC;
 	return allC;
 }
