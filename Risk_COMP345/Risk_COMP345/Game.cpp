@@ -493,9 +493,9 @@ void Game::fortificationPhase(int playerNumber) {
 
 }
 
-Map Game::chooseMap(){
+void Game::chooseMap(){
     //MapLoader* ml;
-    Map m;
+    //Map *m;
     cout << "Which map would you like to use?" << endl;
     cout << "[1] Aden" << endl;
     cout << "[2] Canada" <<endl;
@@ -505,14 +505,11 @@ Map Game::chooseMap(){
     
     if (answer == 1){
         MapLoader* ml = new MapLoader("/Users/stevenmoore/Documents/GitHub/Risk_COMP345/Risk_COMP345/Risk_COMP345/Maps/Aden.map");
-        m = ml->getMap();
-        worldMap = &m;
+        worldMap = ml->getMap();
     }
     if (answer == 2){
         MapLoader* ml = new MapLoader("/Users/stevenmoore/Desktop/Risk_COMP345/Risk_COMP345/Risk_COMP345/Canada.map");
-        m = ml->getMap();
-        worldMap = &m;
+        worldMap = ml->getMap();
     }
-    return m;
 }
 

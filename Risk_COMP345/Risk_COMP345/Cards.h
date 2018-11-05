@@ -23,7 +23,7 @@ class Map;
 		Map* map;
         Deck();
         ~Deck();
-		Deck* initializeDeck();
+		void initializeDeck();
         void addCardToDeck(Card* card);
         //void removeCardFromDeck(Card* card);
         //void initializeDeck(Map* map);

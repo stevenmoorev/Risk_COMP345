@@ -17,9 +17,9 @@ public:
 	~MapLoader();
 	void Load();
     MapLoader(string const &path);
-    void setMap(Map map);
-    Map getMap();
+    void setMap(Map* map);
+    Map* getMap();
     
 private:
-    Map map;
+    Map* map;
 };

@@ -36,7 +36,7 @@ void Continent::AddCountry(Country *newCountry)
 
 	if (!ContainsCountry(newCountry) && !newCountry->BelongsToAContinent())
 	{
-        cout << "Added country" << endl;
+        //cout << "Added country" << endl;
 		continentCountries.push_back(newCountry);
 		newCountry->SetContinent(this);
 
@@ -46,7 +46,7 @@ void Continent::AddCountry(Country *newCountry)
 
 int Continent::GetCountryCount() const
 {
-	return GetCountries().size();
+    return GetCountries().size();
 }
 
 bool Continent::ContainsCountry(Country *country)

@@ -339,16 +339,16 @@ MapLoader::MapLoader(string const &path) {
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
-    setMap(map);
+    setMap(&map);
    // return map;
 }
 
-Map MapLoader::getMap(){
+Map* MapLoader::getMap(){
     return map;
 }
 
-void MapLoader::setMap(Map m){
-    this->map = m;
+void MapLoader::setMap(Map* m){
+    map = m;
 }
 
 //int main() {

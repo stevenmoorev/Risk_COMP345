@@ -20,7 +20,7 @@ public:
 	void fortificationPhase(int playerNumber);
     int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
     int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
-    Map chooseMap();
+    void chooseMap();
     Map* worldMap;
 
 private:
