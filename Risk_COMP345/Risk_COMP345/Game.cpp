@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-
 #include "Game.h"
 
 using namespace std;
@@ -10,7 +9,7 @@ Game::Game()
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
-	//placeInitialArmies();
+	placeInitialArmies();
 }
 
 Game::Game(Map* newMap)
@@ -25,13 +24,7 @@ Game::Game(Map* newMap)
 void Game::setup()
 {
 	setNumberOfPlayers();
-    
-    //get all files in the Maps directory
-    //and choose
-    chooseMap();
-    
-    
-    // second thing, load map
+	// second thing, load map
 	//if (isMapValid()) {
 	//	assignCountries();
 	//}
@@ -60,128 +53,40 @@ void Game::setNumberOfPlayers()
 	switch (numberOfPlayers) 
 	{
 	case 2:
-        {
 		armyAllocation = 40;
-            Player* player1;
-            Player* player2;
-            player1 = new Player(armyAllocation);
-            player1->setName();
-            player2 = new Player(armyAllocation);
-            player2->setName();
-            players.push_back(player1);
-            players.push_back(player2);
 		break;
-        }
 	case 3:
-        {
 		armyAllocation = 35;
-            Player* player1;
-            Player* player2;
-            Player* player3;
-            player1 = new Player(armyAllocation);
-            player1->setName();
-            players.push_back(player1);
-            player2 = new Player(armyAllocation);
-            player2->setName();
-            player3 = new Player(armyAllocation);
-            player3->setName();
-            players.push_back(player2);
-            players.push_back(player3);
 		break;
-        }
 	case 4:
-        {
 		armyAllocation = 30;
-            Player* player1;
-            player1 = new Player(armyAllocation);
-            player1->setName();
-            players.push_back(player1);
-            Player* player2;
-            player2 = new Player(armyAllocation);
-            player2->setName();
-            players.push_back(player2);
-            Player* player3;
-            player3 = new Player(armyAllocation);
-            player3->setName();
-            players.push_back(player3);
-            Player* player4;
-            player4 = new Player(armyAllocation);
-            player4->setName();
-            players.push_back(player4);
 		break;
-        }
 	case 5:
-        {
-            armyAllocation = 25;
-            Player* player1;
-            player1 = new Player(armyAllocation);
-            player1->setName();
-            players.push_back(player1);
-            Player* player2;
-            player2 = new Player(armyAllocation);
-            player2->setName();
-            players.push_back(player2);
-            Player* player3;
-            player3 = new Player(armyAllocation);
-            player3->setName();
-            players.push_back(player3);
-            Player* player4;
-            player4 = new Player(armyAllocation);
-            player4->setName();
-            players.push_back(player4);
-            Player* player5;
-            player5 = new Player(armyAllocation);
-            player5->setName();
-            players.push_back(player5);
-            break;
-        }
+		armyAllocation = 25;
+		break;
 	case 6:
-        {
-            armyAllocation = 20;
-            Player* player1;
-            player1 = new Player(armyAllocation);
-            player1->setName();
-            players.push_back(player1);
-            Player* player2;
-            player2 = new Player(armyAllocation);
-            player2->setName();
-            players.push_back(player2);
-            Player* player3;
-            player3 = new Player(armyAllocation);
-            player3->setName();
-            players.push_back(player3);
-            Player* player4;
-            player4 = new Player(armyAllocation);
-            player4->setName();
-            players.push_back(player4);
-            Player* player5;
-            player5 = new Player(armyAllocation);
-            player5->setName();
-            players.push_back(player5);
-            Player* player6;
-            player6 = new Player(armyAllocation);
-            player6->setName();
-            players.push_back(player6);
-            break;
-        }
+		armyAllocation = 20;
+		break;
 	}
-	
+	string name;
+	// create our players
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		cout << "PLEASE ENTER NAME OF PLAYER " << i << ": ";
+		cout << endl;
+		cin >> name;
+		Player* currentPlayer = new Player(name, armyAllocation);
+		players.push_back(currentPlayer);
+	}
 
 	// introduce the players
 	cout << "We have " << numberOfPlayers << " players battling it out! Here they are: " << endl;
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		cout << i+1 << ") " << players[i]->getName() << endl;
+		cout << i << ") " << players[i]->getName() << endl;
 	}
 	cout << "Welcome to the game, and may the odds be in your favor!" << endl << endl;
 }
-
-void Game::chooseMap(){
-    
-    
-}
-
-
 
 void Game::assignCountries()
 {
@@ -231,12 +136,21 @@ void Game::assignOneRound()
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout <<"Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
 		cout << "Enter the name of the country to add an army to it" << endl;
 		cin >> choice;
 		players[i]->getCountry(choice)->addArmy();
 		players[i]->removeAnArmy();
+	}
+}
+
+void Game::reinforcementPhase(int playerNumber) {
+	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
+	int extraReinforcements = 3;
+	if (numberOfCountriesOfPlayer > 3)
+	{
+		extraReinforcements += numberOfCountriesOfPlayer / 3;
 	}
 }
 
@@ -247,9 +161,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	cout << "=============";
 	cout << "ATTACK PHASE";
 	cout << "=============";
-
-	cout << "Player " + attackerPlayerNum;
-
+	cout << "Player ";
 	cout << " Do you want to attack? y/n" << endl;
 	cin >> attackPhaseInputString;
 
@@ -263,9 +175,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	while (isAttackPhase) {
 		string countrySelectedIn;
 		int neighborSelectedIndex;
-
-		Country* countrySelected;
-
+		Country* countrySelected = NULL;
 		int attackerNumberOfArmy;
 		int defenderNumberOfArmy;
 		int attNumDices;
@@ -280,12 +190,12 @@ void Game::attackPhase(int attackerPlayerNum)
 		
 		//Player selects a owned country
 		while (countryNotEnoughArmy) {
-
-			cout << "Please select one of your own countries, type the exact name" << endl;
-			cin >> countrySelectedIn;
-			countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
-			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName)->getNumberOfArmies() < 2)
-
+			do {
+				cout << "Please select one of your own countries, type the exact name" << endl;
+				cin >> countrySelectedIn;
+				countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
+			} while (countrySelected == NULL);
+			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName())->getNumberOfArmies() < 2)
 			{
 				cout << "You do not have enough armies in the region to attack! Must have atleast 2. Try Again";
 			}
@@ -300,16 +210,16 @@ void Game::attackPhase(int attackerPlayerNum)
 		for(int i = 0; i < ListOfneighbors.size(); i++)
 		{	
 			cout << i << " - ";
-
-			cout << ListOfneighbors[i]->getCountryName << endl;
+			cout << ListOfneighbors[i]->getCountryName() << endl;
 		}
-		cin >> neighborSelectedIndex;
+		do {
+			cin >> neighborSelectedIndex;
+		} while (neighborSelectedIndex >= ListOfneighbors.size());
 
 		//Roll correct number of dices to attack selected neighbor country
-		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName);
-		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName);
-		Player* neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
-
+		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName());
+		defenderCountry = (ListOfneighbors[neighborSelectedIndex]);
+		neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
 		attackerNumberOfArmy = attackerCountry->getNumberOfArmies();
 		defenderNumberOfArmy = defenderCountry->getNumberOfArmies();
 		if (attackerNumberOfArmy == 2)
@@ -323,9 +233,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do {
 				cout << "\n ATTACKER - The country has 3 armies. Choose to throw 1 or 2 dices" << endl;
 				cin >> attNumDices;
-
-			} while (attNumDices == 1 && attNumDices == 2);
-
+			} while (attNumDices < 1 || attNumDices > 2);
 			attDicesRolled = players[attackerPlayerNum]->rollDice(attNumDices);
 		}
 		if (attackerNumberOfArmy > 3)
@@ -333,9 +241,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do {
 				cout << "\n ATTACKER - The country has a lot armies. Choose to throw 1, 2 or 3 dices" << endl;
 				cin >> attNumDices;
-
-			} while (attNumDices >= 1 && attNumDices <= 3);
-
+			} while (attNumDices < 1 || attNumDices > 3);
 			attDicesRolled = players[attackerPlayerNum]->rollDice(attNumDices);
 		}
 		if (defenderNumberOfArmy == 1) {
@@ -347,9 +253,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			do { 
 				cout << "\n DEFENDER - please select 1 or 2 dices" << endl; 
 				cin >> defNumDices;
-
-			} while (defNumDices >= 1 && defNumDices <= 2);
-
+			} while (defNumDices < 1 || defNumDices > 2);
 			defDicesRolled = neighborPlayer->rollDice(defNumDices);
 		}
 
@@ -381,9 +285,7 @@ void Game::attackPhase(int attackerPlayerNum)
 					attackerCountry->removeArmy(moveArmy);
 					players[attackerPlayerNum]->addCountry(ListOfneighbors[neighborSelectedIndex]);
 					ListOfneighbors[neighborSelectedIndex]->addMovedArmy(moveArmy);
-
-					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName << endl;
-
+					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName() << endl;
 					moveArmyCheck = true;
 				}
 			} while (!moveArmyCheck);
@@ -404,38 +306,8 @@ void Game::attackPhase(int attackerPlayerNum)
 	}
 } 
 
-
-int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
-
-	int defendersEliminated = 0;
-	for (int i = 0; i < defDicesRolled.size(); i++) {
-
-		if (attDicesRolled[i] > defDicesRolled[i])
-		{
-			defendersEliminated++;
-		}
-	}
-	return defendersEliminated;
-}
-
-
-int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
-
-	int attackersEliminated = 0;
-	for (int i = 0; i < defDicesRolled.size(); i++) {
-
-		if (defDicesRolled[i] >= attDicesRolled[i])
-		{
-			attackersEliminated++;
-		}
-	}
-	return attackersEliminated;
-}
-
 void Game::fortificationPhase(int playerNumber) {
-
-	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries;
-
+	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries();
 	vector<Country*> ownedNeighborCountry;
 	string selectedCountryString;
 	int selectedNeighborNum;
@@ -454,15 +326,15 @@ void Game::fortificationPhase(int playerNumber) {
 		int sizeOfCountriesList = players[playerNumber]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << "in continent" << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
-		cout << "Enter the name of the country to move armies from" << endl;
+		cout << "Enter the name of the country to move armies from " << endl;
 		cin >> selectedCountryString;
 
 		countrySelected = (players[playerNumber]->getCountry(selectedCountryString));
 
 		//Check owned neighbors
-		int sizeOfNeighborList = countrySelected->getNeighbors().size();
+		int sizeOfNeighborList = (countrySelected->getNeighbors()).size();
 		vector<Country*> allNeighbors = countrySelected->getNeighbors();
 		vector<Country*> ownedNeighbors;
 		for (int i = 0; i < allNeighbors.size(); i++)
@@ -479,7 +351,7 @@ void Game::fortificationPhase(int playerNumber) {
 			for (int j = 0; j < ownedNeighbors.size(); j++)
 			{
 				cout << j << " - ";
-				cout << "Country named " << ownedNeighbors[j]->getCountryName() << "in continent" << ownedNeighbors[j]->GetContinent()->GetName() << endl;
+				cout << "Country named " << ownedNeighbors[j]->getCountryName() << " in continent " << ownedNeighbors[j]->GetContinent()->GetName() << endl;
 			}
 			cout << "\nSelect a number from the list" << endl;
 			cin >> selectedNeighborNum;
@@ -487,14 +359,16 @@ void Game::fortificationPhase(int playerNumber) {
 
 			//Proceed to the moving of army
 			int moveArmy = 0;
-			cout << " How many army units would you like to move?" << endl;
+			cout << "Your neighbor " << neighborSelected->getCountryName() << " has " << neighborSelected->getNumberOfArmies() << " army units" <<endl;
+			cout << "\nHow many army units would you like to move?" << endl;
 			do {
-				cout << " Currently you have " << countrySelected->getNumberOfArmies() << " units in " << countrySelected->getCountryName() << "must leave 1 behind";
+				cout << "Currently you have " << countrySelected->getNumberOfArmies() << " units in " << countrySelected->getCountryName() << " must leave 1 behind" << endl;
 				cin >> moveArmy;
-			} while (moveArmy <= countrySelected->getNumberOfArmies() - 1);
+			} while (!(moveArmy <= countrySelected->getNumberOfArmies() - 1));
 			countrySelected->removeArmy(moveArmy);
 			neighborSelected->addMovedArmy(moveArmy);
 			cout << "You have successfully moved some units to a neighboring country" << endl;
+			cout << countrySelected->getCountryName() << " now has " << countrySelected->getNumberOfArmies() << " army units and your neighbor " << neighborSelected->getCountryName() << " now has " << neighborSelected->getNumberOfArmies() << " army units" <<endl;
 			fortificationPhase = false;
 		}
 		else
@@ -503,7 +377,42 @@ void Game::fortificationPhase(int playerNumber) {
 			fortificationPhase = true;
 		}
 	} while (fortificationPhase);
-	cout << "FORTIFICATION PHASE DONE";
-
+	cout << "\n\nFORTIFICATION PHASE DONE\n\n";
 }
 
+//For Demo
+void Game::addDemoPlayers(Player* player) {
+	players.push_back(player);
+}
+
+void Game::addArmiesToCountry(int amount, Country* c) 
+{
+	for (int i = 0; i < amount; i++) 
+	{
+		c->addArmy();
+	}
+}
+
+int Game::compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+	int defendersEliminated = 0;
+	for (int i = 0; i < defDicesRolled.size(); i++) {
+
+		if (attDicesRolled[i] > defDicesRolled[i])
+		{
+			defendersEliminated++;
+		}
+	}
+	return defendersEliminated;
+}
+
+int Game::compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+	int attackersEliminated = 0;
+	for (int i = 0; i < defDicesRolled.size(); i++) {
+
+		if (defDicesRolled[i] >= attDicesRolled[i])
+		{
+			attackersEliminated++;
+		}
+	}
+	return attackersEliminated;
+}

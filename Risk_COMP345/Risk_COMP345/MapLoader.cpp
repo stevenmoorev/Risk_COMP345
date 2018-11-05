@@ -1,13 +1,4 @@
-
-#include <assert.h>
-#include <fstream>
-#include <sstream>
 #include "MapLoader.h"
-#include "Continent.h"
-#include "Country.h"
-#include "Map.h"
-#include "MapLoader.h"
-
 using namespace std;
 using std::cin;
 using std::cout;
@@ -21,17 +12,6 @@ class Graph
 	int V;    // No. of vertices 
 
 
-
-MapLoader::MapLoader(){
-    
-}
-
-MapLoader::~MapLoader(){
-    
-}
-
-Map MapLoader::Load() {
-=======
 	// Pointer to an array containing 
 	// adjacency lists 
 	list<int> *adj;
@@ -107,9 +87,7 @@ Map MapLoader(string const &path) {
 	const char flag = '\n';
 	//input of map file location
 
-
 	in.open(path);
-
 
 	//skipping unecessary map info
 	for (int a = 0; a < 8; a = a + 1) {
@@ -352,10 +330,9 @@ Map MapLoader(string const &path) {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
 }
-int main() {
-
-	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
-	MapLoader(path1);
-
-}
-
+//int main() {
+//
+//	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+//	MapLoader(path1);
+//
+//}
