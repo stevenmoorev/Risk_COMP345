@@ -148,10 +148,32 @@ void Game::assignOneRound()
 void Game::reinforcementPhase(int playerNumber) {
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
+	int selectedCountryForReinforcement;
+	cout << "===================";
+	cout << "REINFORCEMENT PHASE";
+	cout << "===================";
 	if (numberOfCountriesOfPlayer > 3)
 	{
 		extraReinforcements += numberOfCountriesOfPlayer / 3;
 	}
+	while (extraReinforcements > 0)
+	{
+		cout << "Amount of armies left to place: " << extraReinforcements << endl;
+		//Select an owned country
+		cout << "Here are your choices: " << endl;
+		int sizeOfCountriesList = players[playerNumber]->getCountries().size();
+		for (int j = 0; j < sizeOfCountriesList; j++)
+		{
+			cout << j << " - " <<"Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() <<" with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" <<endl;
+		}
+		cout << "Enter the number of the country to add armies to " << endl;
+		cin >> selectedCountryForReinforcement;
+		(players[playerNumber]->getCountries()[selectedCountryForReinforcement])->addArmy();
+		cout << (players[playerNumber]->getCountries()[selectedCountryForReinforcement])->getCountryName() << " now has " << (players[playerNumber]->getCountries()[selectedCountryForReinforcement])->getNumberOfArmies() << " number of armies " << endl;
+
+		extraReinforcements--;
+	}
+	cout << "REINFORCEMENT PHASE DONE!" << endl;
 }
 
 void Game::attackPhase(int attackerPlayerNum)
@@ -161,8 +183,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	cout << "=============";
 	cout << "ATTACK PHASE";
 	cout << "=============";
-	cout << "Player ";
-	cout << " Do you want to attack? y/n" << endl;
+	cout << "/n Do you want to attack? y/n" << endl;
 	cin >> attackPhaseInputString;
 
 	if (attackPhaseInputString.compare("y") || attackPhaseInputString.compare("yes")) {
