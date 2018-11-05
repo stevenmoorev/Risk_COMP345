@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Game.h"
+#include "MapLoader.h"
 
 using namespace std;
 
@@ -37,62 +38,142 @@ void Game::setup()
 
 void Game::setNumberOfPlayers()
 {
-	int MAX_PLAYERS = 6;
-	int numberOfPlayers;
-	int armyAllocation;
-	cout << "How many players are in the game? There is a maximum of 6. " << endl;
-	cin >> numberOfPlayers;
-
-	//keep searching
-	while (numberOfPlayers < 2 || numberOfPlayers > MAX_PLAYERS || cin.fail())
-	{
-		cout << "INVALID ENTRY - Please enter an integer between 2 and 6: " << endl;
-		cin >> numberOfPlayers;
-	}
-	cout << endl;
-	//determine the number of armies they get to place
-	switch (numberOfPlayers) 
-	{
-	case 2:
-		armyAllocation = 40;
-		break;
-	case 3:
-		armyAllocation = 35;
-		break;
-	case 4:
-		armyAllocation = 30;
-		break;
-	case 5:
-		armyAllocation = 25;
-		break;
-	case 6:
-		armyAllocation = 20;
-		break;
-	}
-	string name;
-	// create our players
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		cout << "PLEASE ENTER NAME OF PLAYER " << i << ": ";
-		cout << endl;
-		cin >> name;
-		Player* currentPlayer = new Player(name, armyAllocation);
-		players.push_back(currentPlayer);
-	}
-
-	// introduce the players
-	cout << "We have " << numberOfPlayers << " players battling it out! Here they are: " << endl;
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		cout << i << ") " << players[i]->getName() << endl;
-	}
-	cout << "Welcome to the game, and may the odds be in your favor!" << endl << endl;
+    int MAX_PLAYERS = 6;
+    int numberOfPlayers;
+    int armyAllocation;
+    cout << "How many players are in the game? There is a maximum of 6. " << endl;
+    cin >> numberOfPlayers;
+    
+    //keep searching
+    while (numberOfPlayers < 2 || numberOfPlayers > MAX_PLAYERS || cin.fail())
+    {
+        cout << "INVALID ENTRY - Please enter an integer between 2 and 6: " << endl;
+        cin >> numberOfPlayers;
+    }
+    cout << endl;
+    //determine the number of armies they get to place
+    switch (numberOfPlayers)
+    {
+        case 2:
+        {
+            armyAllocation = 40;
+            Player* player1;
+            Player* player2;
+            player1 = new Player(armyAllocation);
+            player1->setName();
+            player2 = new Player(armyAllocation);
+            player2->setName();
+            players.push_back(player1);
+            players.push_back(player2);
+            break;
+        }
+        case 3:
+        {
+            armyAllocation = 35;
+            Player* player1;
+            Player* player2;
+            Player* player3;
+            player1 = new Player(armyAllocation);
+            player1->setName();
+            players.push_back(player1);
+            player2 = new Player(armyAllocation);
+            player2->setName();
+            player3 = new Player(armyAllocation);
+            player3->setName();
+            players.push_back(player2);
+            players.push_back(player3);
+            break;
+        }
+        case 4:
+        {
+            armyAllocation = 30;
+            Player* player1;
+            player1 = new Player(armyAllocation);
+            player1->setName();
+            players.push_back(player1);
+            Player* player2;
+            player2 = new Player(armyAllocation);
+            player2->setName();
+            players.push_back(player2);
+            Player* player3;
+            player3 = new Player(armyAllocation);
+            player3->setName();
+            players.push_back(player3);
+            Player* player4;
+            player4 = new Player(armyAllocation);
+            player4->setName();
+            players.push_back(player4);
+            break;
+        }
+        case 5:
+        {
+            armyAllocation = 25;
+            Player* player1;
+            player1 = new Player(armyAllocation);
+            player1->setName();
+            players.push_back(player1);
+            Player* player2;
+            player2 = new Player(armyAllocation);
+            player2->setName();
+            players.push_back(player2);
+            Player* player3;
+            player3 = new Player(armyAllocation);
+            player3->setName();
+            players.push_back(player3);
+            Player* player4;
+            player4 = new Player(armyAllocation);
+            player4->setName();
+            players.push_back(player4);
+            Player* player5;
+            player5 = new Player(armyAllocation);
+            player5->setName();
+            players.push_back(player5);
+            break;
+        }
+        case 6:
+        {
+            armyAllocation = 20;
+            Player* player1;
+            player1 = new Player(armyAllocation);
+            player1->setName();
+            players.push_back(player1);
+            Player* player2;
+            player2 = new Player(armyAllocation);
+            player2->setName();
+            players.push_back(player2);
+            Player* player3;
+            player3 = new Player(armyAllocation);
+            player3->setName();
+            players.push_back(player3);
+            Player* player4;
+            player4 = new Player(armyAllocation);
+            player4->setName();
+            players.push_back(player4);
+            Player* player5;
+            player5 = new Player(armyAllocation);
+            player5->setName();
+            players.push_back(player5);
+            Player* player6;
+            player6 = new Player(armyAllocation);
+            player6->setName();
+            players.push_back(player6);
+            break;
+        }
+    }
+    
+    
+    // introduce the players
+    cout << "We have " << numberOfPlayers << " players battling it out! Here they are: " << endl;
+    for (int i = 0; i < numberOfPlayers; i++)
+    {
+        cout << i+1 << ") " << players[i]->getName() << endl;
+    }
+    cout << "Welcome to the game, and may the odds be in your favor!" << endl << endl;
 }
 
-void Game::assignCountries()
-{
-	vector<Country*> countries = worldMap->GetAllCountries();
 
+void Game::assignCountries(){
+	vector<Country*> countries = worldMap->GetAllCountries();
 
 	//we want to assign them
 	for (int i = 0; i < countries.size(); i++)
@@ -114,8 +195,7 @@ void Game::assignCountries()
 	}
 }
 
-void Game::placeInitialArmies() 
-{
+void Game::placeInitialArmies() {
 	int numberOfInitialArmiesLeft = players[0]->getArmies();
 	bool allArmiesAllocated = false;
 	while (!allArmiesAllocated) {
@@ -413,15 +493,24 @@ void Game::fortificationPhase(int playerNumber) {
 
 }
 
-void Game::chooseMap(){
+Map Game::chooseMap(){
+    //MapLoader* ml;
+    Map m;
     cout << "Which map would you like to use?" << endl;
     cout << "[1] Aden" << endl;
     cout << "[2] Canada" <<endl;
     cout << "Choose a number" << endl;
-    char answer;
-    cin << answer;
+    int answer;
+    cin >> answer;
     
     if (answer == 1){
-        
+        MapLoader* ml = new MapLoader("/Users/stevenmoore/Documents/GitHub/Risk_COMP345/Risk_COMP345/Risk_COMP345/Maps/Aden.map");
+        m = ml->getMap();
     }
+    if (answer == 2){
+        MapLoader* ml = new MapLoader("/Users/stevenmoore/Desktop/Risk_COMP345/Risk_COMP345/Risk_COMP345/Canada.map");
+        m = ml->getMap();
+    }
+    return m;
 }
+

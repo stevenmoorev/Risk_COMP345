@@ -26,6 +26,14 @@ Player::Player(string n, int a) {
 	dices = new Dice();
 }
 
+Player::Player(int a) {
+    name = "";
+    unavailable_armies = a;
+    hand = new Hand();
+    dices = new Dice();
+}
+
+
 Player::Player(string n, vector<Country*> c) {
 	name = n;
 	unavailable_armies = 0;
@@ -40,8 +48,21 @@ void Player::removeAnArmy() {
 	}
 }
 
+
 string Player::getName() {
 	return name;
+}
+
+void Player::setName(){
+    string n;
+    // create our players
+    cout << "PLEASE ENTER NAME OF PLAYER ";
+    cout << endl;
+    cin >> n;
+    this->name = n;
+    //Player* currentPlayer = new Player(name, armyAllocation);
+    //players.push_back(currentPlayer);
+    
 }
 
 int Player::getArmies() {

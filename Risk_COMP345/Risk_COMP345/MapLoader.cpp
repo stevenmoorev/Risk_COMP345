@@ -1,4 +1,5 @@
 #include "MapLoader.h"
+
 using namespace std;
 using std::cin;
 using std::cout;
@@ -7,6 +8,15 @@ using std::find_if;
 std::string STRING;
 std::ifstream in;
 //graph implementation
+
+MapLoader::MapLoader(){
+    
+}
+
+MapLoader::~MapLoader(){
+    
+}
+
 class Graph
 {
 	int V;    // No. of vertices 
@@ -78,7 +88,7 @@ bool Graph::DFS(int v)
 }
 
 
-Map MapLoader(string const &path) {
+MapLoader::MapLoader(string const &path) {
 	string junk;
 	string continentName;
 	string countryName;
@@ -104,7 +114,7 @@ Map MapLoader(string const &path) {
 
 		
 
-		//cout << continentName + "\n";
+		cout << continentName + "\n";
 		//cout << score + "\n";
 	}
 	//cout << continents.size();
@@ -323,16 +333,23 @@ Map MapLoader(string const &path) {
 	if (countryPerContinent == true && countriesConnection.DFS(0)) {
 		cout << "Map Created" << endl;
 
-		return map;
+		//return map;
 		cout << map.GetCountryCount();
 	}
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
-    
+    setMap(map);
+   // return map;
+}
+
+Map MapLoader::getMap(){
     return map;
 }
 
+void MapLoader::setMap(Map m){
+    this->map = m;
+}
 
 //int main() {
 

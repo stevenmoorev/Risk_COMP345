@@ -9,8 +9,8 @@ Map::~Map()
 {
 	for (vector<Continent*>::iterator it = mapContinents.begin(); it != mapContinents.end(); it++)
 	{
-		delete *it;
-		*it = NULL;
+		//delete *it;
+		//*it = NULL;
 	}
 	mapContinents.clear();
 }

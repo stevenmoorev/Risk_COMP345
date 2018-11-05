@@ -34,8 +34,10 @@ public:
 	Player(string);
 	Player(string, vector<Country*>);
 	Player(string, int);
+    Player(int);
 
 	string getName();
+    void setName();
 	int getArmies();
 	void removeAnArmy();
 	vector<Country*> getCountries();
