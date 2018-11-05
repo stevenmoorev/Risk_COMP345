@@ -1,7 +1,7 @@
 #include <assert.h>
-#include "MapLoader.h"
 #include <fstream>
 #include <sstream>
+#include "MapLoader.h"
 #include "Continent.h"
 #include "Country.h"
 #include "Map.h"
@@ -13,7 +13,15 @@ std::string STRING;
 std::ifstream in;
 
 
-Map Load() {
+MapLoader::MapLoader(){
+    
+}
+
+MapLoader::~MapLoader(){
+    
+}
+
+Map MapLoader::Load() {
 	string junk;
 	string continentName;
 	string countryName;
@@ -21,7 +29,7 @@ Map Load() {
 	int x,y;
 	const char flag = '\n';
 	//input of map file location
-	in.open("C://Users/pcabr/Downloads/Aden/Aden.map");
+	in.open("/Users/stevenmoore/Downloads/Canada 2/Canada.map");
 	//skipping unecessary map info
 	for (int a = 0; a < 8; a = a + 1) {
 		getline(in, junk, '\n');

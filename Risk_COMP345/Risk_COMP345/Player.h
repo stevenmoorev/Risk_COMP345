@@ -31,6 +31,7 @@ private:
 public:
 	Player();
 	~Player();
+    Player(int);
 	Player(string);
 	Player(string, vector<Country*>);
 	Player(string, int);
@@ -43,6 +44,11 @@ public:
 	void rollDice(); // for a1 demo
 	void showCards(); // for a1 demo
 	Country* getCountry(string n);
+    void setHand();
+    void setDice();
+    void setCountries();
+    void setName();
+    void setArmies(int armies);
 };
 
 #endif
