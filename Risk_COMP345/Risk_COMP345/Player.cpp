@@ -8,8 +8,8 @@ Player::Player() {
 }
 
 Player::~Player(void) {
-	delete dices;
-	delete hand;
+	//delete dices;
+	//delete hand;
 }
 
 Player::Player(string n) {
@@ -25,6 +25,14 @@ Player::Player(string n, int a) {
 	hand = new Hand();
 	dices = new Dice();
 }
+
+Player::Player(int a) {
+    name = "";
+    unavailable_armies = a;
+    hand = new Hand();
+    dices = new Dice();
+}
+
 
 Player::Player(string n, vector<Country*> c) {
 	name = n;
@@ -86,3 +94,28 @@ void Player::rollDice() {
 void Player::showCards() {
 	hand->getCards();
 }
+
+void Player::setDice(){
+    Dice d;
+    dices = &d;
+}
+void Player::setHand(){
+    Hand h;
+    hand = &h;
+}
+void Player::setName(){
+    string n;
+    // create our players
+        cout << "PLEASE ENTER NAME OF PLAYER ";
+        cout << endl;
+        cin >> n;
+        this->name = n;
+        //Player* currentPlayer = new Player(name, armyAllocation);
+        //players.push_back(currentPlayer);
+    
+}
+void Player::setArmies(int armies){
+    //int armies;
+    unavailable_armies = armies;
+}
+
