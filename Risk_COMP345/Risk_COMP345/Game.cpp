@@ -143,7 +143,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	cout << "=============";
 	cout << "ATTACK PHASE";
 	cout << "=============";
-	cout << "Player " + attackerPlayerNum;
+	cout << "Player ";
 	cout << " Do you want to attack? y/n" << endl;
 	cin >> attackPhaseInputString;
 
@@ -157,7 +157,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	while (isAttackPhase) {
 		string countrySelectedIn;
 		int neighborSelectedIndex;
-		Country* countrySelected;
+		Country* countrySelected = NULL;
 		int attackerNumberOfArmy;
 		int defenderNumberOfArmy;
 		int attNumDices;
@@ -175,7 +175,7 @@ void Game::attackPhase(int attackerPlayerNum)
 			cout << "Please select one of your own countries, type the exact name" << endl;
 			cin >> countrySelectedIn;
 			countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
-			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName)->getNumberOfArmies() < 2)
+			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName())->getNumberOfArmies() < 2)
 			{
 				cout << "You do not have enough armies in the region to attack! Must have atleast 2. Try Again";
 			}
@@ -190,14 +190,14 @@ void Game::attackPhase(int attackerPlayerNum)
 		for(int i = 0; i < ListOfneighbors.size(); i++)
 		{	
 			cout << i << " - ";
-			cout << ListOfneighbors[i]->getCountryName << endl;
+			cout << ListOfneighbors[i]->getCountryName() << endl;
 		}
 		cin >> neighborSelectedIndex;
 
 		//Roll correct number of dices to attack selected neighbor country
-		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName);
-		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName);
-		Player* neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
+		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName());
+		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName());
+		neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
 		attackerNumberOfArmy = attackerCountry->getNumberOfArmies();
 		defenderNumberOfArmy = defenderCountry->getNumberOfArmies();
 		if (attackerNumberOfArmy == 2)
@@ -263,7 +263,7 @@ void Game::attackPhase(int attackerPlayerNum)
 					attackerCountry->removeArmy(moveArmy);
 					players[attackerPlayerNum]->addCountry(ListOfneighbors[neighborSelectedIndex]);
 					ListOfneighbors[neighborSelectedIndex]->addMovedArmy(moveArmy);
-					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName << endl;
+					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName() << endl;
 					moveArmyCheck = true;
 				}
 			} while (!moveArmyCheck);
@@ -284,7 +284,7 @@ void Game::attackPhase(int attackerPlayerNum)
 	}
 } 
 
-int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+int Game::compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
 	int defendersEliminated = 0;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
 
@@ -296,7 +296,7 @@ int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled
 	return defendersEliminated;
 }
 
-int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+int Game::compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
 	int attackersEliminated = 0;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
 
@@ -309,7 +309,8 @@ int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled
 }
 
 void Game::fortificationPhase(int playerNumber) {
-	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries;
+	playerNumber = playerNumber - 1;
+	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries();
 	vector<Country*> ownedNeighborCountry;
 	string selectedCountryString;
 	int selectedNeighborNum;
@@ -378,4 +379,9 @@ void Game::fortificationPhase(int playerNumber) {
 		}
 	} while (fortificationPhase);
 	cout << "FORTIFICATION PHASE DONE";
+}
+
+//For Demo
+void Game::addDemoPlayers(Player* player) {
+	players.push_back(player);
 }
