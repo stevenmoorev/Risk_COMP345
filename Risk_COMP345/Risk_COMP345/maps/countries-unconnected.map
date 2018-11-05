@@ -1,0 +1,24 @@
+[Map]
+author=Sean O'Connor
+warn=yes
+image=world (small).bmp
+wrap=yes
+scroll=horizontal
+
+[Continents]
+North America=5
+South America=2
+
+[Territories]
+Alaska,30,46,North America,Alberta,Kamchatka
+Northwest Territory,59,42,Venezuala
+Alberta,58,67,North America,Alaska,Ontario,Western United States
+Greenland,121,30,North America,Ontario,Quebec,Iceland
+Ontario,80,72,North America,Alberta,Greenland,Quebec,Western United States,Eastern United States
+Quebec,106,75,North America,Greenland,Ontario,Eastern United States
+Western United States,59,95,North America,Alberta,Ontario,Eastern United States,Central America
+Eastern United States,84,97,North America,Ontario,Quebec,Western United States,Central America
+Central America,75,123,North America,Western United States,Eastern United States,
+
+Venezuala,94,146,South America,Northwest Territory
+
