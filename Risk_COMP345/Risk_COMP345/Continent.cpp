@@ -36,6 +36,7 @@ void Continent::AddCountry(Country *newCountry)
 
 	if (!ContainsCountry(newCountry) && !newCountry->BelongsToAContinent())
 	{
+        cout << "Added country" << endl;
 		continentCountries.push_back(newCountry);
 		newCountry->SetContinent(this);
 
@@ -45,7 +46,7 @@ void Continent::AddCountry(Country *newCountry)
 
 int Continent::GetCountryCount() const
 {
-	return continentCountries.size();
+	return GetCountries().size();
 }
 
 bool Continent::ContainsCountry(Country *country)
@@ -77,7 +78,7 @@ void Continent::SetNumberOfArmiesPerTurn(int armiesPerTurn)
 
 vector<Country*> Continent::GetCountries() const
 {
-	return continentCountries;
+	return this->continentCountries;
 }
 
 void Continent::Allert()

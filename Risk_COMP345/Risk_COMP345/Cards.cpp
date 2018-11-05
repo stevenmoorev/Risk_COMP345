@@ -40,10 +40,10 @@ class Map;
 		cout << "Deleting deck" << endl;
     }
 
-	void Deck::initializeDeck(Deck *deck)
+	Deck* Deck::initializeDeck()
 	{
 		cout << "Initializing Deck" << endl;
-
+        Deck *deck = new Deck();
 		int numOfCards = map->GetCountryCount() + 1;
 		for (int i = 0; i < numOfCards; i++)
 		{
@@ -53,6 +53,7 @@ class Map;
                 deck->addCardToDeck(c);
             }
 		}
+        return deck;
 	}
     
     void Deck::addCardToDeck(Card *card){
