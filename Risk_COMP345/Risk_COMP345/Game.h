@@ -2,7 +2,8 @@
 #include <vector>
 #include "Player.h"
 #include "Map.h"
-
+#include "MapLoader.h"
+#include <string>
 using namespace std;
 
 class Game 
