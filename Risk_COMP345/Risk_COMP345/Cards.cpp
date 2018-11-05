@@ -8,7 +8,7 @@
 
 
 //must make a card a vector
-#pragma once
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>

@@ -20,9 +20,9 @@ public:
 	void attackPhase(int playerNumber);
 	void fortificationPhase(int playerNumber);
 	void addDemoPlayers(Player* player);
-	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
-	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void addArmiesToCountry(int amount, Country* c);
+	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
+	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 private:
 	vector<Player*> players;
 	bool gameOver; 
