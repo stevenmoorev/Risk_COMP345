@@ -103,11 +103,11 @@ void Game::assignCountries()
 	// show them now
 	for (int i = 0; i < players.size(); i++)
 	{
-		cout << "Player " << players[i]->getName() << "owns the following countries: " << endl;
+		cout << "Player " << players[i]->getName() << " owns the following countries: " << endl;
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j <sizeOfCountriesList; j++) 
 		{
-			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
 		cout << endl;
 	}
@@ -120,6 +120,7 @@ void Game::placeInitialArmies()
 	while (!allArmiesAllocated) {
 		assignOneRound();
 		numberOfInitialArmiesLeft--;
+		cout << "Number of armies left to allocate :"<< numberOfInitialArmiesLeft <<endl;
 		if (numberOfInitialArmiesLeft == 0) {
 			allArmiesAllocated = true;
 		}
@@ -136,7 +137,7 @@ void Game::assignOneRound()
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << "in continent" << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
 		cout << "Enter the name of the country to add an army to it" << endl;
 		cin >> choice;
