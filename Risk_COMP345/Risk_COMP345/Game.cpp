@@ -24,6 +24,7 @@ Game::Game(Map* newMap)
 void Game::setup()
 {
 	setNumberOfPlayers();
+    chooseMap();
 	// second thing, load map
 	//if (isMapValid()) {
 	//	assignCountries();
@@ -189,8 +190,8 @@ void Game::attackPhase(int attackerPlayerNum)
 			cout << "Please select one of your own countries, type the exact name" << endl;
 			cin >> countrySelectedIn;
 			countrySelected = (players[attackerPlayerNum]->getCountry(countrySelectedIn));
-			if (players[attackerPlayerNum]->getCountry(countrySelected->getCountryName)->getNumberOfArmies() < 2)
-
+            int j = countrySelected->getNumberOfArmies();
+			if (j < 2)
 			{
 				cout << "You do not have enough armies in the region to attack! Must have atleast 2. Try Again";
 			}
@@ -206,14 +207,14 @@ void Game::attackPhase(int attackerPlayerNum)
 		{	
 			cout << i << " - ";
 
-			cout << ListOfneighbors[i]->getCountryName << endl;
+			cout << ListOfneighbors[i]->getCountryName() << endl;
 		}
 		cin >> neighborSelectedIndex;
 
 		//Roll correct number of dices to attack selected neighbor country
-		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName);
-		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName);
-		Player* neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
+		attackerCountry = players[attackerPlayerNum]->getCountry(countrySelected->getCountryName());
+		defenderCountry = (ListOfneighbors[neighborSelectedIndex]->getOwner())->getCountry(countrySelected->getCountryName());
+		neighborPlayer = ListOfneighbors[neighborSelectedIndex]->getOwner();
 
 		attackerNumberOfArmy = attackerCountry->getNumberOfArmies();
 		defenderNumberOfArmy = defenderCountry->getNumberOfArmies();
@@ -287,7 +288,7 @@ void Game::attackPhase(int attackerPlayerNum)
 					players[attackerPlayerNum]->addCountry(ListOfneighbors[neighborSelectedIndex]);
 					ListOfneighbors[neighborSelectedIndex]->addMovedArmy(moveArmy);
 
-					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName << endl;
+					cout << "\nYou moved " << moveArmy << " units to " << ListOfneighbors[neighborSelectedIndex]->getCountryName() << endl;
 
 					moveArmyCheck = true;
 				}
@@ -307,10 +308,10 @@ void Game::attackPhase(int attackerPlayerNum)
 			}
 		}
 	}
-} 
+}
 
 
-int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+int Game::compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
 
 	int defendersEliminated = 0;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
@@ -324,7 +325,7 @@ int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled
 }
 
 
-int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+int Game::compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
 
 	int attackersEliminated = 0;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
@@ -339,7 +340,7 @@ int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled
 
 void Game::fortificationPhase(int playerNumber) {
 
-	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries;
+	vector<Country*> allCurrentPlayerCountries = players[playerNumber]->getCountries();
 
 	vector<Country*> ownedNeighborCountry;
 	string selectedCountryString;
@@ -410,4 +411,17 @@ void Game::fortificationPhase(int playerNumber) {
 	} while (fortificationPhase);
 	cout << "FORTIFICATION PHASE DONE";
 
+}
+
+void Game::chooseMap(){
+    cout << "Which map would you like to use?" << endl;
+    cout << "[1] Aden" << endl;
+    cout << "[2] Canada" <<endl;
+    cout << "Choose a number" << endl;
+    char answer;
+    cin << answer;
+    
+    if (answer == 1){
+        
+    }
 }

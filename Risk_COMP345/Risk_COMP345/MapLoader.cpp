@@ -329,10 +329,14 @@ Map MapLoader(string const &path) {
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
+    
+    return map;
 }
-int main() {
 
-	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
-	MapLoader(path1);
 
-}
+//int main() {
+
+	//string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+	//MapLoader(path1);
+
+//}
