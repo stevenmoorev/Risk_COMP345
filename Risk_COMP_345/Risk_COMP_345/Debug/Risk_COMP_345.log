@@ -1,0 +1,3 @@
+﻿  SetupPhaseDriver.cpp
+c:\users\george\desktop\risk_comp_345\risk_comp_345\setupphasedriver.cpp(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Risk_COMP_345.vcxproj -> C:\Users\George\Desktop\Risk_COMP_345\Debug\Risk_COMP_345.exe
