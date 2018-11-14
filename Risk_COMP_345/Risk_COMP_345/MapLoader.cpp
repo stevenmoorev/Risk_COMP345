@@ -6,26 +6,23 @@ using std::getline;
 using std::find_if;
 std::string STRING;
 std::ifstream in;
+
 //graph implementation
 class Graph
 {
-	int V;    // No. of vertices 
-
-
-	// Pointer to an array containing 
-	// adjacency lists 
+	int V;    
+	 
 	list<int> *adj;
 
-	// A recursive function used by DFS 
+
 
 public:
-	Graph(int V);   // Constructor 
+	Graph(int V);   
 
-	// function to add an edge to graph 
 	void addEdge(int v, int w);
 	void DFSUtil(int v, bool visited[]);
-	// DFS traversal of the vertices 
-	// reachable from v 
+	
+	
 	bool DFS(int v);
 };
 Graph::Graph(int V)
@@ -36,18 +33,15 @@ Graph::Graph(int V)
 
 void Graph::addEdge(int v, int w)
 {
-	adj[v].push_back(w); // Add w to v’s list. 
+	adj[v].push_back(w); 
 }
 
 void Graph::DFSUtil(int v, bool visited[])
 {
-	// Mark the current node as visited and 
-	// print it 
+
 	visited[v] = true;
 	//cout << v << " ";
 
-	// Recur for all the vertices adjacent 
-	// to this vertex 
 	list<int>::iterator i;
 	for (i = adj[v].begin(); i != adj[v].end(); ++i) {
 		if (!visited[*i])
@@ -55,20 +49,17 @@ void Graph::DFSUtil(int v, bool visited[])
 	}
 }
 
-// DFS traversal of the vertices reachable from v. 
-// It uses recursive DFSUtil() 
 bool Graph::DFS(int v)
 {
 	bool connected = true;
-	// Mark all the vertices as not visited 
+	
 	bool *visited = new bool[V];
 	for (int i = 0; i < V; i++)
 		visited[i] = false;
 
-	// Call the recursive helper function 
-	// to print DFS traversal 
+	
 	DFSUtil(v, visited);
-	//trying to get a boolean for a not connected graph
+	
 	for (unsigned int a = 0; a < sizeof(visited) / sizeof(visited[0]); a = a + 1) {
 		if (visited[a] == false) {
 			connected = false;
@@ -78,7 +69,7 @@ bool Graph::DFS(int v)
 }
 
 
-Map* MapLoader::MapLoad(string const &path) {
+Map MapLoader(string const &path) {
 	string junk;
 	string continentName;
 	string countryName;
@@ -86,9 +77,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	int x, y;
 	const char flag = '\n';
 	//input of map file location
-
 	in.open(path);
-
 	//skipping unecessary map info
 	for (int a = 0; a < 8; a = a + 1) {
 		getline(in, junk, '\n');
@@ -101,14 +90,10 @@ Map* MapLoader::MapLoad(string const &path) {
 		getline(in, continentName, '=');
 		continents.push_back(new Continent(continentName, 5));
 		getline(in, score, '\n');
-
-
-
 		//cout << continentName + "\n";
 		//cout << score + "\n";
 	}
 	//cout << continents.size();
-
 
 	vector<Country*> countries;
 	vector<Country*> neighbors;
@@ -122,7 +107,6 @@ Map* MapLoader::MapLoad(string const &path) {
 		if (in.peek() != flag && in.peek() != -1)
 		{
 			getline(in, countryName, ',');
-
 			auto it = find_if(neighbors.begin(), neighbors.end(), [&](Country* n) {return n->getCountryName() == countryName;});
 			//auto it = find_if(neighbors.begin(), neighbors.end(), [&](Country& n) -> bool {return n.getCountryName() == countryName;});
 			//if the country is not already created in the neighbor vector, create a new country for it
@@ -151,22 +135,19 @@ Map* MapLoader::MapLoad(string const &path) {
 				{
 					if (continentName == continents[i]->GetName())
 					{
-
-
 						//cout << "Continent name ";
 						//cout << continents[i]->GetName();
 						//cout << "Continent SIZE + object ID:   " << continents[i] <<endl;
-
 						//continents[i]->SetMap(&map);
 						//	country.SetContinent((continents[i]));
 						continents[i]->AddCountry(countries[c]);
-
+						//cout << "Country memory address:" << countries[c] << endl;
 						//cout << "Country memory address:" << &country;
 						//cout << country.BelongsToAContinent();
 						// country count =1 ????????
 						//cout << "#of countries "<< continents[i]->ContainsCountry(countries[c]);
 						//	cout << continents[i]->ContainsCountry(&country);
-
+						//cout << continents[i]->GetCountryCount() << endl;
 					}
 				}
 				//setting neighbors
@@ -174,7 +155,8 @@ Map* MapLoader::MapLoad(string const &path) {
 				std::istringstream string(countryName);
 				std::string neighbor;
 				while (std::getline(string, neighbor, ',')) {
-
+					//cout << "neigbor: ";
+					//cout << neighbor << endl;
 					//auto io = std::find(neighbors.begin(), neighbors.end(), new Country(neighbor)); 
 					auto it1 = find_if(neighbors.begin(), neighbors.end(), [&](Country* n) {return n->getCountryName() == neighbor;});
 					auto it9 = find_if(countries.begin(), countries.end(), [&](Country* n) {return n->getCountryName() == neighbor;});
@@ -194,18 +176,16 @@ Map* MapLoader::MapLoad(string const &path) {
 						countries[c]->addNeighbor(neighbors[o]);
 						o = o + 1;
 					}
-					//country.addNeighbor(&country1);
-					//}
+					//country.addNeighbor(&country1);}
 					//if(continentName == continent.getName()){   country.setContinent(continent)     }
 				}
-
 
 				c = c + 1;
 			}
 			//the country object was already created as an neighbor; hence use it from the neighbors stack
 			else {
 				int index5 = std::distance(neighbors.begin(), it);
-
+				//cout << neighbors[index5]->getCountryName();
 				in >> x;
 				//country.setX(x);
 				neighbors[index5]->setX(x);
@@ -226,14 +206,20 @@ Map* MapLoader::MapLoad(string const &path) {
 				{
 					if (continentName == continents[i]->GetName())
 					{
-
+						//cout << "Continent name ";
+						//cout << continents[i]->GetName();
+						//cout << "Continent SIZE + object ID:  ";
+						//cout << continents[i] << endl;
+						//continents[i]->SetMap(&map);
+						//	country.SetContinent((continents[i]));
 						continents[i]->AddCountry(neighbors[index5]);
-
+						//cout << "Country memory address:" << neighbors[index5];
 						//cout << "Country memory address:" << &country;
 						//cout << country.BelongsToAContinent();
 						// country count =1 ????????
 						//cout << continents[i]->ContainsCountry(neighbors[index5]);
 						//	cout << continents[i]->ContainsCountry(&country);
+						//cout << "# of countries" << continents[i]->GetCountryCount() << endl;
 
 					}
 				}
@@ -242,7 +228,8 @@ Map* MapLoader::MapLoad(string const &path) {
 				std::istringstream string(countryName);
 				std::string neighbor;
 				while (std::getline(string, neighbor, ',')) {
-
+					//cout << "neigbor: ";
+					//cout << neighbor << endl;
 					//auto ii = std::find(neighbors.begin(), neighbors.end(), new Country(neighbor));
 					auto it2 = find_if(neighbors.begin(), neighbors.end(), [&](Country* n) {return n->getCountryName() == neighbor;});
 					auto it3 = find_if(countries.begin(), countries.end(), [&](Country* n) {return n->getCountryName() == neighbor;});
@@ -261,9 +248,7 @@ Map* MapLoader::MapLoad(string const &path) {
 						neighbors[index5]->addNeighbor(neighbors[o]);
 						o = o + 1;
 					}
-
 				}
-				//cout << "\n";
 			}
 		}
 		else
@@ -273,38 +258,40 @@ Map* MapLoader::MapLoad(string const &path) {
 
 	}
 
+	Map map;
 	for (unsigned int i = 0; i < continents.size(); i++)
 	{
 		{
 			//cout << continents[i]->GetCountryCount() + "\n";
-			map->AddContinentToMap(continents[i]);
+			map.AddContinentToMap(continents[i]);
 			//cout << "FLAG1";
-			//cout << "\n";
 		}
 	}
-
+	//cout << "# of continents in map: "<< map.GetContinentCount();
 	//vector<Country*>Map2= map.GetAllCountries();
 	//verify how many countries are part of each continent which currently gives 1 
 	bool countryPerContinent = true;
-	for (unsigned int x = 0; x < map->GetMapContinents().size(); x++) {
-
-		if (map->GetMapContinents()[x]->GetCountryCount() <= 0) {
+	for (unsigned int x = 0; x < map.GetMapContinents().size(); x++) {
+		//cout <<" # of countries per continent: " << map.GetMapContinents()[x]->GetCountryCount() << endl;
+		if (map.GetMapContinents()[x]->GetCountryCount() <= 0) {
 			bool countryPerContinent = false;
 		};
 	}
 	//*cout << continents[1]->ContainsCountry(countries[7]);
 	//cout << continents[7]->ContainsCountry(countries[40]);
 
-
+	//THIS SHOULD BE TRUE testing objects connection
+	//cout <<"neighbors? :"<<  countries[0]->isNeighborOf(neighbors[4]) << endl;
+	//cout << "neighbors? :" << neighbors[4]->isNeighborOf(countries[0]) << endl;
 	//cout << neighbors[4]->getCountryName ()<< endl;
 	//cout << countries[0]->getCountryName ()<< endl;
 	//cout << map.GetCountryCount();
 
 	//graph construction
-	Graph countriesConnection(map->GetCountryCount());
-	for (unsigned int x = 0; x < map->GetAllCountries().size(); x++) {
+	Graph countriesConnection(map.GetCountryCount());
+	for (unsigned int x = 0; x < map.GetAllCountries().size(); x++) {
 
-		vector<Country*> v = map->GetAllCountries();
+		vector<Country*> v = map.GetAllCountries();
 
 		auto it69 = find_if(v.begin(), v.end(), [&](Country* n) {return n->getCountryName() == v[x]->getCountryName();});
 		auto index69 = std::distance(v.begin(), it69);
@@ -317,20 +304,16 @@ Map* MapLoader::MapLoad(string const &path) {
 			countriesConnection.addEdge(w, index69);
 		}
 	}
-
-
 	if (countryPerContinent == true && countriesConnection.DFS(0)) {
 		cout << "Map Created" << endl;
 		return map;
-		//cout << map.GetCountryCount();
 	}
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
 }
-/*int main() {
-
-	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+int main() {
+	string path1 = "C:/Users/pcabr/Downloads/aden/aden.map";
 	MapLoader(path1);
-
-}*/
+	cin.get();
+}

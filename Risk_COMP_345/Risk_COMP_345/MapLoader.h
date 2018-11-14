@@ -8,7 +8,7 @@
 #include <cmath>
 #include <assert.h>
 #include "Map.h"
-#include <algorithm>    // std::find_if
+#include <algorithm>   
 #include <vector>
 #include <list>
 
@@ -17,8 +17,4 @@ class MapLoader
 public:
 	~MapLoader();
 	void Load();
-	Map* MapLoad(string const & path);
-
-private:
-	Map* map;
 };
