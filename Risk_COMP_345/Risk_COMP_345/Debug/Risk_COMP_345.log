@@ -1,3 +1,11 @@
-﻿  SetupPhaseDriver.cpp
-c:\users\george\desktop\risk_comp_345\risk_comp_345\setupphasedriver.cpp(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Risk_COMP_345.vcxproj -> C:\Users\George\Desktop\Risk_COMP_345\Debug\Risk_COMP_345.exe
+﻿  Game.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(137): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(166): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(265): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(272): warning C4018: '>=': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(395): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(406): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(453): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(465): warning C4018: '<': signed/unsigned mismatch
+  Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345\Risk_COMP_345\Debug\Risk_COMP_345.exe

@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <filesystem>
 #include "Game.h"
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
 
 Game::Game() 
 {
@@ -23,6 +25,28 @@ Game::Game(Map* newMap)
 
 void Game::setup()
 {
+	//choose map from files in Map
+	//path object
+	/*fs::path pathToShow;
+	cout << "exists() = " << fs::exists(pathToShow) << "\n"
+		<< "root_name() = " << pathToShow.root_name() << "\n"
+		<< "root_path() = " << pathToShow.root_path() << "\n"
+		<< "relative_path() = " << pathToShow.relative_path() << "\n"
+		<< "parent_path() = " << pathToShow.parent_path() << "\n"
+		<< "filename() = " << pathToShow.filename() << "\n"
+		<< "stem() = " << pathToShow.stem() << "\n"
+		<< "extension() = " << pathToShow.extension() << "\n";
+		*/
+	for (auto & p : fs::directory_iterator("Maps"))
+		//only print out if it ends in .map
+		std::cout << p << std::endl;
+
+	fs::path p1("Maps");
+	//directory_entry
+	//directory iterator
+
+	/*
+
 	setNumberOfPlayers();
 	string x = "/Maps/Aden.map";
 	setNumberOfPlayers();
@@ -36,6 +60,12 @@ void Game::setup()
 	//{
 	//	cout << "Critical Error: Map is invalid" << endl;
 	//}
+	*/
+}
+
+int main() {
+	Game* g = new Game();
+	g->setup();
 }
 
 void Game::setNumberOfPlayers()
