@@ -95,6 +95,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	//input of map file location
 
 	in.open("Maps\\" + path);
+	//cout << "Map/" + path << endl;
 
 	cout << "FILE OPENED" << endl;
 
