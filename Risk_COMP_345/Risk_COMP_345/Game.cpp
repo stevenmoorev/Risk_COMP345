@@ -43,10 +43,15 @@ void Game::chooseMap() {
 	}
 	string mapname;
 	cin >> mapname;
-	cout << "YOU CHOSE " << mapname;
+	cout << "YOU CHOSE " << mapname << endl;
 
 	MapLoader* map = new MapLoader();
+
+	cout << "MAP IS NOW CREATED" << endl;
+
 	worldMap = map->MapLoad(mapname);
+
+	cout << "MAP IS NOW LOADED" << endl;
 }
 
 
