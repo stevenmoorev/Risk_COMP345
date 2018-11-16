@@ -111,12 +111,13 @@ Map* MapLoader::MapLoad(string const &path) {
 		continents.push_back(new Continent(continentName, 5));
 		getline(in, score, '\n');
 
+		
 
 
 		//cout << continentName + "\n";
 		//cout << score + "\n";
 	}
-	//cout << continents.size();
+	//cout << "CONTINENT SIZE: " << continents.size() << endl;
 
 
 	vector<Country*> countries;
@@ -285,7 +286,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	for (unsigned int i = 0; i < continents.size(); i++)
 	{
 		{
-			//cout << continents[i]->GetCountryCount() + "\n";
+			cout << &continents[i] << continents[i]->GetCountryCount() + "\n";
 			map->AddContinentToMap(continents[i]);
 			//cout << "FLAG1";
 			//cout << "\n";

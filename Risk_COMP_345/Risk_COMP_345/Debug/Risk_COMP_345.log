@@ -1,3 +1,18 @@
-﻿  MapLoader.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\maploader.cpp(340): warning C4715: 'MapLoader::MapLoad': not all control paths return a value
+﻿  Cards.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\cards.cpp(81): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Game.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(118): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(154): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(191): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(210): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(325): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(332): warning C4018: '>=': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(455): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(466): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(513): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(525): warning C4018: '<': signed/unsigned mismatch
+  Player.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\player.cpp(68): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345\Risk_COMP345\Risk_COMP_345\Debug\Risk_COMP_345.exe

@@ -25,8 +25,11 @@ public:
 	void addArmiesToCountry(int amount, Country* c);
 	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
+	void setBonus(int b);
+	int getBonus() const;
 private:
 	vector<Player*> players;
 	bool gameOver; 
 	Map* worldMap;
+	int bonus = 5;
 };

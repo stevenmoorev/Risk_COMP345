@@ -46,7 +46,9 @@ public:
 	void showCards(); // for a1 demo
 	Country* getCountry(string n);
     void setHand();
+	Hand* getHand();
     void setDice();
+	Dice* getDice();
     void setCountries();
     void setName();
     void setArmies(int armies);

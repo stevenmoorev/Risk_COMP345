@@ -21,7 +21,7 @@ void Map::AddContinentToMap(Continent *newContinent)
 	if (it == mapContinents.end())
 	{
 		mapContinents.push_back(newContinent);
-		newContinent->SetMap(this);
+		//newContinent->SetMap(this);
 	}
 }
 
@@ -31,7 +31,7 @@ void Map::RemoveContinentFromMap(Continent *continent)
 	if (it != mapContinents.end())
 	{
 		mapContinents.erase(it);
-		continent->SetMap(NULL);
+		//continent->SetMap(NULL);
 	}
 }
 
