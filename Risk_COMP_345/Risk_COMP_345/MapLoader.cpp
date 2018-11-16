@@ -108,7 +108,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	while (in.peek() != flag)
 	{
 		getline(in, continentName, '=');
-		continents.push_back(new Continent(continentName, 5));
+		continents.push_back(new Continent(continentName, 0));
 		getline(in, score, '\n');
 
 		
@@ -296,7 +296,8 @@ Map* MapLoader::MapLoad(string const &path) {
 	//vector<Country*>Map2= map.GetAllCountries();
 	//verify how many countries are part of each continent which currently gives 1 
 	bool countryPerContinent = true;
-	for (unsigned int x = 0; x < map->GetMapContinents().size(); x++) {
+	int numberOfCountries = map->GetContinentCount();
+	for (unsigned int x = 0; x < numberOfCountries; x++) {
 
 		if (map->GetMapContinents()[x]->GetCountryCount() <= 0) {
 			bool countryPerContinent = false;
@@ -340,7 +341,8 @@ Map* MapLoader::MapLoad(string const &path) {
 }
 /*int main() {
 
-	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+	//string path1 = "C://Users//pcabr//Downloads//countries-unconnected.map";
+	string path1 = "C://Users//pcabr//Desktop//risk2//Risk_COMP345//Risk_COMP_345//Risk_COMP_345//Maps//asia.map";
 	MapLoader(path1);
-
+	//"C://Users//pcabr//Desktop//risk2//Risk_COMP345//Risk_COMP_345//Risk_COMP_345//Maps//asia.map";
 }*/
