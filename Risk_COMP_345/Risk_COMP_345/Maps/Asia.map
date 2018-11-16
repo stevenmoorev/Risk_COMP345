@@ -5,7 +5,6 @@ wrap=yes
 scroll=horizontal
 warn=yes
 
-
 [Continents]
 North Asia=3
 Asia Minor=4
