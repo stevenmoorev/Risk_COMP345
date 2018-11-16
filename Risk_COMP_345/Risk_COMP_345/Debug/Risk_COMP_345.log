@@ -1,11 +1,11 @@
 ﻿  Game.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(137): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(166): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(265): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(272): warning C4018: '>=': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(395): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(406): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(453): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(465): warning C4018: '<': signed/unsigned mismatch
-  Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345\Risk_COMP_345\Debug\Risk_COMP_345.exe
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(119): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(148): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(247): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(254): warning C4018: '>=': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(377): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(388): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(435): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(447): warning C4018: '<': signed/unsigned mismatch
+  Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345\Risk_COMP345\Risk_COMP_345\Debug\Risk_COMP_345.exe

@@ -13,6 +13,7 @@ public:
 	Game(Map* gameMap);
 	void setup();
 	void setNumberOfPlayers();
+	void chooseMap();
 	//bool isMapValid();
 	void assignCountries();
 	void placeInitialArmies();
