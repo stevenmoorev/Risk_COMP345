@@ -77,8 +77,15 @@ bool Graph::DFS(int v)
 	return connected;
 }
 
+MapLoader::MapLoader() {
+
+}
+MapLoader::~MapLoader() {
+	delete map;
+}
 
 Map* MapLoader::MapLoad(string const &path) {
+	cout << "STARTED MAPLOAD" << endl;
 	string junk;
 	string continentName;
 	string countryName;
@@ -87,7 +94,9 @@ Map* MapLoader::MapLoad(string const &path) {
 	const char flag = '\n';
 	//input of map file location
 
-	in.open(path);
+	in.open("Maps\\" + path);
+
+	cout << "FILE OPENED" << endl;
 
 	//skipping unecessary map info
 	for (int a = 0; a < 8; a = a + 1) {

@@ -16,7 +16,8 @@ class MapLoader
 {
 public:
 	~MapLoader();
-	void Load();
+	MapLoader();
+	//void Load();
 	Map* MapLoad(string const & path);
 
 private:
