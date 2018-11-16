@@ -3,7 +3,7 @@
 #include "Country.h"
 #include "Map.h"
 using namespace std;
-Continent::Continent(string name, int armiesPerTurn) : continentName(name), numberOfArmiesPerTurn(armiesPerTurn), map(NULL)
+Continent::Continent(string name, int armiesPerTurn) : continentName(name), numberOfArmiesPerTurn(armiesPerTurn)
 {
 }
 
@@ -27,7 +27,7 @@ void Continent::SetName(string name)
 {
 	continentName = name;
 
-	Allert();
+	//Allert();
 }
 
 void Continent::AddCountry(Country *newCountry)
@@ -39,7 +39,7 @@ void Continent::AddCountry(Country *newCountry)
 		continentCountries.push_back(newCountry);
 		newCountry->SetContinent(this);
 
-		Allert();
+//		Allert();
 	}
 }
 
@@ -55,13 +55,13 @@ bool Continent::ContainsCountry(Country *country)
 	return it != continentCountries.end();
 }
 
-void Continent::SetMap(Map *newMap)
+/*void Continent::SetMap(Map *newMap)
 {
 	if (map == NULL)
 	{
 		map = newMap;
 	}
-}
+}*/
 
 int Continent::GetNumberOfArmiesPerTurn() const
 {
@@ -72,7 +72,7 @@ void Continent::SetNumberOfArmiesPerTurn(int armiesPerTurn)
 {
 	numberOfArmiesPerTurn = armiesPerTurn;
 
-	Allert();
+//	Allert();
 }
 
 vector<Country*> Continent::GetCountries() const
@@ -80,10 +80,10 @@ vector<Country*> Continent::GetCountries() const
 	return continentCountries;
 }
 
-void Continent::Allert()
+/*void Continent::Allert()
 {
 	if (map != NULL)
 	{
 		//here we will notify the map to update its changes?
 	}
-}
+}*/
