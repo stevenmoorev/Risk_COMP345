@@ -3,8 +3,9 @@
 #include "Country.h"
 #include "Map.h"
 using namespace std;
-Continent::Continent(string name, int armiesPerTurn) : continentName(name), numberOfArmiesPerTurn(armiesPerTurn)
-{
+Continent::Continent(string name, int armiesPerTurn) {
+	name=continentName;
+    armiesPerTurn= numberOfArmiesPerTurn;
 }
 
 Continent::~Continent()
