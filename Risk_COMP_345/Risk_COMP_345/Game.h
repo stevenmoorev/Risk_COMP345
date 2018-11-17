@@ -23,6 +23,7 @@ public:
 	void fortificationPhase(int playerNumber);
 	void addDemoPlayers(Player* player);
 	void addArmiesToCountry(int amount, Country* c);
+	void giveCountriesToPlayers();
 	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);

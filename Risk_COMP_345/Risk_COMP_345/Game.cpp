@@ -26,12 +26,30 @@ Game::Game(Map* newMap)
 void Game::setup()
 {
 	chooseMap();
-	setNumberOfPlayers();	
+	setNumberOfPlayers();
+	giveCountriesToPlayers();
 }
 
 int main() {
 	Game* g = new Game();
-	g->setup();
+	//g->setup();
+}
+
+void Game::giveCountriesToPlayers() {
+	cout << "Assigning countries randomly to each player..." << endl;
+	int numOfPlayers = players.size();
+	int assignedPlayer = rand() % numOfPlayers;//start with a random one
+	vector<Country*> allCountries = worldMap->GetAllCountries();
+	int numOfCountries = allCountries.size();
+	for (int i = 0; i < numOfCountries; i++) {
+		allCountries[i]->setOwner(players[assignedPlayer]);
+		players[assignedPlayer]->addCountry(allCountries[i]);
+		cout << "Player "<< players[assignedPlayer]->getName() << " hass been assigned the country "<< allCountries[i]->getCountryName() << endl;
+		assignedPlayer++;
+		if (assignedPlayer == numOfPlayers) {
+			assignedPlayer = 0;
+		}
+	}
 }
 
 void Game::chooseMap() {
