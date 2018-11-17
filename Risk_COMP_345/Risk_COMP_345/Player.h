@@ -52,6 +52,7 @@ public:
     void setCountries();
     void setName();
     void setArmies(int armies);
+	void removeCountry(Country* oldCountry);
 };
 
 #endif

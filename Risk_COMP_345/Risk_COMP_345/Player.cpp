@@ -64,6 +64,14 @@ void Player::addCountry(Country* newCountry) {
 	countries.push_back(newCountry);
 }
 
+void Player::removeCountry(Country* oldCountry) {
+	for (int i = 0; i < countries.size(); i++) {
+		if (countries[i]->getCountryName() == oldCountry->getCountryName()) {
+			countries.erase(countries.begin()+i);
+		}
+	}
+}
+
 Country* Player::getCountry(string n) {
 	for (int i = 0; i < countries.size(); i++)
 	{

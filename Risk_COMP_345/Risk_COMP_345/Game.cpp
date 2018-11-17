@@ -58,8 +58,29 @@ void Game::startGameLoop() {
 	//reinforcementPhase();
 	//attackPhase();
 	//fortificationPhase();
-	//while the game ahs not ended yet,
+	//while the game has not ended yet,
 	//		each player gets a reinforce, then each player gets an attack, then each player gets a fortify
+	while (players.size() != 1) {
+		cout << "The players currently still alive are: "<< endl;
+		for (int i = 0; i < players.size(); i++) {
+			cout << players[i]->getName();
+		}
+		cout << endl;
+		///////for each player, reinforce
+		for (int i = 0; i < players.size(); i++) {
+			reinforcementPhase(i);
+		}
+		/////for each player, attack
+		for (int i = 0; i < players.size(); i++) {
+			attackPhase(i);
+		}
+		/////for each player, fortify
+		for (int i = 0; i < players.size(); i++) {
+			fortificationPhase(i);
+		}
+	}
+	cout << "THERE IS ONLY OEN PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
+	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
 }
 
 void Game::chooseMap() {
@@ -179,12 +200,12 @@ void Game::placeInitialArmies()
 {
 	int numberOfInitialArmiesLeft = players[0]->getArmies();
 	bool allArmiesAllocated = false;
+	assignFirstRound();
+	//must reduce the num of army allocation
+	//take nuymber of countries player 1 has, remvoe that number from everyone
+	int allocationReduction = players[0]->getCountries().size();
+	numberOfInitialArmiesLeft = numberOfInitialArmiesLeft - allocationReduction;
 	while (!allArmiesAllocated) {
-		assignFirstRound();
-		//must reduce the num of army allocation
-		//take nuymber of countries player 1 has, remvoe that number from everyone
-		int allocationReduction = players[0]->getCountries().size();
-		numberOfInitialArmiesLeft = numberOfInitialArmiesLeft - allocationReduction;
 		assignOneRound();
 		numberOfInitialArmiesLeft--;
 		cout << "Number of armies left to allocate :"<< numberOfInitialArmiesLeft <<endl;
@@ -447,6 +468,8 @@ void Game::attackPhase(int attackerPlayerNum)
 			bool moveArmyCheck = false;
 			//Should delete defender pointer to the country defeated - must implement later -
 			ListOfneighbors[neighborSelectedIndex]->setOwner(players[attackerPlayerNum]);
+			players[attackerPlayerNum]->addCountry(ListOfneighbors[neighborSelectedIndex]);
+			neighborPlayer->removeCountry(ListOfneighbors[neighborSelectedIndex]);
 			cout << "You have conquered a country! How many units would you like to move from the current to new country (must leave 1 behind)" << endl;
 			do {
 				cout << "Please enter a correct amount " << endl;
