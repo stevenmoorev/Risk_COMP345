@@ -111,12 +111,6 @@ Map* MapLoader::MapLoad(string const &path) {
 		getline(in, continentName, '=');
 		continents.push_back(new Continent(continentName, 0));
 		getline(in, score, '\n');
-
-		
-
-
-		//cout << continentName + "\n";
-		//cout << score + "\n";
 	}
 	//cout << "CONTINENT SIZE: " << continents.size() << endl;
 
