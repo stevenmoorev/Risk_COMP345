@@ -99,9 +99,17 @@ void Player::setDice(){
     Dice d;
     dices = &d;
 }
+Dice * Player::getDice()
+{
+	return dices;
+}
 void Player::setHand(){
     Hand h;
     hand = &h;
+}
+Hand * Player::getHand()
+{
+	return hand;
 }
 void Player::setName(){
     string n;

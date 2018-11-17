@@ -75,12 +75,10 @@ class Map;
         //if 3 same or 3 different or more than 5 cards
         //depends on the cards
         //gets 5,... 10,... 15, ... reinforcements
-        void exchange(Card *card1, Card *card2, Card *card3);
-        
-       
-        
+        bool exchange(Card *card1, Card *card2, Card *card3);
         
         void addCardToHand(Card *card1);
+		void removeCardFromHand(Card *card1);
         
         vector<Card*> getCards() const;
         
@@ -89,8 +87,6 @@ class Map;
         //if returns a number greater than 5, must exchange
        // int countCards() const;
 		
-		void setBonus(int bonus);
-		int getBonus() const;
 
         
         

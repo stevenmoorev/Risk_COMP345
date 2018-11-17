@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <filesystem>
 #include "Game.h"
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
 
 Game::Game() 
 {
@@ -23,20 +25,48 @@ Game::Game(Map* newMap)
 
 void Game::setup()
 {
-	setNumberOfPlayers();
-	string x = "/Maps/Aden.map";
-	setNumberOfPlayers();
-	MapLoader* map = new MapLoader();
-	worldMap = map->MapLoad(x);
-	// second thing, load map
-	//if (isMapValid()) {
-	//	assignCountries();
-	//}
-	//else
-	//{
-	//	cout << "Critical Error: Map is invalid" << endl;
-	//}
+	chooseMap();
+	setNumberOfPlayers();	
 }
+
+int main() {
+	Game* g = new Game();
+	g->setup();
+}
+
+void Game::chooseMap() {
+	cout << "CHOOSE WHICH MAP YOU WOULD LIKE TO PLAY WITH" << endl;
+	for (auto & p : fs::directory_iterator("Maps")) {
+		auto filename = p.path().filename();
+		if (p.path().extension() == ".map")
+			cout << filename << endl;
+	}
+	string mapname;
+	cin >> mapname;
+	cout << "YOU CHOSE " << mapname << endl;
+
+	MapLoader* map = new MapLoader();
+
+	cout << "MAP IS NOW CREATED" << endl;
+
+	worldMap = map->MapLoad(mapname);
+
+	vector<Country*> allCountries = worldMap->GetAllCountries();
+	vector<Country*> allNeighbors;
+	cout << "MAP IS NOW LOADED" << endl;
+	cout << "Here are the list of all the countries - and their neighbors:" << endl;
+	for (int i = 0; i < allCountries.size(); i++)
+	{
+		cout << allCountries[i]->getCountryName() << endl;
+		for (int j = 0; j < (allCountries[i]->getNeighbors()).size(); j++)
+		{
+			allNeighbors = allCountries[i]->getNeighbors();
+			cout << "     -";
+			cout << allNeighbors[j]->getCountryName() << endl;
+		}
+	}
+}
+
 
 void Game::setNumberOfPlayers()
 {
@@ -157,10 +187,67 @@ void Game::reinforcementPhase(int playerNumber) {
 	cout << "===================";
 	cout << "REINFORCEMENT PHASE";
 	cout << "===================";
+
+	//step 1: number of countries / 3
 	if (numberOfCountriesOfPlayer > 3)
 	{
 		extraReinforcements += numberOfCountriesOfPlayer / 3;
+	}//end of step 1
+
+	//step 2: check bonus for continents 
+	for (int i = 0; i < worldMap->GetContinentCount(); i++) {
+		//initialize how many countries are in the continent
+		int continentCount = worldMap->GetMapContinents()[i]->GetCountryCount();
+		int playerCount = 0;
+
+		//go through all of the players' countries and see which ones are from that continent
+		for (int j = 0; j < players[playerNumber]->getCountries().size(); j++) {
+
+			//every time a players' country belongs to the continent we are checking, add to playerCount
+			if (players[playerNumber]->getCountries()[j]->GetContinent()->GetName() == worldMap->GetMapContinents()[i]->GetName())
+			{
+				playerCount++;
+			}			
+		}
+		//if we have all the countries in that continent
+		if (playerCount == continentCount) {
+			//get the bonus of that continent
+			extraReinforcements += worldMap->GetMapContinents()[i]->GetNumberOfArmiesPerTurn();
+		}
+	}//end of step 2
+
+	//step 3: exchange cards
+	//check the player's hand
+	cout << "HAND: " << endl;
+	//get the type of cards for each card in the hand
+	for (int i = 0; i < players[playerNumber]->getHand()->getCards().size(); i++) {
+		cout << "[" << i+1 << "]" << players[playerNumber]->getHand()->getCards()[i]->getType() << endl;
 	}
+	cout << "WOULD YOU LIKE TO EXCHANGE YOUR CARDS? [Y/N]" << endl;
+	//call the exchange function if Y
+	string response;
+	cin >> response;
+	if (response == "Y") {
+		cout << "WHICH CARDS WOULD YOU LIKE TO EXCHANGE? CHOOSE NUMBER AND PRESS ENTER" << endl;
+		int card1;
+		int card2;
+		int card3;
+		cin >> card1;
+		cin >> card2;
+		cin >> card3;
+		//check if they can exchange with the cards they chose
+		if (players[playerNumber]->getHand()->exchange(players[playerNumber]->getHand()->getCards()[card1 - 1], players[playerNumber]->getHand()->getCards()[card2 - 1], players[playerNumber]->getHand()->getCards()[card3 - 1])) {
+			extraReinforcements += getBonus();
+			cout << "CARDS EXCHANGED" << endl;
+			//increment the bonus
+			setBonus(getBonus());
+		}
+		else
+			cout << "THESE CARDS CANNOT BE TRADED" << endl;
+	}//end of step 3
+
+
+	//place the reinforcements
 	while (extraReinforcements > 0)
 	{
 		cout << "Amount of armies left to place: " << extraReinforcements << endl;
@@ -169,7 +256,7 @@ void Game::reinforcementPhase(int playerNumber) {
 		int sizeOfCountriesList = players[playerNumber]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << j << " - " <<"Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() <<" with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" <<endl;
+			cout << j << " - " << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << " with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" << endl;
 		}
 		cout << "Enter the number of the country to add armies to " << endl;
 		cin >> selectedCountryForReinforcement;
@@ -179,6 +266,21 @@ void Game::reinforcementPhase(int playerNumber) {
 		extraReinforcements--;
 	}
 	cout << "REINFORCEMENT PHASE DONE!" << endl;
+}
+
+void Game::setBonus(int b)
+{
+	if (b < 60) {
+		bonus = b + 5;
+	}
+	else {
+		return;
+	}
+}
+
+int Game::getBonus() const
+{
+	return bonus;
 }
 
 void Game::attackPhase(int attackerPlayerNum)

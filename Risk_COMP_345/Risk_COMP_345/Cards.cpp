@@ -169,14 +169,23 @@ class Map;
         hand.clear();
     }
             
-    void Hand::exchange(Card *c1, Card *c2, Card *c3)
+    bool Hand::exchange(Card *c1, Card *c2, Card *c3)
     {
-        if((c1->getType() != c2->getType() && c1->getType() != c3->getType() && c2->getType() != c3->getType()) || (c1->getType() == c2->getType() && c1->getType() == c3->getType() && c2->getType() == c3->getType()))
-        {
-            cout << "Can get bonus of " << getBonus() << endl;
-            int bonus = getBonus();
-            setBonus(bonus);
-        }
+		if ((c1->getType() != c2->getType() && c1->getType() != c3->getType() && c2->getType() != c3->getType()) || (c1->getType() == c2->getType() && c1->getType() == c3->getType() && c2->getType() == c3->getType()))
+		{
+			removeCardFromHand(c1);
+
+			removeCardFromHand(c2);
+
+			removeCardFromHand(c3);
+
+			return true;
+			//cout << "Can get bonus of " << getBonus() << endl;
+		   // int bonus = getBonus();
+			//setBonus(bonus);
+		}
+		else
+			return false;
     }
     
     void Hand::addCardToHand(Card *c1){
@@ -187,6 +196,16 @@ class Map;
             c1->setHand(this);
         }
     }
+
+	void Hand::removeCardFromHand(Card * card1)
+	{
+		vector<Card*>::iterator it = find(hand.begin(), hand.end(), card1);
+		if (it != hand.end())
+		{
+			hand.erase(it);
+			//continent->SetMap(NULL);
+		}
+	}
     
     vector<Card*> Hand::getCards() const
     {
@@ -208,18 +227,5 @@ class Map;
     }
 	*/
         
-    void Hand::setBonus(int b)
-    {
-        if(b < 60){
-            bonus = b + 5;
-        }
-        else {
-            return;
-        }
-    }
-    
-    int Hand::getBonus() const
-    {
-        return bonus;
-    }
+   
 

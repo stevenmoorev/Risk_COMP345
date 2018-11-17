@@ -17,12 +17,7 @@ Map::~Map()
 
 void Map::AddContinentToMap(Continent *newContinent)
 {
-	vector<Continent*>::iterator it = find(mapContinents.begin(), mapContinents.end(), newContinent);
-	if (it == mapContinents.end())
-	{
-		mapContinents.push_back(newContinent);
-		newContinent->SetMap(this);
-	}
+	mapContinents.push_back(newContinent);
 }
 
 void Map::RemoveContinentFromMap(Continent *continent)
@@ -31,7 +26,6 @@ void Map::RemoveContinentFromMap(Continent *continent)
 	if (it != mapContinents.end())
 	{
 		mapContinents.erase(it);
-		continent->SetMap(NULL);
 	}
 }
 

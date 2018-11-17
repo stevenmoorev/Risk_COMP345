@@ -14,15 +14,14 @@ public:
 	void AddCountry(Country* newCountry);
 	int GetCountryCount() const;
 	bool ContainsCountry(Country* country); //is the country in this continent?
-	void SetMap(Map* map);
+	//void SetMap(Map* map);
 	int GetNumberOfArmiesPerTurn() const;
 	void SetNumberOfArmiesPerTurn(int numOfArmiesPerTurn);
-	void Allert(); //continent state changed
+	//void Allert(); //continent state changed
 	std::vector<Country*> GetCountries() const;
 
 private:
 	std::string continentName;
 	int numberOfArmiesPerTurn;
 	std::vector<Country*> continentCountries;
-	Map* map;
 };
