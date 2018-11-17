@@ -24,5 +24,4 @@ private:
 	std::string continentName;
 	int numberOfArmiesPerTurn;
 	std::vector<Country*> continentCountries;
-	//Map* map;
 };

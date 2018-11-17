@@ -51,7 +51,20 @@ void Game::chooseMap() {
 
 	worldMap = map->MapLoad(mapname);
 
+	vector<Country*> allCountries = worldMap->GetAllCountries();
+	vector<Country*> allNeighbors;
 	cout << "MAP IS NOW LOADED" << endl;
+	cout << "Here are the list of all the countries - and their neighbors:" << endl;
+	for (int i = 0; i < allCountries.size(); i++)
+	{
+		cout << allCountries[i]->getCountryName() << endl;
+		for (int j = 0; j < (allCountries[i]->getNeighbors()).size(); j++)
+		{
+			allNeighbors = allCountries[i]->getNeighbors();
+			cout << "     -";
+			cout << allNeighbors[j]->getCountryName() << endl;
+		}
+	}
 }
 
 
