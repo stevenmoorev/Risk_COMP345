@@ -301,7 +301,8 @@ Map* MapLoader::getMap() {
 }
 /*int main() {
 
-	string path1 = "C:/Users/pcabr/Downloads/countries-unconnected.map";
+	//string path1 = "C://Users//pcabr//Downloads//countries-unconnected.map";
+	string path1 = "C://Users//pcabr//Desktop//risk2//Risk_COMP345//Risk_COMP_345//Risk_COMP_345//Maps//asia.map";
 	MapLoader(path1);
-
+	//"C://Users//pcabr//Desktop//risk2//Risk_COMP345//Risk_COMP_345//Risk_COMP_345//Maps//asia.map";
 }*/
