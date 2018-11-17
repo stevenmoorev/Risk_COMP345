@@ -17,8 +17,8 @@ class MapLoader
 public:
 	~MapLoader();
 	MapLoader();
-	//void Load();
 	Map* MapLoad(string const & path);
+	Map* getMap();
 
 private:
 	Map* map;

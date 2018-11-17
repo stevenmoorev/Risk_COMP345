@@ -90,6 +90,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	string continentName;
 	string countryName;
 	string score;
+	map = new Map();
 	int x, y;
 	const char flag = '\n';
 	//input of map file location
@@ -108,7 +109,7 @@ Map* MapLoader::MapLoad(string const &path) {
 	while (in.peek() != flag)
 	{
 		getline(in, continentName, '=');
-		continents.push_back(new Continent(continentName, 5));
+		continents.push_back(new Continent(continentName, 0));
 		getline(in, score, '\n');
 
 		
@@ -134,8 +135,6 @@ Map* MapLoader::MapLoad(string const &path) {
 			getline(in, countryName, ',');
 
 			auto it = find_if(neighbors.begin(), neighbors.end(), [&](Country* n) {return n->getCountryName() == countryName;});
-			//auto it = find_if(neighbors.begin(), neighbors.end(), [&](Country& n) -> bool {return n.getCountryName() == countryName;});
-			//if the country is not already created in the neighbor vector, create a new country for it
 			if (it == neighbors.end())
 			{
 				countries.push_back(new Country(countryName));
@@ -150,33 +149,13 @@ Map* MapLoader::MapLoad(string const &path) {
 				//country.setY(y);
 				//cout << country.getY()<<endl;
 				in.get();
-				//country.SetContinent(continent);
-				//find continent that country belongs to in the continents vector
-				//country.SetContinent(desired continent)
-
 				//vector<Country*> Country.SetContient(Continent);
 				getline(in, continentName, ',');
-				//Map map;
 				for (unsigned int i = 0; i < continents.size(); i++)
 				{
 					if (continentName == continents[i]->GetName())
 					{
-
-
-						//cout << "Continent name ";
-						//cout << continents[i]->GetName();
-						//cout << "Continent SIZE + object ID:   " << continents[i] <<endl;
-
-						//continents[i]->SetMap(&map);
-						//	country.SetContinent((continents[i]));
 						continents[i]->AddCountry(countries[c]);
-
-						//cout << "Country memory address:" << &country;
-						//cout << country.BelongsToAContinent();
-						// country count =1 ????????
-						//cout << "#of countries "<< continents[i]->ContainsCountry(countries[c]);
-						//	cout << continents[i]->ContainsCountry(&country);
-
 					}
 				}
 				//setting neighbors
@@ -204,9 +183,6 @@ Map* MapLoader::MapLoad(string const &path) {
 						countries[c]->addNeighbor(neighbors[o]);
 						o = o + 1;
 					}
-					//country.addNeighbor(&country1);
-					//}
-					//if(continentName == continent.getName()){   country.setContinent(continent)     }
 				}
 
 
@@ -222,14 +198,9 @@ Map* MapLoader::MapLoad(string const &path) {
 				in.get();
 				in >> y;
 				neighbors[index5]->setY(y);
-				//country.setY(y);
-				//cout << country.getY();
-				in.get();
-				//country.SetContinent(continent);
-				//find continent that country belongs to in the continents vector
-				//country.SetContinent(desired continent)
 
-				//vector<Country*> Country.SetContient(Continent);
+				in.get();
+
 				getline(in, continentName, ',');
 				//Map map;
 				for (unsigned int i = 0; i < continents.size(); i++)
@@ -238,12 +209,6 @@ Map* MapLoader::MapLoad(string const &path) {
 					{
 
 						continents[i]->AddCountry(neighbors[index5]);
-
-						//cout << "Country memory address:" << &country;
-						//cout << country.BelongsToAContinent();
-						// country count =1 ????????
-						//cout << continents[i]->ContainsCountry(neighbors[index5]);
-						//	cout << continents[i]->ContainsCountry(&country);
 
 					}
 				}
@@ -296,19 +261,13 @@ Map* MapLoader::MapLoad(string const &path) {
 	//vector<Country*>Map2= map.GetAllCountries();
 	//verify how many countries are part of each continent which currently gives 1 
 	bool countryPerContinent = true;
-	for (unsigned int x = 0; x < map->GetMapContinents().size(); x++) {
+	int numberOfCountries = map->GetContinentCount();
+	for (unsigned int x = 0; x < numberOfCountries; x++) {
 
 		if (map->GetMapContinents()[x]->GetCountryCount() <= 0) {
 			bool countryPerContinent = false;
 		};
 	}
-	//*cout << continents[1]->ContainsCountry(countries[7]);
-	//cout << continents[7]->ContainsCountry(countries[40]);
-
-
-	//cout << neighbors[4]->getCountryName ()<< endl;
-	//cout << countries[0]->getCountryName ()<< endl;
-	//cout << map.GetCountryCount();
 
 	//graph construction
 	Graph countriesConnection(map->GetCountryCount());
@@ -319,10 +278,9 @@ Map* MapLoader::MapLoad(string const &path) {
 		auto it69 = find_if(v.begin(), v.end(), [&](Country* n) {return n->getCountryName() == v[x]->getCountryName();});
 		auto index69 = std::distance(v.begin(), it69);
 
-		vector<Country*> y = v[index69]->getNeighbors();		//g.addEdge(index69, 1);
+		vector<Country*> y = v[index69]->getNeighbors();
 
 		for (unsigned int w = 0; w < y.size(); w++) {
-			//cout << y[w]->getCountryName() << endl;
 			countriesConnection.addEdge(index69, w);
 			countriesConnection.addEdge(w, index69);
 		}
@@ -332,11 +290,14 @@ Map* MapLoader::MapLoad(string const &path) {
 	if (countryPerContinent == true && countriesConnection.DFS(0)) {
 		cout << "Map Created" << endl;
 		return map;
-		//cout << map.GetCountryCount();
 	}
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
+}
+
+Map* MapLoader::getMap() {
+	return map;
 }
 /*int main() {
 
