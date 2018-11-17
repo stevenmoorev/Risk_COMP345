@@ -73,6 +73,7 @@ void Game::startGameLoop() {
 		/////for each player, attack
 		for (int i = 0; i < players.size(); i++) {
 			attackPhase(i);
+			checkDeath();
 		}
 		/////for each player, fortify
 		for (int i = 0; i < players.size(); i++) {
@@ -81,6 +82,17 @@ void Game::startGameLoop() {
 	}
 	cout << "THERE IS ONLY OEN PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
 	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
+}
+
+void Game::checkDeath() {
+	for (int i = 0; i < players.size(); i++) {
+		if (players[i]->getCountries().size() == 0) {
+			//then youre dead
+			cout << "ATTENTION! PLAYER " << players[i]->getName() << " HAS DIED. WE HAVE ONE LESS PLAYER IN OUR MIDST!" << endl;
+			cout << endl;
+			players.erase(players.begin() + i);
+		}
+	}
 }
 
 void Game::chooseMap() {

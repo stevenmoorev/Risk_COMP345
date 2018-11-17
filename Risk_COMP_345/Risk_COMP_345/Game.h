@@ -26,6 +26,7 @@ public:
 	void giveCountriesToPlayers();
 	void startGameLoop();
 	void assignFirstRound();
+	void checkDeath();
 	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);
