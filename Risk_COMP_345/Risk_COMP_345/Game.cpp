@@ -12,6 +12,7 @@ Game::Game()
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
 	placeInitialArmies();
+	//gameLOOP
 }
 
 Game::Game(Map* newMap)
@@ -33,6 +34,7 @@ void Game::setup()
 int main() {
 	Game* g = new Game();
 	//g->setup();
+	return 0;
 }
 
 void Game::giveCountriesToPlayers() {
@@ -50,6 +52,14 @@ void Game::giveCountriesToPlayers() {
 			assignedPlayer = 0;
 		}
 	}
+}
+
+void Game::startGameLoop() {
+	//reinforcementPhase();
+	//attackPhase();
+	//fortificationPhase();
+	//while the game ahs not ended yet,
+	//		each player gets a reinforce, then each player gets an attack, then each player gets a fortify
 }
 
 void Game::chooseMap() {
@@ -117,7 +127,7 @@ void Game::setNumberOfPlayers()
 		armyAllocation = 25;
 		break;
 	case 6:
-		armyAllocation = 20;
+		armyAllocation = 20; //should be 20 but im testing
 		break;
 	}
 	string name;
@@ -170,11 +180,27 @@ void Game::placeInitialArmies()
 	int numberOfInitialArmiesLeft = players[0]->getArmies();
 	bool allArmiesAllocated = false;
 	while (!allArmiesAllocated) {
+		assignFirstRound();
+		//must reduce the num of army allocation
+		//take nuymber of countries player 1 has, remvoe that number from everyone
+		int allocationReduction = players[0]->getCountries().size();
+		numberOfInitialArmiesLeft = numberOfInitialArmiesLeft - allocationReduction;
 		assignOneRound();
 		numberOfInitialArmiesLeft--;
 		cout << "Number of armies left to allocate :"<< numberOfInitialArmiesLeft <<endl;
 		if (numberOfInitialArmiesLeft == 0) {
 			allArmiesAllocated = true;
+		}
+	}
+}
+
+void Game::assignFirstRound() {
+	cout << "assigning one army to each country owned by player by default. The rest will be chosen by the player." << endl;
+	for (int i = 0; i < players.size(); i++) {
+		vector<Country*> playerCountries = players[i]->getCountries();
+		for (int ii = 0; ii < playerCountries.size(); ii++) {
+			playerCountries[ii]->addArmy();
+			players[i]->removeAnArmy();
 		}
 	}
 }
