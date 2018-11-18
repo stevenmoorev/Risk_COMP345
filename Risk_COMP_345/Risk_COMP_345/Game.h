@@ -1,3 +1,5 @@
+#ifndef GAME_H
+#define GAME_H
 #include <string>
 #include <vector>
 #include "Player.h"
@@ -8,8 +10,7 @@
 #include "SubjectPhase.h"
 using namespace std;
 
-class Game : public SubjectPhase
-{
+class Game : public SubjectPhase {
 public:
 	Game();
 	Game(Map* gameMap);
@@ -43,3 +44,4 @@ private:
 	Map* worldMap;
 	int bonus = 5;
 };
+#endif

@@ -19,12 +19,12 @@ void View::Update() {
 	display();
 };
 void View::display() {
-	string phaseName = _subject->getPhaseName;
+	string phaseName = _subject->getPhaseName();
 	Player* player = _subject->getCurrentPlayer();
 
-	cout << "==========" << endl;
+	cout << "====================VIEW OBSERVER====================" << endl;
 	cout << phaseName << endl;
-	cout << "==========" << endl;
 	cout << "Player Name: " << player->getName() << endl;
-	cout << "Player owned countries: " << player->getCountries.size() << endl;
+	cout << "Player owned countries: "<< player->getCountries().size() <<endl;
+	cout << "=====================================================" << endl;
 };

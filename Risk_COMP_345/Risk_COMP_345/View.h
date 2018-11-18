@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VIEW_H
+#define VIEW_H
 #include "ObserverPhase.h"
 #include "Game.h"
 
@@ -10,5 +11,6 @@ public:
 	void Update();
 	void display();
 private:
-	Game *_subject;
+	Game* _subject;
 };
+#endif VIEW_H
