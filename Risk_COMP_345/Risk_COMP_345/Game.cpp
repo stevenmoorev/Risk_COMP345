@@ -138,7 +138,7 @@ void Game::setNumberOfPlayers()
 	cin >> numberOfPlayers;
 
 	//keep searching
-	while (numberOfPlayers < 2 || numberOfPlayers > MAX_PLAYERS || cin.fail())
+	while ( (numberOfPlayers < 2) || (numberOfPlayers > MAX_PLAYERS) || cin.fail())
 	{
 		cout << "INVALID ENTRY - Please enter an integer between 2 and 6: " << endl;
 		cin >> numberOfPlayers;
@@ -243,15 +243,28 @@ void Game::assignOneRound()
 	string choice;
 	for (int i = 0; i < players.size(); i++)
 	{
-		cout << "It is Player" << i << "'s, " << players[i]->getName() << ",  turn to assign an army to a country" << endl;
+		cout << "It is Player " << i << "'s, " << players[i]->getName() << ",  turn to assign an army to a country" << endl;
+		cout << players[i]->getArmies() << ",  Armies left" << endl;
 		cout << "Here are your choices: " << endl;
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << " - " << players[i]->getCountries()[j]->getNumberOfArmies() << " units" << endl;
 		}
 		cout << "Enter the name of the country to add an army to it" << endl;
-		cin >> choice;
+		bool choosenProperCountry = true;
+		while (!choosenProperCountry) {
+			cout << "Type a valide country" << endl;
+			cin >> choice;
+			if(players[i]->getCountry(choice) == NULL)
+			{
+				choosenProperCountry = false;
+			}
+			else
+			{
+				choosenProperCountry = true;
+			}
+		}
 		players[i]->getCountry(choice)->addArmy();
 		players[i]->removeAnArmy();
 	}

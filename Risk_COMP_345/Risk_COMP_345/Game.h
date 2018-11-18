@@ -3,10 +3,12 @@
 #include "Player.h"
 #include "Map.h"
 #include "MapLoader.h"
+#include "ObserverPhase.h"
 #include <string>
+#include "SubjectPhase.h"
 using namespace std;
 
-class Game 
+class Game : public SubjectPhase
 {
 public:
 	Game();
@@ -14,7 +16,6 @@ public:
 	void setup();
 	void setNumberOfPlayers();
 	void chooseMap();
-	//bool isMapValid();
 	void assignCountries();
 	void placeInitialArmies();
 	void assignOneRound();
@@ -31,7 +32,12 @@ public:
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);
 	int getBonus() const;
+	string getPhaseName() { return phaseName; };
+	Player* getCurrentPlayer() { return currentPlayer; };
+
 private:
+	string phaseName;
+	Player* currentPlayer;
 	vector<Player*> players;
 	bool gameOver; 
 	Map* worldMap;
