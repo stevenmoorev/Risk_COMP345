@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string>
 #include "Strategy.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ public:
  
     void reinforce(Player* p1);
     
-    void attack(Player* p1, Player* p2);
+    void attack(Player* p1);
     
     void fortify(Player* p1);
 };

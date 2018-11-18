@@ -5,7 +5,6 @@
 //  Created by Steven Moore on 2018-11-18.
 //  Copyright © 2018 Steven Moore. All rights reserved.
 //
-
 #include "Strategy.h"
 
 Strategy::Strategy(){
@@ -14,7 +13,10 @@ Strategy::Strategy(){
 
 Strategy::~Strategy(){
     
-}
+};
+
+//void Strategy::getStrategy()
+
 //void Strategy::reinforcementStrategy(){
 //aggressive player reinforces to strongest country
 //benevolent player reinforces to weaker countries
@@ -28,4 +30,4 @@ Strategy::~Strategy(){
 //void Strategy::fortificationStrategy(){
 //aggresive maximize aggregation of forces in one country
 //benevolent moves to weaker countries
-//}
+//

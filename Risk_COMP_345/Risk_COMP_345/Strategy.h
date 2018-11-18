@@ -10,12 +10,19 @@
 #define Strategy_hpp
 
 #include <stdio.h>
-#include "Game.h"
+#include <string>
+//#include "Game.h"
+using namespace std;
 
 class Strategy {
+private:
+    string strategy;
+    
 public:
     Strategy();
     ~Strategy();
+    string getStrategy(){return strategy;};
+    void setStrategy(string st){strategy = st;};
     //reinforcement phase
     //void reinforcementStrategy();
     //attack phase
@@ -23,7 +30,5 @@ public:
     //fortification phase
     //void fortificationStrategy();
 };
-
-
 
 #endif /* Strategy_hpp */
