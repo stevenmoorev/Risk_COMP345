@@ -16,6 +16,15 @@ AggressiveStrategy::~AggressiveStrategy(){
     
 }
 
+//aggressive player reinforces to strongest country
+void AggressiveStrategy::reinforce(Player *p1){
+    //reinforce strongest country
+}
+
 void AggressiveStrategy::attack(Player *p1, Player *p2){
-    //enter 
+    //attack with strongest country until you cannot anymore
+}
+
+void AggressiveStrategy::fortify(Player *p1){
+    //aggregate forces in one country
 }

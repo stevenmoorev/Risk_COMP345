@@ -17,7 +17,16 @@ BenevolentStrategy::~BenevolentStrategy(){
     
 }
 
+void BenevolentStrategy::reinforce(Player *p1){
+    //reinforce weak countries
+}
+
+
 void BenevolentStrategy::attack(Player *p1, Player *p2){
-    //don't attack?
-    //attack if has a lot more? 
+    //never attack
+}
+
+
+void BenevolentStrategy::fortify(Player *p1){
+    //move armies to weaker countries
 }

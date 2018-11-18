@@ -22,6 +22,10 @@ public:
     std::string getStrategy() {return "Aggressive";}
     
     //aggressive player focusses on attack
+    void reinforce(Player* p1);
+    
     void attack(Player* p1, Player* p2);
+    
+    void fortify(Player* p1);
 };
 #endif /* AggressiveStrategy_hpp */

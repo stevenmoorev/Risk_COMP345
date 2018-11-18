@@ -20,8 +20,11 @@ public:
     BenevolentStrategy();
     ~BenevolentStrategy();
     std::string getStrategy() {return "Benevolent";}
+ 
+    void reinforce(Player* p1);
     
-    //aggressive player focusses on attack
     void attack(Player* p1, Player* p2);
+    
+    void fortify(Player* p1);
 };
 #endif /* BenevolentStrategy_hpp */
