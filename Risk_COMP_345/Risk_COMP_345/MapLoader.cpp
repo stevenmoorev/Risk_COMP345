@@ -244,12 +244,7 @@ Map* MapLoader::MapLoad(string const &path) {
 
 	for (unsigned int i = 0; i < continents.size(); i++)
 	{
-		{
-			cout << &continents[i] << continents[i]->GetCountryCount() + "\n";
-			map->AddContinentToMap(continents[i]);
-			//cout << "FLAG1";
-			//cout << "\n";
-		}
+	  map->AddContinentToMap(continents[i]);
 	}
 
 	//vector<Country*>Map2= map.GetAllCountries();
