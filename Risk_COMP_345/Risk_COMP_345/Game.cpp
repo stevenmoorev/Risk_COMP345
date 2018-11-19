@@ -62,20 +62,27 @@ void Game::startGameLoop() {
 	//fortificationPhase();
 	//while the game has not ended yet,
 	//each player gets a reinforce, then each player gets an attack, then each player gets a fortify
-	//while (players.size() != 1) {
-	//	cout << "The players currently still alive are: "<< endl;
-	//	for (int i = 0; i < players.size(); i++) {
-	//		cout << players[i]->getName();
-	//	}
-	//	cout << endl;
-	//	///////for each player, reinforce
-	//	for (int i = 0; i < players.size(); i++) {
-	//		reinforcementPhase(i);
-	//		attackPhase(i);
-	//		checkDeath();
-	//		fortificationPhase(i);
-	//	}
-	//}
+	while (players.size() != 1) {
+		cout << "The players currently still alive are: "<< endl;
+		for (int i = 0; i < players.size(); i++) {
+			cout << players[i]->getName();
+		}
+		cout << endl;
+		///////for each player, reinforce
+		for (int i = 0; i < players.size(); i++) {
+			if (players[i]->getStrategy() != NULL) {
+				players[i]->getStrategy()->reinforce();
+				players[i]->getStrategy()->attack();
+				players[i]->getStrategy()->fortify();
+			}
+			else {
+				reinforcementPhase(i);
+				attackPhase(i);
+				checkDeath();
+				fortificationPhase(i);
+			}
+		}
+	}
 	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
 	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
 }
