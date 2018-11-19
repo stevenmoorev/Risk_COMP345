@@ -28,5 +28,7 @@ public:
     void attack(Player* p1);
     
     void fortify(Player* p1);
+	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
+	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 };
 #endif /* AggressiveStrategy_hpp */
