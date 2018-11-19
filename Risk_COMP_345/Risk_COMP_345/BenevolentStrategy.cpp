@@ -23,21 +23,22 @@ void BenevolentStrategy::reinforce(Player *p1){
     //reinforce weak countries
     //look at all countries to see
     //which ones are weak?
-    int array[p1->getCountries().size()];
+	vector<int> arr = vector<int>();
     for(int i =0; i < p1->getCountries().size() - 1 ; i++){
         //this will look how many armies each country has
         //put in the array
-        array[i] = p1->getCountries()[i]->getNumberOfArmies();
+		arr.push_back(p1->getCountries()[i]->getNumberOfArmies());
     }
     //return position of the minimum in the array
     
     int index = 0;
     
     for(int i = 0; i < p1->getCountries().size() - 1; i++){
-        if(array[i] < array[index] )
+        if(arr[i] < arr[index] )
             index = i;
     }
-    cout << "reinforce on country " << p1->getCountries()[index] << endl;
+    cout << "reinforce on country " << p1->getCountries()[index]->getCountryName() << endl;
+
 }
 
 
@@ -67,5 +68,9 @@ void BenevolentStrategy::fortify(Player *p1){
     
     cout << "Move armies from " << p1->getCountries()[indexLargest]->getCountryName() << " to " << p1->getCountries()[indexSmallest]->getCountryName() << endl;
     
-    
+	int difference = (int)(p1->getCountries()[indexLargest]->getNumberOfArmies() - p1->getCountries()[indexSmallest]->getNumberOfArmies())/2;
+	for (int i = 0; i < difference; i++) {
+		p1->getCountries()[indexLargest]->removeArmy(1);
+		p1->getCountries()[indexSmallest]->addArmy();
+	}
 }
