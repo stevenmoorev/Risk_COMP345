@@ -3,6 +3,7 @@
 #include <filesystem>
 #include "Game.h"
 #include "View.h"
+#include "GameStatView.h"
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -72,14 +73,8 @@ void Game::startGameLoop() {
 	//	///////for each player, reinforce
 	//	for (int i = 0; i < players.size(); i++) {
 	//		reinforcementPhase(i);
-	//	}
-	//	/////for each player, attack
-	//	for (int i = 0; i < players.size(); i++) {
 	//		attackPhase(i);
 	//		checkDeath();
-	//	}
-	//	/////for each player, fortify
-	//	for (int i = 0; i < players.size(); i++) {
 	//		fortificationPhase(i);
 	//	}
 	//}
@@ -92,6 +87,7 @@ void Game::checkDeath() {
 		if (players[i]->getCountries().size() == 0) {
 			//then youre dead
 			cout << "ATTENTION! PLAYER " << players[i]->getName() << " HAS DIED. WE HAVE ONE LESS PLAYER IN OUR MIDST!" << endl;
+			Notify();
 			cout << endl;
 			players.erase(players.begin() + i);
 		}
@@ -379,6 +375,7 @@ int Game::getBonus() const
 
 void Game::attackPhase(int attackerPlayerNum)
 {
+
 	string attackPhaseInputString;
 	bool isAttackPhase;
 	currentPlayer = players[attackerPlayerNum];
@@ -519,7 +516,7 @@ void Game::attackPhase(int attackerPlayerNum)
 					moveArmyCheck = true;
 				}
 			} while (!moveArmyCheck);
-
+			Notify();
 			cout << "\nAttacking phase done!" << endl;
 			isAttackPhase = false;
 		}
