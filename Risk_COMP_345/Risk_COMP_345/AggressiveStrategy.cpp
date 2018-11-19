@@ -67,4 +67,10 @@ void AggressiveStrategy::fortify(Player *p1){
             indexSecondLargest = i;
     }
     cout << "Move from country " << p1->getCountries()[indexSecondLargest]->getCountryName() << endl;
+
+	int difference = (int)(p1->getCountries()[indexLargest]->getNumberOfArmies() - p1->getCountries()[indexSecondLargest]->getNumberOfArmies()) ;
+	for (int i = 0; i < difference; i++) {
+		p1->getCountries()[indexSecondLargest]->removeArmy(1);
+		p1->getCountries()[indexLargest]->addArmy();
+	}
 }
