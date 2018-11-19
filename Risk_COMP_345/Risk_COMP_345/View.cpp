@@ -27,4 +27,12 @@ void View::display() {
 	cout << "Player Name: " << player->getName() << endl;
 	cout << "Player owned countries: "<< player->getCountries().size() <<endl;
 	cout << "=====================================================" << endl;
+	vector<Player*> players = _subject->getPlayers();
+	int numOfCountries = _subject->getWorldMap()->GetAllCountries().size();
+	cout << "====================Game Statistics===================" << endl;
+	cout << "Number of Players in the game:" << players.size() << endl;
+	for (int i = 0; i < players.size(); i++) {
+		cout << "Player " << i + 1 << "has " << players[i]->getCountries().size() << " countries. This is equal to " << (double)players[i]->getCountries().size() / (double)numOfCountries * 100 << " percent of the world map." << endl;
+	}
+	cout << "=====================================================" << endl;
 };
