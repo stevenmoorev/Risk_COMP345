@@ -1,3 +1,5 @@
+#ifndef GameStatView_H
+#define GameStatView_H
 #include "ObserverPhase.h"
 #include "Game.h"
 
@@ -11,3 +13,4 @@ public:
 private:
 	Game* _subject;
 }; 
+#endif

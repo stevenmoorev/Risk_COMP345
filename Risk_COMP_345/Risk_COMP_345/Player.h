@@ -27,6 +27,7 @@ private:
 	Dice* dices;
 	Hand* hand;
     Strategy* strategy;
+	bool isNPC;
 
 public:
 	Player();
@@ -49,6 +50,8 @@ public:
 	Hand* getHand();
     void setDice();
 	Dice* getDice();
+	bool getIsNPC() { return isNPC; };
+	void setIsNPC() { isNPC = true; };
     void setCountries();
     void setName();
     void setArmies(int armies);
