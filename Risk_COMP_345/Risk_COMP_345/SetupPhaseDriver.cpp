@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Game.h"
-#include "Player.h";
+#include "Player.h"
 #include "Map.h"
 #include "Dice.h"
 using namespace std;

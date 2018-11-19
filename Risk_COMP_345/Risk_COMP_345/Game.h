@@ -33,11 +33,12 @@ public:
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);
 	int getBonus() const;
+
 	string getPhaseName() { return phaseName; };
 	Player* getCurrentPlayer() { return currentPlayer; };
 	vector<Player*> getPlayers() { return players; };
 	Map* getWorldMap() { return worldMap; };
-
+  
 private:
 	string phaseName;
 	Player* currentPlayer;
@@ -46,4 +47,6 @@ private:
 	Map* worldMap;
 	int bonus = 5;
 };
+
 #endif
+

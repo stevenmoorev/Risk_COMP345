@@ -1,3 +1,5 @@
+#ifndef ObserverPhase_H
+#define ObserverPhase_H
 #include <string>
 #include <vector>
 #include "Player.h"
@@ -16,3 +18,4 @@ public:
 protected:
 	ObserverPhase();
 };
+#endif

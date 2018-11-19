@@ -1,3 +1,5 @@
+#ifndef SubjectPhase_H
+#define SubjectPhase_H
 #pragma once
 #include "ObserverPhase.h"
 #include "Player.h"
@@ -18,3 +20,4 @@ public:
 private:
 	list<ObserverPhase*> *_ObserverPhase;
 };
+#endif

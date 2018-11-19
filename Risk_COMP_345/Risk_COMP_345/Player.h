@@ -10,14 +10,13 @@
 #include "Country.h"
 #include "Continent.h"
 #include "Dice.h"
-
-
-
+#include "Strategy.h"
 
 using namespace std;
 
 // forward declaration (circular dependency)
 class Country;
+
 
 class Player {
 
@@ -27,6 +26,8 @@ private:
 	vector<Country*> countries;
 	Dice* dices;
 	Hand* hand;
+    Strategy* strategy;
+	bool isNPC;
 
 public:
 	Player();
@@ -49,10 +50,14 @@ public:
 	Hand* getHand();
     void setDice();
 	Dice* getDice();
+	bool getIsNPC() { return isNPC; };
+	void setIsNPC() { isNPC = true; };
     void setCountries();
     void setName();
     void setArmies(int armies);
 	void removeCountry(Country* oldCountry);
+    Strategy* getStrategy(){return strategy;};
+    void setStrategy(Strategy* st){strategy = st;};
 };
 
 #endif
