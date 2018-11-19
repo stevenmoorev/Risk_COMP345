@@ -2,8 +2,12 @@
 #include <vector>
 #include <filesystem>
 #include "Game.h"
+
 #include "BenevolentStrategy.h"
 #include "AggressiveStrategy.h"
+#include "View.h"
+#include "GameStatView.h"
+
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -14,7 +18,9 @@ Game::Game()
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
 	placeInitialArmies();
-	//gameLOOP
+	//Create a View that is connected to the Game  
+    View *view = new View(this); 
+	//startGameLoop();
 }
 
 Game::Game(Map* newMap)
@@ -42,7 +48,7 @@ void Game::giveCountriesToPlayers() {
 	for (int i = 0; i < numOfCountries; i++) {
 		allCountries[i]->setOwner(players[assignedPlayer]);
 		players[assignedPlayer]->addCountry(allCountries[i]);
-		cout << "Player "<< players[assignedPlayer]->getName() << " hass been assigned the country "<< allCountries[i]->getCountryName() << endl;
+		cout << "Player "<< players[assignedPlayer]->getName() << " has been assigned the country "<< allCountries[i]->getCountryName() << endl;
 		assignedPlayer++;
 		if (assignedPlayer == numOfPlayers) {
 			assignedPlayer = 0;
@@ -55,28 +61,22 @@ void Game::startGameLoop() {
 	//attackPhase();
 	//fortificationPhase();
 	//while the game has not ended yet,
-	//		each player gets a reinforce, then each player gets an attack, then each player gets a fortify
-	while (players.size() != 1) {
-		cout << "The players currently still alive are: "<< endl;
-		for (int i = 0; i < players.size(); i++) {
-			cout << players[i]->getName();
-		}
-		cout << endl;
-		///////for each player, reinforce
-		for (int i = 0; i < players.size(); i++) {
-			reinforcementPhase(i);
-		}
-		/////for each player, attack
-		for (int i = 0; i < players.size(); i++) {
-			attackPhase(i);
-			checkDeath();
-		}
-		/////for each player, fortify
-		for (int i = 0; i < players.size(); i++) {
-			fortificationPhase(i);
-		}
-	}
-	cout << "THERE IS ONLY OEN PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
+	//each player gets a reinforce, then each player gets an attack, then each player gets a fortify
+	//while (players.size() != 1) {
+	//	cout << "The players currently still alive are: "<< endl;
+	//	for (int i = 0; i < players.size(); i++) {
+	//		cout << players[i]->getName();
+	//	}
+	//	cout << endl;
+	//	///////for each player, reinforce
+	//	for (int i = 0; i < players.size(); i++) {
+	//		reinforcementPhase(i);
+	//		attackPhase(i);
+	//		checkDeath();
+	//		fortificationPhase(i);
+	//	}
+	//}
+	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
 	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
 }
 
@@ -85,6 +85,7 @@ void Game::checkDeath() {
 		if (players[i]->getCountries().size() == 0) {
 			//then youre dead
 			cout << "ATTENTION! PLAYER " << players[i]->getName() << " HAS DIED. WE HAVE ONE LESS PLAYER IN OUR MIDST!" << endl;
+			Notify();
 			cout << endl;
 			players.erase(players.begin() + i);
 		}
@@ -135,7 +136,7 @@ void Game::setNumberOfPlayers()
 	cin >> numberOfPlayers;
 
 	//keep searching
-	while (numberOfPlayers < 2 || numberOfPlayers > MAX_PLAYERS || cin.fail())
+	while ( (numberOfPlayers < 2) || (numberOfPlayers > MAX_PLAYERS) || cin.fail())
 	{
 		cout << "INVALID ENTRY - Please enter an integer between 2 and 6: " << endl;
 		cin >> numberOfPlayers;
@@ -240,15 +241,28 @@ void Game::assignOneRound()
 	string choice;
 	for (int i = 0; i < players.size(); i++)
 	{
-		cout << "It is Player" << i << "'s, " << players[i]->getName() << ",  turn to assign an army to a country" << endl;
+		cout << "It is Player " << i << "'s, " << players[i]->getName() << ",  turn to assign an army to a country" << endl;
+		cout << players[i]->getArmies() << ",  Armies left" << endl;
 		cout << "Here are your choices: " << endl;
 		int sizeOfCountriesList = players[i]->getCountries().size();
 		for (int j = 0; j < sizeOfCountriesList; j++)
 		{
-			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << endl;
+			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << " - " << players[i]->getCountries()[j]->getNumberOfArmies() << " units" << endl;
 		}
 		cout << "Enter the name of the country to add an army to it" << endl;
-		cin >> choice;
+		bool choosenProperCountry = false;
+		while (!choosenProperCountry) {
+			cout << "Type a valide country" << endl;
+			cin >> choice;
+			if(players[i]->getCountry(choice) == NULL)
+			{
+				choosenProperCountry = false;
+			}
+			else
+			{
+				choosenProperCountry = true;
+			}
+		}
 		players[i]->getCountry(choice)->addArmy();
 		players[i]->removeAnArmy();
 	}
@@ -258,10 +272,9 @@ void Game::reinforcementPhase(int playerNumber) {
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
 	int selectedCountryForReinforcement;
-	cout << "===================";
-	cout << "REINFORCEMENT PHASE";
-	cout << "===================";
-
+	currentPlayer = players[playerNumber];
+	phaseName = "REINFORCEMENT";
+	Notify();
 	//step 1: number of countries / 3
 	if (numberOfCountriesOfPlayer > 3)
 	{
@@ -289,6 +302,7 @@ void Game::reinforcementPhase(int playerNumber) {
 			extraReinforcements += worldMap->GetMapContinents()[i]->GetNumberOfArmiesPerTurn();
 		}
 	}//end of step 2
+	/*
 
 	//step 3: exchange cards
 	//check the player's hand
@@ -320,6 +334,7 @@ void Game::reinforcementPhase(int playerNumber) {
 			cout << "THESE CARDS CANNOT BE TRADED" << endl;
 	}//end of step 3
 
+	*/
 
 	//place the reinforcements
 	while (extraReinforcements > 0)
@@ -362,15 +377,16 @@ int Game::getBonus() const
 
 void Game::attackPhase(int attackerPlayerNum)
 {
+
 	string attackPhaseInputString;
 	bool isAttackPhase;
-	cout << "=============";
-	cout << "ATTACK PHASE";
-	cout << "=============";
-	cout << "/n Do you want to attack? y/n" << endl;
+	currentPlayer = players[attackerPlayerNum];
+	phaseName = "ATTACK";
+	Notify();
+	cout << "Do you want to attack? y/n" << endl;
 	cin >> attackPhaseInputString;
 
-	if (attackPhaseInputString.compare("y") || attackPhaseInputString.compare("yes")) {
+	if (attackPhaseInputString == "y" || attackPhaseInputString == "Y") {
 		isAttackPhase = true;
 	}
 	else {
@@ -464,12 +480,18 @@ void Game::attackPhase(int attackerPlayerNum)
 			} while (defNumDices < 1 || defNumDices > 2);
 			defDicesRolled = neighborPlayer->rollDice(defNumDices);
 		}
-
+		cout << endl;
+		cout << "ATTACKER DICES: ";
+		for (int i = 0; i < attDicesRolled.size(); i++) { cout << attDicesRolled[i] << ", "; }
+		cout << endl;
+		cout << "DEFFENDER DICES: ";
+		for (int i = 0; i < defDicesRolled.size(); i++) { cout << defDicesRolled[i] << ", "; }
+		cout << endl;
 		//Remove defender armies and attacker armies
 		int defendersEliminated = compareThrownDicesDef(attDicesRolled, defDicesRolled);
 		defenderCountry->removeArmy(defendersEliminated);
 		cout << "Attacker has eliminated " << defendersEliminated << "  defenders" << endl;
-		int attackersEliminated = compareThrownDicesDef(attDicesRolled, defDicesRolled);
+		int attackersEliminated = compareThrownDicesAtt(attDicesRolled, defDicesRolled);
 		attackerCountry->removeArmy(attackersEliminated);
 		cout << "Defender has eliminated " << attackersEliminated << "  attackers" << endl;
 
@@ -499,14 +521,14 @@ void Game::attackPhase(int attackerPlayerNum)
 					moveArmyCheck = true;
 				}
 			} while (!moveArmyCheck);
-
+			Notify();
 			cout << "\nAttacking phase done!" << endl;
 			isAttackPhase = false;
 		}
 		else {
 			cout << "\nWould you like to attack again? y/n" << endl;
 			cin >> attackPhaseInputString;
-			if (attackPhaseInputString.compare("y") || attackPhaseInputString.compare("yes")) {
+			if (attackPhaseInputString == "y" || attackPhaseInputString == "yes") {
 				isAttackPhase = true;
 			}
 			else {
@@ -524,10 +546,9 @@ void Game::fortificationPhase(int playerNumber) {
 	Country* countrySelected;
 	Country* neighborSelected;
 	bool fortificationPhase = true;
-
-	cout << "===================";
-	cout << "FORTIFICATION PHASE";
-	cout << "===================";
+	currentPlayer = players[playerNumber];
+	phaseName = "FORTIFICATION";
+	Notify();
 	cout << "Player " + playerNumber;
 
 	do {
@@ -588,7 +609,11 @@ void Game::fortificationPhase(int playerNumber) {
 		else
 		{
 			cout << "\nYOU HAVE NO NEIGHBORS FOR THE COUNTRY!" << endl;
+			if(players[playerNumber]->getCountries().size() == 1)
+			fortificationPhase = false;
+			else {
 			fortificationPhase = true;
+			}
 		}
 	} while (fortificationPhase);
 	cout << "\n\nFORTIFICATION PHASE DONE\n\n";
@@ -609,23 +634,37 @@ void Game::addArmiesToCountry(int amount, Country* c)
 
 int Game::compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled) {
 	int defendersEliminated = 0;
+	int attackersEliminated = 0;
+	int LastIndexOfAttDices = attDicesRolled.size();
+	int LastIndexOfDefDices = defDicesRolled.size();
+	LastIndexOfAttDices--;
+	LastIndexOfDefDices--;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
-
-		if (attDicesRolled[i] > defDicesRolled[i])
-		{
-			defendersEliminated++;
+		if (LastIndexOfAttDices >= 0 && LastIndexOfDefDices>= 0) {
+			if (attDicesRolled[LastIndexOfAttDices] > defDicesRolled[LastIndexOfDefDices]) {
+				defendersEliminated++;
+			}
+			LastIndexOfAttDices--;
+			LastIndexOfDefDices--;
 		}
 	}
 	return defendersEliminated;
 }
 
 int Game::compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled) {
+	int defendersEliminated = 0;
 	int attackersEliminated = 0;
+	int LastIndexOfAttDices = attDicesRolled.size();
+	int LastIndexOfDefDices = defDicesRolled.size();
+	LastIndexOfAttDices--;
+	LastIndexOfDefDices--;
 	for (int i = 0; i < defDicesRolled.size(); i++) {
-
-		if (defDicesRolled[i] >= attDicesRolled[i])
-		{
-			attackersEliminated++;
+		if (LastIndexOfAttDices >= 0 && LastIndexOfDefDices >= 0) {
+			if (defDicesRolled[LastIndexOfDefDices] >= attDicesRolled[LastIndexOfAttDices]) {
+				attackersEliminated++;
+			}
+			LastIndexOfAttDices--;
+			LastIndexOfDefDices--;
 		}
 	}
 	return attackersEliminated;

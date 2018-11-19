@@ -2,11 +2,12 @@
 #include <cstdlib>
 #include <ctime>
 #include "Game.h"
+#include "View.h"
 #include "Player.h"
 #include "Map.h"
 #include "Dice.h"
 using namespace std;
-/*
+
 int main() {
 	string input;
 	cout << "Map being created with the following countries:" << endl;
@@ -33,7 +34,10 @@ int main() {
 	Map* driverMap = new Map();
 	driverMap->AddContinentToMap(con);
 	Game* myGame = new Game(driverMap);
-	
+
+	//Attach View to observe Game
+	View *view = new View(myGame);
+
 	Player* p1 = new Player("Godzilla");
 	Player* p2 = new Player("Superman");
 	myGame->addDemoPlayers(p1);
@@ -50,11 +54,13 @@ int main() {
 	//now we test the attacking phase:
 	cout << "We will now add 1 army to each country" << endl;
 	//add armies
-	myGame->addArmiesToCountry(3, c1);
+	myGame->addArmiesToCountry(1, c1);
 	myGame->addArmiesToCountry(5, c2);
 	myGame->addArmiesToCountry(5, c3);
 
-	myGame->attackPhase(0);
+	myGame->attackPhase(1);
+	myGame->checkDeath();
+	return 0;
 
 	//try to attack mexico from canada, invalid
 	//attack usa from canada, valid.
@@ -65,4 +71,3 @@ int main() {
 	//making sure you can attack more than once a turn is a game loop issue and will be tested in the main game loop
 }
 
-*/
