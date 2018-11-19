@@ -35,6 +35,8 @@ public:
 	int getBonus() const;
 	string getPhaseName() { return phaseName; };
 	Player* getCurrentPlayer() { return currentPlayer; };
+	vector<Player*> getPlayers() { return players; };
+	Map* getWorldMap() { return worldMap; };
 
 private:
 	string phaseName;
