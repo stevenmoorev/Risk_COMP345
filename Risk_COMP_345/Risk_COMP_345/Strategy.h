@@ -23,6 +23,9 @@ public:
     ~Strategy();
     string getStrategy(){return strategy;};
     void setStrategy(string st){strategy = st;};
+    void reinforce();
+    void attack();
+    void fortify();
     //reinforcement phase
     //void reinforcementStrategy();
     //attack phase

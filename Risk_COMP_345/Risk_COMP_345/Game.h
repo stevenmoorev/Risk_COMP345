@@ -31,6 +31,7 @@ public:
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);
 	int getBonus() const;
+    vector<Player*> getPlayers(){return players;}
 private:
 	vector<Player*> players;
 	bool gameOver; 

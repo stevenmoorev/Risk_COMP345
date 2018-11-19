@@ -20,7 +20,7 @@ class BenevolentStrategy : public Strategy{
 public:
     BenevolentStrategy();
     ~BenevolentStrategy();
-    std::string getStrategy() {return "Benevolent";}
+    std::string const getStrategy() {return "Benevolent";}
  
     void reinforce(Player* p1);
     

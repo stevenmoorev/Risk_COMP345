@@ -20,7 +20,7 @@ class AggressiveStrategy : public Strategy{
 public:
     AggressiveStrategy();
     ~AggressiveStrategy();
-    //std::string getStrategy() {return "Aggressive";}
+    std::string const getStrategy() {return "Aggressive";}
     //void setStrategy();
     //aggressive player focusses on attack
     void reinforce(Player* p1);
