@@ -23,9 +23,9 @@ public:
     ~Strategy();
     string getStrategy(){return strategy;};
     void setStrategy(string st){strategy = st;};
-    void reinforce();
-    void attack();
-    void fortify();
+    virtual void reinforce() = 0;
+    virtual void attack() = 0;
+    virtual void fortify() = 0;
     //reinforcement phase
     //void reinforcementStrategy();
     //attack phase

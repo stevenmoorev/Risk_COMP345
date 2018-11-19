@@ -7,6 +7,7 @@
 //
 
 #include "AggressiveStrategy.h"
+#include "Player.h"
 
 AggressiveStrategy::AggressiveStrategy(){
     
