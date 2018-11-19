@@ -37,8 +37,13 @@ void BenevolentStrategy::reinforce(Player *p1){
         if(arr[i] < arr[index] )
             index = i;
     }
-    cout << "reinforce on country " << p1->getCountries()[index]->getCountryName() << endl;
-
+	cout << "reinforce on country " << p1->getCountries()[index]->getCountryName() << endl;
+	//how many armies?
+	int bonus = (int)p1->getCountries().size() / 3;
+	cout << bonus << " armies added to " << p1->getCountries()[index]->getCountryName() << endl;
+	for (int i = 0; i < bonus; i++) {
+		p1->getCountries()[index]->addArmy();
+	}
 }
 
 
@@ -69,6 +74,7 @@ void BenevolentStrategy::fortify(Player *p1){
     cout << "Move armies from " << p1->getCountries()[indexLargest]->getCountryName() << " to " << p1->getCountries()[indexSmallest]->getCountryName() << endl;
     
 	int difference = (int)(p1->getCountries()[indexLargest]->getNumberOfArmies() - p1->getCountries()[indexSmallest]->getNumberOfArmies())/2;
+	cout << difference << " armies moved" <<endl ;
 	for (int i = 0; i < difference; i++) {
 		p1->getCountries()[indexLargest]->removeArmy(1);
 		p1->getCountries()[indexSmallest]->addArmy();
