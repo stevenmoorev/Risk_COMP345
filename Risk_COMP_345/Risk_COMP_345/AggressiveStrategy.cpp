@@ -27,6 +27,13 @@ void AggressiveStrategy::reinforce(Player *p1){
             indexLargest = i;
     }
     cout << "Reinforce to country " << p1->getCountries()[indexLargest]->getCountryName() << endl;
+
+	//how many armies?
+	int bonus = (int)p1->getCountries().size() / 3;
+	cout << bonus << " armies added to " << p1->getCountries()[indexLargest]->getCountryName() << endl;
+	for (int i = 0; i < bonus; i++) {
+		p1->getCountries()[indexLargest]->addArmy();
+	}
 }
 
 void AggressiveStrategy::attack(Player *p1) {
