@@ -6,12 +6,12 @@
 //  Copyright © 2018 Steven Moore. All rights reserved.
 //
 
-#ifndef Strategy_hpp
-#define Strategy_hpp
+#ifndef Strategy_h
+#define Strategy_h
 
 #include <stdio.h>
 #include <string>
-//#include "Game.h"
+#include "Player.h"
 using namespace std;
 
 class Strategy {
@@ -21,17 +21,13 @@ private:
 public:
     Strategy();
     ~Strategy();
-    string getStrategy(){return strategy;};
-    void setStrategy(string st){strategy = st;};
-    virtual void reinforce() = 0;
-    virtual void attack() = 0;
-    virtual void fortify() = 0;
-    //reinforcement phase
-    //void reinforcementStrategy();
-    //attack phase
-    //void attackStrategy();
-    //fortification phase
-    //void fortificationStrategy();
+	//virtual void AlgorithmInterface() = 0;
+
+	//interfaces = 0
+    virtual void reinforce(Player* p1) = 0;
+    virtual void attack(Player* p1) = 0;
+    virtual void fortify(Player* p1) = 0;
+    
 };
 
-#endif /* Strategy_hpp */
+#endif 
