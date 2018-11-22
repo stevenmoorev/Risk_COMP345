@@ -20,7 +20,7 @@ class AggressiveStrategy : public Strategy{
 public:
     AggressiveStrategy();
     ~AggressiveStrategy();
-    std::string const getStrategy() {return "Aggressive";}
+    std::string const getStrategyName() {return "Aggressive";}
 	//void AlgorithmInterface() { cout << "Inside AggressiveStrategy::AlgorithmInterface()\n"; }
 
 

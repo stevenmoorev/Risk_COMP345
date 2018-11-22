@@ -58,11 +58,13 @@ public:
 	void removeCountry(Country* oldCountry);
     Strategy* getStrategy(){return strategy;};
     void setStrategy(Strategy* s){strategy = s;};
+
 	
 	//these functions are actually interfaces
-	//void reinforce() { strategy->reinforce(); }
-	//void attack() { strategy->attack(); }
-	//void fortify() { strategy->fortify(); }
+	void reinforce(Player* p1) { strategy->reinforce(p1); }
+	void attack(Player* p1) { strategy->attack(p1); }
+	void fortify(Player* p1) { strategy->fortify(p1); }
+	std::string const getStrategyName() { return "None"; }
 };
 
 #endif

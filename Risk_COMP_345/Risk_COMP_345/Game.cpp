@@ -354,7 +354,7 @@ void Game::reinforcementPhase(int playerNumber) {
 			cout << j << " - " << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << " with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" << endl;
 		}
         //THIS IS THE STRATEGY
-//            players[playerNumber]->getStrategy()->reinforce();
+            players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
         
 		cout << "Enter the number of the country to add armies to " << endl;
 		cin >> selectedCountryForReinforcement;

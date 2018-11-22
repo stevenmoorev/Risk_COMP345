@@ -1,11 +1,13 @@
 #include "Player.h"
+#include "UserStrategy.h"
 
 Player::Player() {
 	name = "";
 	unavailable_armies = 0;
 	hand = new Hand();
 	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::~Player(void) {
@@ -17,8 +19,8 @@ Player::Player(string n) {
 	name = n;
 	unavailable_armies = 0;
 	hand = new Hand();
-	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::Player(string n, int a) {
@@ -26,7 +28,8 @@ Player::Player(string n, int a) {
 	unavailable_armies = a;
 	hand = new Hand();
 	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::Player(int a) {
@@ -34,7 +37,8 @@ Player::Player(int a) {
     unavailable_armies = a;
     hand = new Hand();
     dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 
@@ -44,7 +48,8 @@ Player::Player(string n, vector<Country*> c) {
 	hand = new Hand();
 	dices = new Dice();
 	countries = c;
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 void Player::removeAnArmy() {
@@ -139,4 +144,5 @@ void Player::setArmies(int armies){
     //int armies;
     unavailable_armies = armies;
 }
+
 
