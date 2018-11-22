@@ -2,6 +2,7 @@
 #include <vector>
 #include <filesystem>
 #include "Game.h"
+#include "UserStrategy.h"
 #include "BenevolentStrategy.h"
 #include "AggressiveStrategy.h"
 #include "View.h"
@@ -69,17 +70,17 @@ void Game::startGameLoop() {
 		cout << endl;
 		///////for each player, reinforce
 		for (int i = 0; i < players.size(); i++) {
-			if (players[i]->getStrategy() != NULL) {
-				players[i]->getStrategy()->reinforce(players[i]);
-				players[i]->getStrategy()->attack(players[i]);
-				players[i]->getStrategy()->fortify(players[i]);
-			}
-			else {
+			//if (players[i]->getStrategy() != NULL) {
+				//players[i]->getStrategy()->reinforce(players[i]);
+				//players[i]->getStrategy()->attack(players[i]);
+				//players[i]->getStrategy()->fortify(players[i]);
+			//}
+			//else {
 				reinforcementPhase(i);
 				attackPhase(i);
 				checkDeath();
 				fortificationPhase(i);
-			}
+			//}
 		}
 	}
 	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
@@ -152,7 +153,8 @@ void Game::setNumberOfPlayers()
 	switch (numberOfPlayers) 
 	{
 	case 2:
-		armyAllocation = 40;
+		//changed for testing from 40 to 20
+		armyAllocation = 22;
 		break;
 	case 3:
 		armyAllocation = 35;
@@ -258,7 +260,7 @@ void Game::assignOneRound()
 		cout << "Enter the name of the country to add an army to it" << endl;
 		bool choosenProperCountry = false;
 		while (!choosenProperCountry) {
-			cout << "Type a valide country" << endl;
+			cout << "Type a valid country" << endl;
 			cin >> choice;
 			if(players[i]->getCountry(choice) == NULL)
 			{
@@ -275,6 +277,30 @@ void Game::assignOneRound()
 }
 
 void Game::reinforcementPhase(int playerNumber) {
+	//Dynamically change the strategy
+	cout << "Current strategy is " << players[playerNumber]->getStrategyName() << ". ";
+	string response;
+	cout << "Would you like to change strategies? (Y/N)" << endl;
+	cin >> response;
+	if (response == "y" || response == "Y") {
+		
+		cout << "Which strategy would you like to use? U (user), A (aggressive) or B (benevolent)?" << endl;
+		string strategy;
+		cin >> strategy;
+		if (strategy == "U") {
+			UserStrategy* s = new UserStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+		if (strategy == "A") {
+			AggressiveStrategy* s = new AggressiveStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+		if (strategy == "B") {
+			BenevolentStrategy* s = new BenevolentStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+	}
+	
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
 	int selectedCountryForReinforcement;
@@ -417,6 +443,7 @@ void Game::attackPhase(int attackerPlayerNum)
 		
         //THIS IS THE STRATEGY
         players[attackerPlayerNum]->getStrategy()->attack(players[attackerPlayerNum]);
+
         
 		//Player selects a owned country
 		while (countryNotEnoughArmy) {

@@ -82,6 +82,21 @@ void Player::removeCountry(Country* oldCountry) {
 	}
 }
 
+void Player::reinforce(Player * p1)
+{
+	getStrategy()->reinforce(p1);
+}
+
+void Player::attack(Player * p1)
+{
+	getStrategy()->attack(p1);
+}
+
+void Player::fortify(Player * p1)
+{
+	getStrategy()->fortify(p1);
+}
+
 Country* Player::getCountry(string n) {
 	for (int i = 0; i < countries.size(); i++)
 	{
