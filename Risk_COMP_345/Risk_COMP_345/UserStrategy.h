@@ -8,7 +8,8 @@
 #include "Player.h"
 
 using namespace std;
-
+//delete previous one
+//this class is useless 
 class UserStrategy : public Strategy {
 public:
 	UserStrategy() {};

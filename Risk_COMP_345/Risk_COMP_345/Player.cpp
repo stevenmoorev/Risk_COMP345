@@ -11,8 +11,9 @@ Player::Player() {
 }
 
 Player::~Player(void) {
-	//delete dices;
-	//delete hand;
+	delete dices;
+	delete hand;
+	delete strategy;
 }
 
 Player::Player(string n) {

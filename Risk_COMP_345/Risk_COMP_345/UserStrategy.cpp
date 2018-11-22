@@ -16,5 +16,5 @@ void UserStrategy::attack(Player *p1) {
 
 void UserStrategy::fortify(Player *p1) {
 	cout << "====STRATEGY====" << endl;
-	cout << "You choose which countries to attack" << endl;
+	cout << "You choose which countries to fortify" << endl;
 }

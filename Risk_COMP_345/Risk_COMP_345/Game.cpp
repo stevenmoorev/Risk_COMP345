@@ -153,8 +153,8 @@ void Game::setNumberOfPlayers()
 	switch (numberOfPlayers) 
 	{
 	case 2:
-		//changed for testing from 40 to 20
-		armyAllocation = 22;
+		//changed for testing from 40 to 30
+		armyAllocation = 30;
 		break;
 	case 3:
 		armyAllocation = 35;
