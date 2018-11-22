@@ -16,7 +16,7 @@ using namespace std;
 
 // forward declaration (circular dependency)
 class Country;
-
+class Strategy;
 
 class Player {
 
@@ -57,7 +57,12 @@ public:
     void setArmies(int armies);
 	void removeCountry(Country* oldCountry);
     Strategy* getStrategy(){return strategy;};
-    void setStrategy(Strategy* st){strategy = st;};
+    void setStrategy(Strategy* s){strategy = s;};
+	
+	//these functions are actually interfaces
+	//void reinforce() { strategy->reinforce(); }
+	//void attack() { strategy->attack(); }
+	//void fortify() { strategy->fortify(); }
 };
 
 #endif

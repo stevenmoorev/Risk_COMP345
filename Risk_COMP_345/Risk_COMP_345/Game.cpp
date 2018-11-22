@@ -2,7 +2,6 @@
 #include <vector>
 #include <filesystem>
 #include "Game.h"
-
 #include "BenevolentStrategy.h"
 #include "AggressiveStrategy.h"
 #include "View.h"
@@ -71,9 +70,9 @@ void Game::startGameLoop() {
 		///////for each player, reinforce
 		for (int i = 0; i < players.size(); i++) {
 			if (players[i]->getStrategy() != NULL) {
-				players[i]->getStrategy()->reinforce();
-				players[i]->getStrategy()->attack();
-				players[i]->getStrategy()->fortify();
+				players[i]->getStrategy()->reinforce(players[i]);
+				players[i]->getStrategy()->attack(players[i]);
+				players[i]->getStrategy()->fortify(players[i]);
 			}
 			else {
 				reinforcementPhase(i);
@@ -101,14 +100,14 @@ void Game::checkDeath() {
 
 void Game::chooseMap() {
 	cout << "CHOOSE WHICH MAP YOU WOULD LIKE TO PLAY WITH" << endl;
-	//for (auto & p : fs::directory_iterator("Maps")) {
-		//auto filename = p.path().filename();
-		//if (p.path().extension() == ".map")
-			//cout << filename << endl;
-	//}
-	//string mapname;
-	//cin >> mapname;
-    string mapname = "/Users/stevenmoore/Desktop/RISK/Aden.map";
+	for (auto & p : fs::directory_iterator("Maps")) {
+		auto filename = p.path().filename();
+		if (p.path().extension() == ".map")
+			cout << filename << endl;
+	}
+	string mapname;
+	cin >> mapname;
+   // string mapname = "/Users/stevenmoore/Desktop/RISK/Aden.map";
 	cout << "YOU CHOSE " << mapname << endl;
 
 	MapLoader* map = new MapLoader();
@@ -417,7 +416,7 @@ void Game::attackPhase(int attackerPlayerNum)
 		bool countryNotEnoughArmy = true;
 		
         //THIS IS THE STRATEGY
-        players[attackerPlayerNum]->getStrategy()->attack();
+        players[attackerPlayerNum]->getStrategy()->attack(players[attackerPlayerNum]);
         
 		//Player selects a owned country
 		while (countryNotEnoughArmy) {
@@ -568,7 +567,7 @@ void Game::fortificationPhase(int playerNumber) {
 		}
         
         //THIS IS THE STRATEGY
-        players[playerNumber]->getStrategy()->fortify();
+        players[playerNumber]->getStrategy()->fortify(players[playerNumber]);
         
 		cout << "Enter the name of the country to move armies from " << endl;
 		cin >> selectedCountryString;
