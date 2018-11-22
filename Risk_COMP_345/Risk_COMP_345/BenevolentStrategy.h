@@ -20,7 +20,7 @@ class BenevolentStrategy : public Strategy{
 public:
     BenevolentStrategy();
     ~BenevolentStrategy();
-    //std::string const getStrategy() {return "Benevolent";}
+    std::string const getStrategyName() {return "Benevolent";}
 	//void AlgorithmInterface() { cout << "Inside BenevolentStrategy::AlgorithmInterface()\n"; }
  
 	//interfaces

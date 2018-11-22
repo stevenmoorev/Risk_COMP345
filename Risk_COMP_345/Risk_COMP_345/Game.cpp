@@ -2,7 +2,7 @@
 #include <vector>
 #include <filesystem>
 #include "Game.h"
-
+#include "UserStrategy.h"
 #include "BenevolentStrategy.h"
 #include "AggressiveStrategy.h"
 #include "View.h"
@@ -70,17 +70,17 @@ void Game::startGameLoop() {
 		cout << endl;
 		///////for each player, reinforce
 		for (int i = 0; i < players.size(); i++) {
-			if (players[i]->getStrategy() != NULL) {
-				players[i]->getStrategy()->reinforce();
-				players[i]->getStrategy()->attack();
-				players[i]->getStrategy()->fortify();
-			}
-			else {
+			//if (players[i]->getStrategy() != NULL) {
+				//players[i]->getStrategy()->reinforce(players[i]);
+				//players[i]->getStrategy()->attack(players[i]);
+				//players[i]->getStrategy()->fortify(players[i]);
+			//}
+			//else {
 				reinforcementPhase(i);
 				attackPhase(i);
 				checkDeath();
 				fortificationPhase(i);
-			}
+			//}
 		}
 	}
 	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
@@ -101,14 +101,14 @@ void Game::checkDeath() {
 
 void Game::chooseMap() {
 	cout << "CHOOSE WHICH MAP YOU WOULD LIKE TO PLAY WITH" << endl;
-	//for (auto & p : fs::directory_iterator("Maps")) {
-		//auto filename = p.path().filename();
-		//if (p.path().extension() == ".map")
-			//cout << filename << endl;
-	//}
-	//string mapname;
-	//cin >> mapname;
-    string mapname = "/Users/stevenmoore/Desktop/RISK/Aden.map";
+	for (auto & p : fs::directory_iterator("Maps")) {
+		auto filename = p.path().filename();
+		if (p.path().extension() == ".map")
+			cout << filename << endl;
+	}
+	string mapname;
+	cin >> mapname;
+   // string mapname = "/Users/stevenmoore/Desktop/RISK/Aden.map";
 	cout << "YOU CHOSE " << mapname << endl;
 
 	MapLoader* map = new MapLoader();
@@ -153,7 +153,8 @@ void Game::setNumberOfPlayers()
 	switch (numberOfPlayers) 
 	{
 	case 2:
-		armyAllocation = 40;
+		//changed for testing from 40 to 20
+		armyAllocation = 22;
 		break;
 	case 3:
 		armyAllocation = 35;
@@ -259,7 +260,7 @@ void Game::assignOneRound()
 		cout << "Enter the name of the country to add an army to it" << endl;
 		bool choosenProperCountry = false;
 		while (!choosenProperCountry) {
-			cout << "Type a valide country" << endl;
+			cout << "Type a valid country" << endl;
 			cin >> choice;
 			if(players[i]->getCountry(choice) == NULL)
 			{
@@ -276,6 +277,30 @@ void Game::assignOneRound()
 }
 
 void Game::reinforcementPhase(int playerNumber) {
+	//Dynamically change the strategy
+	cout << "Current strategy is " << players[playerNumber]->getStrategyName() << ". ";
+	string response;
+	cout << "Would you like to change strategies? (Y/N)" << endl;
+	cin >> response;
+	if (response == "y" || response == "Y") {
+		
+		cout << "Which strategy would you like to use? U (user), A (aggressive) or B (benevolent)?" << endl;
+		string strategy;
+		cin >> strategy;
+		if (strategy == "U") {
+			UserStrategy* s = new UserStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+		if (strategy == "A") {
+			AggressiveStrategy* s = new AggressiveStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+		if (strategy == "B") {
+			BenevolentStrategy* s = new BenevolentStrategy();
+			players[playerNumber]->setStrategy(s);
+		}
+	}
+	
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
 	int selectedCountryForReinforcement;
@@ -355,7 +380,7 @@ void Game::reinforcementPhase(int playerNumber) {
 			cout << j << " - " << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << " with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" << endl;
 		}
         //THIS IS THE STRATEGY
-//            players[playerNumber]->getStrategy()->reinforce();
+            players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
         
 		cout << "Enter the number of the country to add armies to " << endl;
 		cin >> selectedCountryForReinforcement;
@@ -417,7 +442,8 @@ void Game::attackPhase(int attackerPlayerNum)
 		bool countryNotEnoughArmy = true;
 		
         //THIS IS THE STRATEGY
-        players[attackerPlayerNum]->getStrategy()->attack();
+        players[attackerPlayerNum]->getStrategy()->attack(players[attackerPlayerNum]);
+
         
 		//Player selects a owned country
 		while (countryNotEnoughArmy) {
@@ -568,7 +594,7 @@ void Game::fortificationPhase(int playerNumber) {
 		}
         
         //THIS IS THE STRATEGY
-        players[playerNumber]->getStrategy()->fortify();
+        players[playerNumber]->getStrategy()->fortify(players[playerNumber]);
         
 		cout << "Enter the name of the country to move armies from " << endl;
 		cin >> selectedCountryString;

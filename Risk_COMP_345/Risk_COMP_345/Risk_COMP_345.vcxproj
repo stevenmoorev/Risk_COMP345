@@ -152,6 +152,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AggressiveStrategy.h" />
+    <ClInclude Include="BenevolentStrategy.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="Country.h" />
@@ -159,10 +161,16 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapLoader.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="ObserverPhase.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Strategy.h" />
+    <ClInclude Include="SubjectPhase.h" />
+    <ClInclude Include="UserStrategy.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AggressiveStrategy.cpp" />
+    <ClCompile Include="BenevolentStrategy.cpp" />
     <ClCompile Include="Cards.cpp" />
     <ClCompile Include="Continent.cpp" />
     <ClCompile Include="Country.cpp" />
@@ -170,8 +178,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapLoader.cpp" />
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="ObserverPhase.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="UserStrategy.cpp" />
+    <ClCompile Include="Strategy.cpp" />
+    <ClCompile Include="StrategyPatternDriver.cpp" />
+    <ClCompile Include="SubjectPhase.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

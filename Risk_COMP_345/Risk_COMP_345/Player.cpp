@@ -1,11 +1,13 @@
 #include "Player.h"
+#include "UserStrategy.h"
 
 Player::Player() {
 	name = "";
 	unavailable_armies = 0;
 	hand = new Hand();
 	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::~Player(void) {
@@ -17,8 +19,8 @@ Player::Player(string n) {
 	name = n;
 	unavailable_armies = 0;
 	hand = new Hand();
-	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::Player(string n, int a) {
@@ -26,7 +28,8 @@ Player::Player(string n, int a) {
 	unavailable_armies = a;
 	hand = new Hand();
 	dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 Player::Player(int a) {
@@ -34,7 +37,8 @@ Player::Player(int a) {
     unavailable_armies = a;
     hand = new Hand();
     dices = new Dice();
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 
@@ -44,7 +48,8 @@ Player::Player(string n, vector<Country*> c) {
 	hand = new Hand();
 	dices = new Dice();
 	countries = c;
-	strategy = NULL;
+	UserStrategy* us = new UserStrategy();
+	strategy = us;
 }
 
 void Player::removeAnArmy() {
@@ -75,6 +80,21 @@ void Player::removeCountry(Country* oldCountry) {
 			countries.erase(countries.begin()+i);
 		}
 	}
+}
+
+void Player::reinforce(Player * p1)
+{
+	getStrategy()->reinforce(p1);
+}
+
+void Player::attack(Player * p1)
+{
+	getStrategy()->attack(p1);
+}
+
+void Player::fortify(Player * p1)
+{
+	getStrategy()->fortify(p1);
 }
 
 Country* Player::getCountry(string n) {
@@ -139,4 +159,5 @@ void Player::setArmies(int armies){
     //int armies;
     unavailable_armies = armies;
 }
+
 

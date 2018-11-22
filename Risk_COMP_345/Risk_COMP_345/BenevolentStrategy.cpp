@@ -20,7 +20,8 @@ BenevolentStrategy::~BenevolentStrategy(){
 }
 
 void BenevolentStrategy::reinforce(Player *p1){
-    //reinforce weak countries
+	cout << "====STRATEGY====" << endl;
+	//reinforce weak countries
     //look at all countries to see
     //which ones are weak?
 	vector<int> arr = vector<int>();
@@ -48,12 +49,15 @@ void BenevolentStrategy::reinforce(Player *p1){
 
 
 void BenevolentStrategy::attack(Player *p1){
-    //never attack
+	cout << "====STRATEGY====" << endl;
+	cout << " Don't attack" << endl;
+	//never attack
 }
 
 
 void BenevolentStrategy::fortify(Player *p1){
-    //move armies to weaker countries
+	cout << "====STRATEGY====" << endl;
+	//move armies to weaker countries
     int indexLargest = 0;
     int indexSmallest = 0;
     
