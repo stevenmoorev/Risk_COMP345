@@ -1,6 +1,4 @@
 ﻿  AggressiveStrategy.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.h(33): error C2555: 'AggressiveStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(26): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(52): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(63): warning C4018: '<': signed/unsigned mismatch
@@ -11,26 +9,15 @@ c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestr
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(162): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(181): warning C4018: '<': signed/unsigned mismatch
   BenevolentStrategy.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.h(31): error C2555: 'BenevolentStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(28): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(37): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(65): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(72): warning C4018: '<': signed/unsigned mismatch
-  Driver.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.h(33): error C2555: 'AggressiveStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.h(31): error C2555: 'BenevolentStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
   Game.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\userstrategy.h(27): error C2555: 'UserStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.h(31): error C2555: 'BenevolentStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.h(33): error C2555: 'AggressiveStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(67): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(81): error C2039: 'getStrategyName': is not a member of 'Strategy'
+  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.h(19): note: see declaration of 'Strategy'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(94): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(127): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
@@ -39,7 +26,15 @@ c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(228)
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(261): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(263): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(273): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(313): error C2039: 'getStrategyName': is not a member of 'Strategy'
+  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.h(19): note: see declaration of 'Strategy'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(364): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(472): error C2039: 'getStrategyName': is not a member of 'Strategy'
+  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.h(19): note: see declaration of 'Strategy'
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(475): error C2039: 'getStrategyName': is not a member of 'Strategy'
+  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.h(19): note: see declaration of 'Strategy'
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(479): error C2039: 'getStrategyName': is not a member of 'Strategy'
+  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.h(19): note: see declaration of 'Strategy'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(528): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(535): warning C4018: '>=': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(579): warning C4018: '<': signed/unsigned mismatch
@@ -50,13 +45,10 @@ c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(737)
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(756): warning C4018: '<': signed/unsigned mismatch
   ObserverPhase.cpp
   Player.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\userstrategy.h(27): error C2555: 'UserStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.cpp(79): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.cpp(102): warning C4018: '<': signed/unsigned mismatch
+  Driver.cpp
   RamdomStrategy.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\randomstrategy.h(28): error C2555: 'RandomStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(72): warning C4018: '<': signed/unsigned mismatch
@@ -67,16 +59,10 @@ c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrateg
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(182): warning C4018: '>=': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(207): warning C4018: '<': signed/unsigned mismatch
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(226): warning C4018: '<': signed/unsigned mismatch
+  UserStrategy.cpp
   Strategy.cpp
   StrategyPatternDriver.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.h(33): error C2555: 'AggressiveStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.h(31): error C2555: 'BenevolentStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
   SubjectPhase.cpp
-  UserStrategy.cpp
-c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\userstrategy.h(27): error C2555: 'UserStrategy::fortify': overriding virtual function return type differs and is not covariant from 'Strategy::fortify'
-  c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\strategy.h(31): note: see declaration of 'Strategy::fortify'
   View.cpp
 c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\view.cpp(34): warning C4018: '<': signed/unsigned mismatch
   Generating Code...

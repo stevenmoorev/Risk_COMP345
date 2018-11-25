@@ -21,6 +21,7 @@ private:
 public:
     Strategy();
     ~Strategy();
+	std::string const getStrategyName() { return "None"; }
 	//virtual void AlgorithmInterface() = 0;
 
 	//interfaces = 0
