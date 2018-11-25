@@ -655,6 +655,7 @@ void Game::fortificationPhase(int playerNumber) {
 		}
         
         //THIS IS THE STRATEGY
+		//what if fortify returned a pair of string (country from) and int (neighbour to)
         players[playerNumber]->getStrategy()->fortify(players[playerNumber]);
         
 		cout << "Enter the name of the country to move armies from " << endl;

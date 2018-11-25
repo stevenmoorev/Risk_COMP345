@@ -122,9 +122,8 @@ do {
 } while (armyCount > 1);
 }
 
-pair <string, int> AggressiveStrategy::fortify(Player *p1){
+void AggressiveStrategy::fortify(Player *p1){
 	cout << "====STRATEGY====" << endl;
-	pair <string, int> fPair;
 	//aggregate forces in one country
     int indexLargest = 0;
     for(int i = 0; i < p1->getCountries().size() - 1; i++){
@@ -134,7 +133,6 @@ pair <string, int> AggressiveStrategy::fortify(Player *p1){
             indexLargest = i;
     }
     cout << "Fortify to country " << p1->getCountries()[indexLargest]->getCountryName() << endl;
-	fPair.first = p1->getCountries()[indexLargest]->getCountryName();
     //look through all of the countries and find second largest country (cannot be the largest)
     int indexSecondLargest = 0;
     for(int i = 0; i < p1->getCountries().size() - 1; i++){
