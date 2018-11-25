@@ -163,6 +163,7 @@
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="ObserverPhase.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RandomStrategy.h" />
     <ClInclude Include="Strategy.h" />
     <ClInclude Include="SubjectPhase.h" />
     <ClInclude Include="UserStrategy.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="ObserverPhase.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="RamdomStrategy.cpp" />
     <ClCompile Include="UserStrategy.cpp" />
     <ClCompile Include="Strategy.cpp" />
     <ClCompile Include="StrategyPatternDriver.cpp" />
