@@ -1,21 +1,60 @@
-﻿  Game.cpp
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(67): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(72): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(91): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(124): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(127): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(198): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(205): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(238): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(240): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(250): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(323): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(467): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(474): warning C4018: '>=': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(518): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(521): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(608): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(619): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(675): warning C4018: '<': signed/unsigned mismatch
-c:\users\s_moorev\desktop\risk_comp345-master\risk_comp_345\risk_comp_345\game.cpp(694): warning C4018: '<': signed/unsigned mismatch
-  Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345-master\Risk_COMP_345\Debug\Risk_COMP_345.exe
+﻿  AggressiveStrategy.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(52): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(63): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(110): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(113): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(129): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(138): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(162): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\aggressivestrategy.cpp(181): warning C4018: '<': signed/unsigned mismatch
+  BenevolentStrategy.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(28): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(37): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(65): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\benevolentstrategy.cpp(72): warning C4018: '<': signed/unsigned mismatch
+  Game.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(67): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(94): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(127): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(221): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(228): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(261): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(263): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(273): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(364): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(347): warning C4101: 'selectedCountryForReinforcement': unreferenced local variable
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(528): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(535): warning C4018: '>=': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(579): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(582): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(669): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(680): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(736): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\game.cpp(755): warning C4018: '<': signed/unsigned mismatch
+  ObserverPhase.cpp
+  Player.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.cpp(79): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\player.cpp(102): warning C4018: '<': signed/unsigned mismatch
+  Driver.cpp
+  RamdomStrategy.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(137): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(152): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(180): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(182): warning C4018: '>=': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(207): warning C4018: '<': signed/unsigned mismatch
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\ramdomstrategy.cpp(226): warning C4018: '<': signed/unsigned mismatch
+  UserStrategy.cpp
+  Strategy.cpp
+  StrategyPatternDriver.cpp
+  SubjectPhase.cpp
+  View.cpp
+c:\users\s_moorev\desktop\risk_comp345\risk_comp_345\risk_comp_345\view.cpp(34): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Risk_COMP_345.vcxproj -> C:\Users\s_moorev\Desktop\Risk_COMP345\Risk_COMP_345\Debug\Risk_COMP_345.exe

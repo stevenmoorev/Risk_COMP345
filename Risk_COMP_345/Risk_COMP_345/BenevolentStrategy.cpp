@@ -19,7 +19,7 @@ BenevolentStrategy::~BenevolentStrategy(){
     
 }
 
-void BenevolentStrategy::reinforce(Player *p1){
+string BenevolentStrategy::reinforce(Player *p1){
 	cout << "====STRATEGY====" << endl;
 	//reinforce weak countries
     //look at all countries to see
@@ -39,12 +39,13 @@ void BenevolentStrategy::reinforce(Player *p1){
             index = i;
     }
 	cout << "reinforce on country " << p1->getCountries()[index]->getCountryName() << endl;
+	return p1->getCountries()[index]->getCountryName();
 	//how many armies?
-	int bonus = (int)p1->getCountries().size() / 3;
-	cout << bonus << " armies added to " << p1->getCountries()[index]->getCountryName() << endl;
-	for (int i = 0; i < bonus; i++) {
-		p1->getCountries()[index]->addArmy();
-	}
+	//int bonus = (int)p1->getCountries().size() / 3;
+	//cout << bonus << " armies added to " << p1->getCountries()[index]->getCountryName() << endl;
+	//for (int i = 0; i < bonus; i++) {
+	//	p1->getCountries()[index]->addArmy();
+	//}
 }
 
 

@@ -21,7 +21,7 @@ public:
     RandomStrategy();
     ~RandomStrategy();
     std::string const getStrategy() {return "Random";}
-    void reinforce(Player* p1);
+    string reinforce(Player* p1);
     
     void attack(Player* p1);
     

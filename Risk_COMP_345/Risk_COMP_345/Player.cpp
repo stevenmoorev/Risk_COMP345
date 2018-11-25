@@ -83,9 +83,9 @@ void Player::removeCountry(Country* oldCountry) {
 	}
 }
 
-void Player::reinforce(Player * p1)
+string Player::reinforce(Player * p1)
 {
-	getStrategy()->reinforce(p1);
+	return getStrategy()->reinforce(p1);
 }
 
 void Player::attack(Player * p1)

@@ -18,7 +18,7 @@ RandomStrategy::~RandomStrategy(){
 }
 
 //Random player reinforces to strongest country
-void RandomStrategy::reinforce(Player *p1){
+string RandomStrategy::reinforce(Player *p1){
 	/* initialize random seed: */
 	srand(time(NULL));
 
@@ -28,14 +28,16 @@ void RandomStrategy::reinforce(Player *p1){
 	Country* selectedCountry = NULL;
 	
 	//reinforce random country selection
-	while (bonus > 0) {
+	//while (bonus > 0) {
 		int indexOfSelectedCountry = rand() % (allOwnedCountry.size());
 		selectedCountry = allOwnedCountry[indexOfSelectedCountry];
-		std::cout << "Reinforce to country " << selectedCountry->getCountryName() << endl;
-		selectedCountry->addArmy();
-		std::cout << bonus << " armies added to " << selectedCountry->getCountryName() << " now has " << selectedCountry->getNumberOfArmies() << endl;
-		bonus--;
-	}
+	//	std::cout << "Reinforce to country " << selectedCountry->getCountryName() << endl;
+	//	selectedCountry->addArmy();
+	//	std::cout << bonus << " armies added to " << selectedCountry->getCountryName() << " now has " << selectedCountry->getNumberOfArmies() << endl;
+	//	bonus--;
+	//}
+
+		return selectedCountry->getCountryName();
 }
 
 void RandomStrategy::attack(Player *p1) {

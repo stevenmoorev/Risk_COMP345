@@ -61,10 +61,10 @@ public:
 
 	
 	//these functions are actually interfaces
-	void reinforce(Player* p1); //{ getStrategy()->reinforce(p1); }
+	string reinforce(Player* p1); //{ getStrategy()->reinforce(p1); }
 	void attack(Player* p1); //{ getStrategy()->attack(p1); }
 	void fortify(Player* p1); //{ getStrategy()->fortify(p1); }
-	std::string const getStrategyName() { return "None"; }
+	//string const getStrategyName() { return "None"; }
 };
 
 #endif

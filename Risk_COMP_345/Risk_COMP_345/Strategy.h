@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <utility>
 #include "Player.h"
 using namespace std;
 
@@ -21,12 +22,13 @@ private:
 public:
     Strategy();
     ~Strategy();
+	virtual std::string const getStrategyName() = 0;
 	//virtual void AlgorithmInterface() = 0;
 
 	//interfaces = 0
-    virtual void reinforce(Player* p1) = 0;
+    virtual string reinforce(Player* p1) = 0;
     virtual void attack(Player* p1) = 0;
-    virtual void fortify(Player* p1) = 0;
+    virtual pair <string, int> fortify(Player* p1) = 0;
     
 };
 

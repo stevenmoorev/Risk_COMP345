@@ -2,9 +2,10 @@
 
 using namespace std;
 
-void UserStrategy::reinforce(Player *p1) {
+string UserStrategy::reinforce(Player *p1) {
 	cout << "====STRATEGY====" << endl;
 	cout << "You choose which countries to reinforce" << endl;
+	return "";
 }
 
 

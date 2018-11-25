@@ -77,7 +77,10 @@ void Game::startGameLoop() {
 			//}
 			//else {
 				reinforcementPhase(i);
-				attackPhase(i);
+				//if benevolent, never attack
+				if (players[i]->getStrategy()->getStrategyName() != "Benevolent") {
+					attackPhase(i);
+				}
 				checkDeath();
 				fortificationPhase(i);
 			//}
@@ -154,7 +157,7 @@ void Game::setNumberOfPlayers()
 	{
 	case 2:
 		//changed for testing from 40 to 30
-		armyAllocation = 30;
+		armyAllocation = 40;
 		break;
 	case 3:
 		armyAllocation = 35;
@@ -177,6 +180,26 @@ void Game::setNumberOfPlayers()
 		cout << endl;
 		cin >> name;
 		Player* currentPlayer = new Player(name, armyAllocation);
+		string response;
+		cout << "IS THIS PLAYER A COMPUTER? Y/N" << endl;
+		cin >> response;
+		if (response == "Y") {
+			currentPlayer->setIsNPC();
+			//set the strategy
+			cout << "WHAT STRATEGY WOULD YOU LIKE THIS COMPUTER PLAYER TO USE? A or B?" << endl;
+			string res;
+			cin >> res;
+			if (res == "A") {
+				currentPlayer->getStrategy()->~Strategy();
+				AggressiveStrategy* as = new AggressiveStrategy();
+				currentPlayer->setStrategy(as);
+			}
+			else if (res == "B") {
+				currentPlayer->getStrategy()->~Strategy();
+				BenevolentStrategy* bs = new BenevolentStrategy();
+				currentPlayer->setStrategy(bs);
+			}
+		}
 		players.push_back(currentPlayer);
 	}
 
@@ -261,7 +284,16 @@ void Game::assignOneRound()
 		bool choosenProperCountry = false;
 		while (!choosenProperCountry) {
 			cout << "Type a valid country" << endl;
-			cin >> choice;
+
+			//here the npc must choose by itself
+			if (players[i]->getIsNPC() == true) {
+				//what does the strategy say?
+				choice = players[i]->getStrategy()->reinforce(players[i]);
+			}
+
+			//if human player
+			else 
+				cin >> choice;
 			if(players[i]->getCountry(choice) == NULL)
 			{
 				choosenProperCountry = false;
@@ -278,10 +310,17 @@ void Game::assignOneRound()
 
 void Game::reinforcementPhase(int playerNumber) {
 	//Dynamically change the strategy
-	cout << "Current strategy is " << players[playerNumber]->getStrategyName() << ". ";
+	cout << "Current strategy is " << players[playerNumber]->getStrategy()->getStrategyName() << ". ";
 	string response;
 	cout << "Would you like to change strategies? (Y/N)" << endl;
-	cin >> response;
+	
+	//computer makes this decision alone
+	if (players[playerNumber]->getIsNPC() == true) {
+		response = "N";
+	}
+	//else if user
+	else
+		cin >> response;
 	if (response == "y" || response == "Y") {
 		
 		cout << "Which strategy would you like to use? U (user), A (aggressive) or B (benevolent)?" << endl;
@@ -292,10 +331,12 @@ void Game::reinforcementPhase(int playerNumber) {
 			players[playerNumber]->setStrategy(s);
 		}
 		if (strategy == "A") {
+			players[playerNumber]->getStrategy()->~Strategy();
 			AggressiveStrategy* s = new AggressiveStrategy();
 			players[playerNumber]->setStrategy(s);
 		}
 		if (strategy == "B") {
+			players[playerNumber]->getStrategy()->~Strategy();
 			BenevolentStrategy* s = new BenevolentStrategy();
 			players[playerNumber]->setStrategy(s);
 		}
@@ -380,13 +421,25 @@ void Game::reinforcementPhase(int playerNumber) {
 			cout << j << " - " << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << " with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" << endl;
 		}
         //THIS IS THE STRATEGY
-            players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
-        
-		cout << "Enter the number of the country to add armies to " << endl;
-		cin >> selectedCountryForReinforcement;
-		(players[playerNumber]->getCountries()[selectedCountryForReinforcement])->addArmy();
-		cout << (players[playerNumber]->getCountries()[selectedCountryForReinforcement])->getCountryName() << " now has " << (players[playerNumber]->getCountries()[selectedCountryForReinforcement])->getNumberOfArmies() << " number of armies " << endl;
+		cout << "Enter the name of the country to add armies to " << endl;
+		string country;
+		if (players[playerNumber]->getIsNPC() == true) {
+			country = players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
+			cout << country << endl;
+		}
+		else
+			cin >> country;
+		
+		for (int h = 0; h < sizeOfCountriesList; h++) {
+			if (players[playerNumber]->getCountries()[h]->getCountryName() == country) {
+				(players[playerNumber]->getCountries()[h])->addArmy();
+				cout << (players[playerNumber]->getCountries()[h])->getCountryName() << " now has " << (players[playerNumber]->getCountries()[h])->getNumberOfArmies() << " number of armies " << endl;
+			}
+		}
 
+		
+		//(players[playerNumber]->getCountries()[selectedCountryForReinforcement])->addArmy();
+		
 		extraReinforcements--;
 	}
 	cout << "REINFORCEMENT PHASE DONE!" << endl;
@@ -416,7 +469,15 @@ void Game::attackPhase(int attackerPlayerNum)
 	phaseName = "ATTACK";
 	Notify();
 	cout << "Do you want to attack? y/n" << endl;
-	cin >> attackPhaseInputString;
+	if (players[attackerPlayerNum]->getStrategy()->getStrategyName() == "Aggressive") {
+		attackPhaseInputString = "y";
+	}
+	else if (players[attackerPlayerNum]->getStrategy()->getStrategyName() == "Benevolent") {
+		attackPhaseInputString = "n";
+	}
+	else
+		cout << "Strategy is " << players[attackerPlayerNum]->getStrategy()->getStrategyName();
+		cin >> attackPhaseInputString;
 
 	if (attackPhaseInputString == "y" || attackPhaseInputString == "Y") {
 		isAttackPhase = true;
