@@ -20,7 +20,7 @@ Game::Game()
 	placeInitialArmies();
 	//Create a View that is connected to the Game  
     View *view = new View(this); 
-	//startGameLoop();
+	startGameLoop();
 }
 
 Game::Game(Map* newMap)
