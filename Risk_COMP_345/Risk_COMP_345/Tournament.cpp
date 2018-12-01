@@ -12,12 +12,34 @@ Tournament::Tournament() {
 	//first create the players
 	initializePlayers(getNumOfPlayers());
 	//load the mapnames, then we can just pick the first X maps where X is the number of maps picked by the player.
-	loadMapNames();
+	loadMapNames(); //mapnames are now in a vector
 
-	//then for each map,
-	//for each game num
-	//play a game of X turns
-	//give points to each player when needed
+	//for each map
+	for (int i = 0; i < getMapNum(); i++) {
+		string* map = getCurrentMap();
+		//for each game
+		for (int g = 0; g < getBestOf(); g++) {
+			//make a game with the current map
+			//assign strategies
+			//play for getMaxTurn() turns
+			//give points to whoever won or to anyoen alive during a draw using player.incrementScore method I created.
+		}
+		incrementMap();
+	}
+	displayResults();
+}
+
+void Tournament::displayResults() {//THIS METHOD IS JUST A COUT METHOD.
+	cout << "TOURNAMENT IS OVER. HERE ARE THE RESULTS:" << endl;
+	//TODO: DISPLAY RESULTS
+}
+
+void Tournament::setCurrentMap(int x) {
+	currentMap = x;
+}
+
+string* Tournament::getCurrentMap() {
+	return mapNames[currentMap];
 }
 
 void Tournament::AddMap(string* map) {
@@ -28,7 +50,7 @@ void Tournament::loadMapNames() {
 	for (auto & p : filesystem::directory_iterator("Maps")) {
 		auto filename = p.path().filename();
 		if (p.path().extension() == ".map")
-			AddMap(filename.string);
+			AddMap(&filename.string());
 	}
 }
 

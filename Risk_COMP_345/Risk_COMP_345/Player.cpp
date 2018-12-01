@@ -8,6 +8,7 @@ Player::Player() {
 	dices = new Dice();
 	//UserStrategy* us = new UserStrategy();
 	strategy = NULL;
+	score = 0;
 }
 
 Player::~Player(void) {
@@ -22,9 +23,11 @@ Player::Player(string n) {
 	hand = new Hand();
 	//UserStrategy* us = new UserStrategy();
 	strategy = NULL;
+	score = 0;
 }
 
 Player::Player(string n, int a) {
+	score = 0;
 	name = n;
 	unavailable_armies = a;
 	hand = new Hand();
@@ -34,6 +37,7 @@ Player::Player(string n, int a) {
 }
 
 Player::Player(int a) {
+	score = 0;
     name = "";
     unavailable_armies = a;
     hand = new Hand();
@@ -45,6 +49,7 @@ Player::Player(int a) {
 
 Player::Player(string n, vector<Country*> c) {
 	name = n;
+	score = 0;
 	unavailable_armies = 0;
 	hand = new Hand();
 	dices = new Dice();

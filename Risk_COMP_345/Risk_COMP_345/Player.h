@@ -21,6 +21,7 @@ class Strategy;
 class Player {
 
 private:
+	int score;//used for tournament mode
 	string name;
 	int unavailable_armies;
 	vector<Country*> countries;
@@ -38,6 +39,8 @@ public:
 	Player(string, int);
 
 	string getName();
+	void incrementScore();
+	int getScore() { return score; };
 	int getArmies();
 	void removeAnArmy();
 	vector<Country*> getCountries();
