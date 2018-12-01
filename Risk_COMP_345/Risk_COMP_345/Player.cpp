@@ -6,8 +6,8 @@ Player::Player() {
 	unavailable_armies = 0;
 	hand = new Hand();
 	dices = new Dice();
-	UserStrategy* us = new UserStrategy();
-	strategy = us;
+	//UserStrategy* us = new UserStrategy();
+	strategy = NULL;
 }
 
 Player::~Player(void) {
@@ -20,8 +20,8 @@ Player::Player(string n) {
 	name = n;
 	unavailable_armies = 0;
 	hand = new Hand();
-	UserStrategy* us = new UserStrategy();
-	strategy = us;
+	//UserStrategy* us = new UserStrategy();
+	strategy = NULL;
 }
 
 Player::Player(string n, int a) {
@@ -29,8 +29,8 @@ Player::Player(string n, int a) {
 	unavailable_armies = a;
 	hand = new Hand();
 	dices = new Dice();
-	UserStrategy* us = new UserStrategy();
-	strategy = us;
+	//UserStrategy* us = new UserStrategy();
+	strategy = NULL;
 }
 
 Player::Player(int a) {
@@ -38,8 +38,8 @@ Player::Player(int a) {
     unavailable_armies = a;
     hand = new Hand();
     dices = new Dice();
-	UserStrategy* us = new UserStrategy();
-	strategy = us;
+	//UserStrategy* us = new UserStrategy();
+	strategy = NULL;
 }
 
 
@@ -49,8 +49,8 @@ Player::Player(string n, vector<Country*> c) {
 	hand = new Hand();
 	dices = new Dice();
 	countries = c;
-	UserStrategy* us = new UserStrategy();
-	strategy = us;
+	//UserStrategy* us = new UserStrategy();
+	strategy = NULL;
 }
 
 void Player::removeAnArmy() {
