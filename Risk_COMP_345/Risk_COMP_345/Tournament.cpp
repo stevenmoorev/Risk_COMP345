@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include "Game.h"
 #include "Tournament.h"
 
@@ -8,6 +9,33 @@ Tournament::Tournament() {
 	ChooseBestOf(); //num of games per map chosen
 	ChooseNumberOfPlayers(); //num of players chosen 
 	ChooseMaxTurn(); // number of turns per game chosen
+	//first create the players
+	initializePlayers(getNumOfPlayers());
+	//load the mapnames, then we can just pick the first X maps where X is the number of maps picked by the player.
+	loadMapNames();
+
+	//then for each map,
+	//for each game num
+	//play a game of X turns
+	//give points to each player when needed
+}
+
+void Tournament::AddMap(string* map) {
+	mapNames.push_back(map);
+}
+
+void Tournament::loadMapNames() {
+	for (auto & p : filesystem::directory_iterator("Maps")) {
+		auto filename = p.path().filename();
+		if (p.path().extension() == ".map")
+			AddMap(filename.string);
+	}
+}
+
+void Tournament::initializePlayers(int x) {
+	for (int i = 0; i < getNumOfPlayers(); i++) {
+		players[i] = new Player();
+	}
 }
 
 void Tournament::ChooseNumberOfMaps() {

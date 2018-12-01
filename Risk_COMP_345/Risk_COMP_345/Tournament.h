@@ -19,12 +19,17 @@ public:
 	void setMaxTurn(int x);
 	int getMaxTurn() { return maxTurn; };
 	void ChooseMaxTurn();
+	void initializePlayers(int x);
+	void loadMapNames();
+	void AddMap(string* s);
 private:
 	Game* game;
 	int mapNum;
 	int bestOf;
 	int numOfPlayers;
 	int maxTurn;
+	vector<Player*> players;
+	vector<string*> mapNames;
 };
 
 #endif
