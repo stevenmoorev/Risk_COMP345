@@ -70,17 +70,17 @@ void Game::startGameLoop() {
 		cout << endl;
 		///////for each player, reinforce
 		for (int i = 0; i < players.size(); i++) {
-			//if (players[i]->getStrategy() != NULL) {
-				//players[i]->getStrategy()->reinforce(players[i]);
-				//players[i]->getStrategy()->attack(players[i]);
-				//players[i]->getStrategy()->fortify(players[i]);
-			//}
-			//else {
+			if (players[i]->getStrategy() != NULL) {
+				players[i]->getStrategy()->reinforce(players[i]);
+				players[i]->getStrategy()->attack(players[i]);
+				players[i]->getStrategy()->fortify(players[i]);
+			}
+			else {
 				reinforcementPhase(i);
 				attackPhase(i);
 				checkDeath();
 				fortificationPhase(i);
-			//}
+			}
 		}
 	}
 	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
@@ -277,30 +277,30 @@ void Game::assignOneRound()
 }
 
 void Game::reinforcementPhase(int playerNumber) {
-	//Dynamically change the strategy
-	cout << "Current strategy is " << players[playerNumber]->getStrategyName() << ". ";
-	string response;
-	cout << "Would you like to change strategies? (Y/N)" << endl;
-	cin >> response;
-	if (response == "y" || response == "Y") {
-		
-		cout << "Which strategy would you like to use? U (user), A (aggressive) or B (benevolent)?" << endl;
-		string strategy;
-		cin >> strategy;
-		if (strategy == "U") {
-			UserStrategy* s = new UserStrategy();
-			players[playerNumber]->setStrategy(s);
-		}
-		if (strategy == "A") {
-			AggressiveStrategy* s = new AggressiveStrategy();
-			players[playerNumber]->setStrategy(s);
-		}
-		if (strategy == "B") {
-			BenevolentStrategy* s = new BenevolentStrategy();
-			players[playerNumber]->setStrategy(s);
-		}
-	}
-	
+	////Dynamically change the strategy
+	//cout << "Current strategy is " << players[playerNumber]->getStrategyName() << ". ";
+	//string response;
+	//cout << "Would you like to change strategies? (Y/N)" << endl;
+	//cin >> response;
+	//if (response == "y" || response == "Y") {
+	//	
+	//	cout << "Which strategy would you like to use? U (user), A (aggressive) or B (benevolent)?" << endl;
+	//	string strategy;
+	//	cin >> strategy;
+	//	if (strategy == "U") {
+	//		UserStrategy* s = new UserStrategy();
+	//		players[playerNumber]->setStrategy(s);
+	//	}
+	//	if (strategy == "A") {
+	//		AggressiveStrategy* s = new AggressiveStrategy();
+	//		players[playerNumber]->setStrategy(s);
+	//	}
+	//	if (strategy == "B") {
+	//		BenevolentStrategy* s = new BenevolentStrategy();
+	//		players[playerNumber]->setStrategy(s);
+	//	}
+	//}
+	//
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
 	int selectedCountryForReinforcement;
@@ -310,7 +310,7 @@ void Game::reinforcementPhase(int playerNumber) {
 	//step 1: number of countries / 3
 	if (numberOfCountriesOfPlayer > 3)
 	{
-		extraReinforcements += numberOfCountriesOfPlayer / 3;
+		extraReinforcements += (int)numberOfCountriesOfPlayer / 3;
 	}//end of step 1
 
 	//step 2: check bonus for continents 
