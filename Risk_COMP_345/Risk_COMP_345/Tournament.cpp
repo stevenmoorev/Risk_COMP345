@@ -2,6 +2,10 @@
 #include <filesystem>
 #include "Game.h"
 #include "Tournament.h"
+#include "AggressiveStrategy.h"
+#include "BenevolentStrategy.h"
+#include "RandomStrategy.h"
+#include "ObserverPhase.h"
 
 Tournament::Tournament() {
 	cout << "This is a tournament." << endl;
@@ -15,10 +19,23 @@ Tournament::Tournament() {
 	loadMapNames(); //mapnames are now in a vector
 
 	//for each map
+	Game* game1= new Game();
+	Strategy* st = new RandomStrategy();
+	AggressiveStrategy* as = new AggressiveStrategy();
+	BenevolentStrategy* bs = new BenevolentStrategy();
 	for (int i = 0; i < getMapNum(); i++) {
 		string* map = getCurrentMap();
 		//for each game
 		for (int g = 0; g < getBestOf(); g++) {
+			Game game;
+			game.setup();
+			game.getPlayers()[0]->setStrategy(as);
+			game.getPlayers()[1]->setStrategy(bs);
+			game.startGameLoop();
+
+			//game1->getPlayers()[0]->setStrategy(as);
+			//game1->startGameLoop();
+			//    g->getPlayers()[1]->setStrategy(bs);
 			//make a game with the current map
 			//assign strategies
 			//play for getMaxTurn() turns
