@@ -20,7 +20,7 @@ Game::Game()
 	placeInitialArmies();
 	//Create a View that is connected to the Game  
     View *view = new View(this); 
-	//startGameLoop();
+	startGameLoop();
 }
 
 Game::Game(Map* newMap)
@@ -56,7 +56,12 @@ void Game::giveCountriesToPlayers() {
 	}
 }
 
+void Game::incrementTurn() {
+	setTurnNumber(getTurnNumber() + 1);
+}
+
 void Game::startGameLoop() {
+	setTurnNumber(0);
 	//reinforcementPhase();
 	//attackPhase();
 	//fortificationPhase();
@@ -82,6 +87,7 @@ void Game::startGameLoop() {
 				fortificationPhase(i);
 			}
 		}
+		incrementTurn();
 	}
 	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
 	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
@@ -212,6 +218,10 @@ void Game::assignCountries()
 		}
 		cout << endl;
 	}
+}
+
+void Game::setTurnNumber(int x) {
+	turnNumber = x;
 }
 
 void Game::placeInitialArmies() 

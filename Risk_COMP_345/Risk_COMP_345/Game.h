@@ -33,6 +33,9 @@ public:
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	void setBonus(int b);
 	int getBonus() const;
+	void setTurnNumber(int x);
+	int getTurnNumber() { return turnNumber; };
+	void incrementTurn();
 
 	string getPhaseName() { return phaseName; };
 	Player* getCurrentPlayer() { return currentPlayer; };
@@ -48,6 +51,7 @@ private:
 	bool gameOver; 
 	Map* worldMap;
 	int bonus = 5;
+	int turnNumber;
 };
 
 #endif
