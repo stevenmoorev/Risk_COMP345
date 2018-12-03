@@ -33,6 +33,7 @@ vector<int> Dice::throwDice(int numOfDice) {
 	return results;
 }
 
+
 void Dice::saveResult(int result) {
 	diceNumberCount[result - 1]++;
 }

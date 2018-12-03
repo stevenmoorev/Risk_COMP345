@@ -20,8 +20,10 @@ Player::Player(string n) {
 	name = n;
 	unavailable_armies = 0;
 	hand = new Hand();
+	dices = new Dice();
 	UserStrategy* us = new UserStrategy();
 	strategy = us;
+	isNPC = false;
 }
 
 Player::Player(string n, int a) {
@@ -31,6 +33,7 @@ Player::Player(string n, int a) {
 	dices = new Dice();
 	UserStrategy* us = new UserStrategy();
 	strategy = us;
+	isNPC = false;
 }
 
 Player::Player(int a) {
@@ -40,6 +43,7 @@ Player::Player(int a) {
     dices = new Dice();
 	UserStrategy* us = new UserStrategy();
 	strategy = us;
+	isNPC = false;
 }
 
 
@@ -51,6 +55,7 @@ Player::Player(string n, vector<Country*> c) {
 	countries = c;
 	UserStrategy* us = new UserStrategy();
 	strategy = us;
+	isNPC = false;
 }
 
 void Player::removeAnArmy() {

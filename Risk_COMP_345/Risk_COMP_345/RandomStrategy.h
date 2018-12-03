@@ -20,12 +20,12 @@ class RandomStrategy : public Strategy{
 public:
     RandomStrategy();
     ~RandomStrategy();
-    std::string const getStrategy() {return "Random";}
-    void reinforce(Player* p1);
+    std::string const getStrategyName() {return "Random";}
+	void reinforce(Player* p1) override;
     
-    void attack(Player* p1);
+    void attack(Player* p1) override;
     
-    void fortify(Player* p1);
+    void fortify(Player* p1) override;
 	int compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDicesRolled);
 	int compareThrownDicesDef(vector<int> attDicesRolled, vector<int> defDicesRolled);
 };

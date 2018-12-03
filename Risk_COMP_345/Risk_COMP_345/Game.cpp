@@ -300,7 +300,7 @@ void Game::reinforcementPhase(int playerNumber) {
 	//		players[playerNumber]->setStrategy(s);
 	//	}
 	//}
-	//
+	
 	int numberOfCountriesOfPlayer = (players[playerNumber]->getCountries()).size();
 	int extraReinforcements = 3;
 	int selectedCountryForReinforcement;

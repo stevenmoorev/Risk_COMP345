@@ -1,11 +1,3 @@
-//
-//  AggressiveStrategy.cpp
-//  RISK
-//
-//  Created by Steven Moore on 2018-11-18.
-//  Copyright © 2018 Steven Moore. All rights reserved.
-//
-
 #include "AggressiveStrategy.h"
 #include "Player.h"
 
@@ -19,8 +11,7 @@ AggressiveStrategy::~AggressiveStrategy(){
 
 //aggressive player reinforces to strongest country
 void AggressiveStrategy::reinforce(Player *p1){
-    
-	cout << "====STRATEGY====" << endl;
+	cout << "==== AGGRESSIVE REINFORCE ====" << endl;
 	//reinforce strongest country
     int indexLargest = 0;
     for(int i = 0; i < p1->getCountries().size() - 1; i++){
@@ -42,10 +33,10 @@ void AggressiveStrategy::reinforce(Player *p1){
 }
 
 void AggressiveStrategy::attack(Player *p1) {
-	cout << "====STRATEGY====" << endl;
+	cout << "==== AGGRESSIVE ATTACK ====" << endl;
 	int armyCount = 0;
+	bool attackPhase = true;
 	Country* countryWithMostArmy = NULL;
-	Country* weakNeighbor = NULL;
 do {
 	vector <Country*> allCountries = p1->getCountries();
 	for (int i = 0; i < allCountries.size(); i++) {
@@ -59,6 +50,7 @@ do {
 	//Find weakest NEIGHBOR
 	vector <Country*> allNeighbors = countryWithMostArmy->getNeighbors();
 	int weakestNeighborArmy = allNeighbors[0]->getNumberOfArmies();
+	Country* weakNeighbor = allNeighbors[0];
 	for (int i = 0; i < allNeighbors.size(); i++)
 	{
 		if (weakestNeighborArmy > allNeighbors[i]->getNumberOfArmies())
@@ -99,8 +91,13 @@ do {
 	}
 	if (weakestNeighborArmy >= 2) {
 		do {
-			cout << "\n DEFENDER - please select 1 or 2 dices" << endl;
-			cin >> defNumDices;
+			if (!neighborPlayer->getIsNPC()) {
+				cout << "\n DEFENDER - please select 1 or 2 dices" << endl;
+				cin >> defNumDices;
+			}
+			else {
+				defNumDices = 2;
+			}
 		} while (defNumDices < 1 || defNumDices > 2);
 		defDicesRolled = neighborPlayer->rollDice(defNumDices);
 	}
@@ -118,11 +115,24 @@ do {
 	int attackersEliminated = compareThrownDicesAtt(attDicesRolled, defDicesRolled);
 	countryWithMostArmy->removeArmy(attackersEliminated);
 	cout << "Defender has eliminated " << attackersEliminated << "  attackers" << endl;
-} while (armyCount > 1);
+	if (weakestNeighborArmy == 0)
+	{
+		cout << "You have destroyed the enemy country!" << endl;
+		countryWithMostArmy->setOwner(p1);
+		countryWithMostArmy->addMovedArmy(1);
+
+		attackPhase = false;
+	}
+	if (armyCount == 1)
+	{
+		cout << "You cannot attack anymore!";
+		attackPhase = false;
+	}
+} while (attackPhase);
 }
 
 void AggressiveStrategy::fortify(Player *p1){
-	cout << "====STRATEGY====" << endl;
+	cout << "==== AGGRESSIVE FORTIFY ====" << endl;
 	//aggregate forces in one country
     int indexLargest = 0;
     for(int i = 0; i < p1->getCountries().size() - 1; i++){

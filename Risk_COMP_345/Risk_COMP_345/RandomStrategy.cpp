@@ -19,6 +19,7 @@ RandomStrategy::~RandomStrategy(){
 
 //Random player reinforces to strongest country
 void RandomStrategy::reinforce(Player *p1){
+	cout << "==== RANDOM REINFORCE ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));
 
@@ -27,6 +28,7 @@ void RandomStrategy::reinforce(Player *p1){
 	vector <Country*> allOwnedCountry = p1->getCountries();
 	Country* selectedCountry = NULL;
 	
+	if (bonus == 0) { bonus = 3; }
 	//reinforce random country selection
 	while (bonus > 0) {
 		int indexOfSelectedCountry = rand() % (allOwnedCountry.size());
@@ -39,6 +41,7 @@ void RandomStrategy::reinforce(Player *p1){
 }
 
 void RandomStrategy::attack(Player *p1) {
+	cout << "==== RANDOM ATTACK ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));
 	
@@ -50,8 +53,10 @@ void RandomStrategy::attack(Player *p1) {
 	bool properNeighbor = false;
 	bool properArmy = false;
 	int tries = 0;
+	int tries2 = 0;
 	//generate random country and neighbor selection
 	do {
+		tries++;
 		std::cout << "Search a random country and a random neighbor..." << endl;
 		//Selection of country
 		allOwnedCountries = p1->getCountries();
@@ -64,10 +69,27 @@ void RandomStrategy::attack(Player *p1) {
 		selectedNeighbor = neighborCountries[indexOfFortifiedCountry];
 
 		//Verify if the neighbor is an oppenent and that its selected country has proper armies
-		properNeighbor = selectedNeighbor->getOwner()->getName() != p1->getName() ? true : false;
+		//properNeighbor = selectedNeighbor->getOwner()->getName() != p1->getName() ? true : false;
+		if(selectedNeighbor->getOwner()->getName() != p1->getName())
+		{
+			properNeighbor = true;
+		}
+		else {//then check if there exist any neighbor country  that is not owned by the owner
+			for (int i = 0; i < neighborCountries.size(); i++) {
+				selectedNeighbor = neighborCountries[i];
+				if (selectedNeighbor->getOwner()->getName() != p1->getName())
+				{
+					properNeighbor = true;
+				}
+			}
+		}
 		properArmy = selectedCountry->getNumberOfArmies() > 1 ? true : false;
-		tries++;
-	} while (!(properNeighbor && properArmy && (tries < p1->getCountries().size())));
+		if (tries > p1->getCountries().size())
+		{
+			cout << "No proper country found to attack with!" << endl;
+			break;
+		}
+	} while (!(properNeighbor && properArmy));
 	
 	//Attack Neighbor
 	Player* neighborPlayer = selectedNeighbor->getOwner();
@@ -146,6 +168,7 @@ void RandomStrategy::attack(Player *p1) {
 }
 
 void RandomStrategy::fortify(Player *p1){
+	cout << "==== RANDOM FORTIFY ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));
 
@@ -159,7 +182,8 @@ void RandomStrategy::fortify(Player *p1){
 	int tries = 0;
 	//generate Random fortification 
 	do {
-		cout << "Search a random country and a a random neighbor..." << endl;
+		tries++;
+		cout << "Search a random country and a random neighbor..." << endl;
 
 		//Select country
 		allOwnedCountries = p1->getCountries();
@@ -174,10 +198,14 @@ void RandomStrategy::fortify(Player *p1){
 		//Verify if the neighbor is an oppenent and that its selected country has proper armies
 		properNeighbor = selectedNeighbor->getOwner()->getName() == p1->getName() ? true : false;
 		properArmy = selectedCountry->getNumberOfArmies() > 1 ? true : false;
-		tries++;
-	} while (!(properNeighbor && properArmy && (tries < p1->getCountries().size())));
+		if (tries > p1->getCountries().size())
+		{
+			cout << "No proper country found to attack with!";
+			break;
+		}
+	} while (!(properNeighbor && properArmy));
 
-	if (tries >= p1->getCountries().size())
+	if (tries > p1->getCountries().size())
 	{
 		cout << "No valid countries to fortify";
 	}
@@ -188,9 +216,11 @@ void RandomStrategy::fortify(Player *p1){
 		numberOfArmiesToMove = (numberOfArmiesToMove == 0) ? numberOfArmiesToMove++ : numberOfArmiesToMove;
 
 		//removeArmy
+		cout << "Fortification: Moving "<< numberOfArmiesToMove <<" army from " << selectedCountry->getCountryName() << "("<< selectedCountry->getNumberOfArmies() << ")"<< " to " << selectedNeighbor->getCountryName() << "(" << selectedNeighbor->getNumberOfArmies() << ")" << endl;
 		selectedCountry->removeArmy(numberOfArmiesToMove);
 		//Add Army to neighbor
 		selectedNeighbor->addMovedArmy(numberOfArmiesToMove);
+		cout << "Now " << selectedCountry->getCountryName() << " has (" << selectedCountry->getNumberOfArmies() << ")" << " and " << selectedNeighbor->getCountryName() << " has (" << selectedNeighbor->getNumberOfArmies() << ")" << endl;
 	}
 }
 

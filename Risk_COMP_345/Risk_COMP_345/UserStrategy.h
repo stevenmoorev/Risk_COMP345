@@ -20,11 +20,11 @@ public:
 
 	//void setStrategy();
 	//aggressive player focusses on attack
-	void reinforce(Player* p1);
+	void reinforce(Player* p1) override;
 
-	void attack(Player* p1);
+	void attack(Player* p1) override;
 
-	void fortify(Player* p1);
+	void fortify(Player* p1) override;
 
 
 

@@ -16,6 +16,7 @@
 
 using namespace std;
 
+
 class BenevolentStrategy : public Strategy{
 public:
     BenevolentStrategy();
@@ -24,10 +25,10 @@ public:
 	//void AlgorithmInterface() { cout << "Inside BenevolentStrategy::AlgorithmInterface()\n"; }
  
 	//interfaces
-    void reinforce(Player* p1);
+    void reinforce(Player* p1) override;
     
-    void attack(Player* p1);
+    void attack(Player* p1) override;
     
-    void fortify(Player* p1);
+    void fortify(Player* p1) override;
 };
 #endif /* BenevolentStrategy_hpp */

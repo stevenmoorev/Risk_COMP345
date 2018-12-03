@@ -12,11 +12,11 @@ class CheaterStrategy : public Strategy {
 public:
 	CheaterStrategy();
 	~CheaterStrategy();
-	std::string const getStrategy() { return "Random"; }
-	void reinforce(Player* p1);
+	std::string const getStrategyName() { return "Random"; }
+	void reinforce(Player* p1) override;
 
-	void attack(Player* p1);
+	void attack(Player* p1) override;
 
-	void fortify(Player* p1);
+	void fortify(Player* p1) override;
 };
 #endif /* RandomStrategy_hpp */

@@ -1,14 +1,5 @@
-//
-//  BenevolentStrategy.cpp
-//  RISK
-//
-//  Created by Steven Moore on 2018-11-18.
-//  Copyright © 2018 Steven Moore. All rights reserved.
-//
-
 #include <iostream>
 #include "BenevolentStrategy.h"
-
 using namespace std;
 
 BenevolentStrategy::BenevolentStrategy(){
@@ -20,7 +11,7 @@ BenevolentStrategy::~BenevolentStrategy(){
 }
 
 void BenevolentStrategy::reinforce(Player *p1){
-	cout << "====STRATEGY====" << endl;
+	cout << "==== BENEVOLENT REINFORCE ====" << endl;
 	//reinforce weak countries
     //look at all countries to see
     //which ones are weak?
@@ -49,14 +40,14 @@ void BenevolentStrategy::reinforce(Player *p1){
 
 
 void BenevolentStrategy::attack(Player *p1){
-	cout << "====STRATEGY====" << endl;
+	cout << "==== BENEVOLENT ATTACK ====" << endl;
 	cout << " Don't attack" << endl;
 	//never attack
 }
 
 
 void BenevolentStrategy::fortify(Player *p1){
-	cout << "====STRATEGY====" << endl;
+	cout << "==== BENEVOLENT FORTIFY ====" << endl;
 	//move armies to weaker countries
     int indexLargest = 0;
     int indexSmallest = 0;

@@ -55,7 +55,7 @@ int main() {
 	myGame->addArmiesToCountry(5, c3);
 
 	myGame->attackPhase(0);
-
+	
 	//try to attack mexico from canada, invalid
 	//attack usa from canada, valid.
 	//chose invalid number fo dice
