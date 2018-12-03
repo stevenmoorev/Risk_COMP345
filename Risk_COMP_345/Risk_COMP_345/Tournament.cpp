@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "Tournament.h"
 
+namespace fs = std::experimental::filesystem;
+
 Tournament::Tournament() {
 	cout << "This is a tournament." << endl;
 	ChooseNumberOfMaps(); //map num chosen. 
@@ -49,7 +51,7 @@ void Tournament::AddMap(string map) {
 }
 
 void Tournament::loadMapNames() {
-	for (auto & p : filesystem::directory_iterator("Maps")) {
+	for (auto & p : fs::directory_iterator("Maps")) {
 		auto filename = p.path().filename();
 		if (p.path().extension() == ".map")
 			AddMap(&filename.string());
