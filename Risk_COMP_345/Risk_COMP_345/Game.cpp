@@ -306,22 +306,32 @@ void Game::assignOneRound()
 		{
 			cout << "Country named " << players[i]->getCountries()[j]->getCountryName() << " in continent " << players[i]->getCountries()[j]->GetContinent()->GetName() << " - " << players[i]->getCountries()[j]->getNumberOfArmies() << " units" << endl;
 		}
-		cout << "Enter the name of the country to add an army to it" << endl;
 		bool choosenProperCountry = false;
-		while (!choosenProperCountry) {
-			cout << "Type a valid country" << endl;
-			cin >> choice;
-			if(players[i]->getCountry(choice) == NULL)
-			{
-				choosenProperCountry = false;
-			}
-			else
-			{
-				choosenProperCountry = true;
+		if (players[i]->getIsNPC()) {
+			int countrySelectedIndex = rand() % sizeOfCountriesList;
+			Country* countrySelect = players[i]->getCountries()[countrySelectedIndex];
+			cout << "Computer has chosen " << countrySelect->getCountryName() << " to add an army" << endl;
+			countrySelect->addArmy();
+			players[i]->removeAnArmy();
+		}
+		else {
+			cout << "Enter the name of the country to add an army to it" << endl;
+			while (!choosenProperCountry) {
+				cout << "Type a valid country" << endl;
+				cin >> choice;
+				if (players[i]->getCountry(choice) == NULL)
+				{
+					choosenProperCountry = false;
+				}
+				else
+				{
+					choosenProperCountry = true;
+				}
+				players[i]->getCountry(choice)->addArmy();
+				players[i]->removeAnArmy();
 			}
 		}
-		players[i]->getCountry(choice)->addArmy();
-		players[i]->removeAnArmy();
+
 	}
 }
 
