@@ -38,11 +38,12 @@ public:
 	void setTurnNumber(int x);
 	int getTurnNumber() { return turnNumber; };
 	void incrementTurn();
-
+	void setPlayers(vector<Player*> p) { players = p; };
 	string getPhaseName() { return phaseName; };
 	Player* getCurrentPlayer() { return currentPlayer; };
 	vector<Player*> getPlayers() { return players; };
 	Map* getWorldMap() { return worldMap; };
+	
 
 	//attach observer? 
   

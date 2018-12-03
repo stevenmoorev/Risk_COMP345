@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cstdlib>
 #include <filesystem>
 #include "AggressiveStrategy.h"
 #include "RandomStrategy.h"
 #include "CheaterStrategy.h"
+#include "BenevolentStrategy.h"
 #include "Game.h"
 #include "Tournament.h"
 #include "View.h"
@@ -27,26 +29,36 @@ Tournament::Tournament() {
 		for (int g = 0; g < getBestOf(); g++) {
 			//make a game with the current map
 			Game game = Game(map);
+			game.setPlayers(players);
 			//assign strategies
 			//as ra ch ch
-			AggressiveStrategy as;
-			RandomStrategy rs;
-			CheaterStrategy cs;
+			srand(time(NULL));
+			vector<Strategy*> strat;
+			AggressiveStrategy* as = new AggressiveStrategy();
+			RandomStrategy* rs = new RandomStrategy();
+			CheaterStrategy* cs = new CheaterStrategy();
+			BenevolentStrategy* bs = new BenevolentStrategy();
+			strat.push_back(as);
+			strat.push_back(rs);
+			strat.push_back(cs);
+			strat.push_back(bs);
 
-			players[0]->setIsNPC();
-			players[1]->setIsNPC();
-			players[2]->setIsNPC();
-			players[3]->setIsNPC();
-			players[0]->setStrategy(&as);
-			players[1]->setStrategy(&rs);
-			players[2]->setStrategy(&cs);
-			players[3]->setStrategy(&cs);
+			for (int h = 0; h < getNumOfPlayers(); h++) {
+				players[h]->setIsNPC(); 
+				int chosenStrat = rand() % strat.size();
+				players[h]->setStrategy(strat[chosenStrat]);
+			}
+			
 			//play for getMaxTurn() turns
 			game.giveCountriesToPlayers();
 			game.placeInitialArmies();
 			View *v;
 			//loop game loop for number of turns
+			game.startGameLoop();
 			//give points to whoever won or to anyoen alive during a draw using player.incrementScore method I created.
+			for (int i = 0; i < game.getPlayers().size(); i++) {
+				game.getPlayers()[i]->incrementScore();
+			}
 		}
 		incrementMap();
 	}
@@ -74,13 +86,14 @@ void Tournament::loadMapNames() {
 	for (auto & p : fs::directory_iterator("Maps")) {
 		auto filename = p.path().filename();
 		if (p.path().extension() == ".map")
-			AddMap(&filename.string());
+			AddMap(filename.string());
 	}
 }
 
 void Tournament::initializePlayers(int x) {
-	for (int i = 0; i < getNumOfPlayers(); i++) {
-		players[i] = new Player();
+	for (int i = 0; i < x; i++) {
+		Player* player = new Player();
+		players.push_back(player);
 	}
 }
 
@@ -114,8 +127,9 @@ void Tournament::ChooseBestOf() {
 	cout << "Now you must chose the number of games to be played on each map. Please chose a number from 1 to 5" << endl;
 	int num;
 	cin >> num;
-	setMapNum(num);
-	cout << "Every map will be decided in a best of " << getMapNum() << "!" << endl;
+	//setMapNum(num);
+	setBestOf(num);
+	cout << "Every map will be decided in a best of " << getBestOf() << "!" << endl;
 }
 
 void Tournament::ChooseNumberOfPlayers() {

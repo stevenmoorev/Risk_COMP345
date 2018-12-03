@@ -74,6 +74,11 @@ string Player::getName() {
 	return name;
 }
 
+void Player::incrementScore()
+{
+	score++;
+}
+
 int Player::getArmies() {
 	return unavailable_armies;
 }

@@ -1,8 +1,7 @@
-//#include "Game.h"
-//#include "AggressiveStrategy.h"
-//#include "BenevolentStrategy.h"
-//#include "Strategy.h"
-//int main() {
-//	Game *g = new Game();
-//	g->startGameLoop();
-//}
+#include "Tournament.h"
+
+int main() {
+	Tournament* t = new Tournament();
+	delete t;
+	return 0;
+}

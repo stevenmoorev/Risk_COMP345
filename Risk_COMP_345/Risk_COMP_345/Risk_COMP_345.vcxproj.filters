@@ -63,6 +63,12 @@
     <ClInclude Include="RandomStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tournament.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheaterStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -98,9 +104,6 @@
     <ClCompile Include="Strategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StrategyPatternDriver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -116,7 +119,13 @@
     <ClCompile Include="UserStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RamdomStrategy.cpp">
+    <ClCompile Include="Tournament.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheaterStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
