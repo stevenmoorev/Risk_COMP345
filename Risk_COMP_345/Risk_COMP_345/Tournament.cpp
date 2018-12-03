@@ -1,7 +1,11 @@
 #include <iostream>
 #include <filesystem>
+#include "AggressiveStrategy.h"
+#include "RandomStrategy.h"
+#include "CheaterStrategy.h"
 #include "Game.h"
 #include "Tournament.h"
+#include "View.h"
 
 namespace fs = std::experimental::filesystem;
 
@@ -24,8 +28,24 @@ Tournament::Tournament() {
 			//make a game with the current map
 			Game game = Game(map);
 			//assign strategies
+			//as ra ch ch
+			AggressiveStrategy as;
+			RandomStrategy rs;
+			CheaterStrategy cs;
 
+			players[0]->setIsNPC();
+			players[1]->setIsNPC();
+			players[2]->setIsNPC();
+			players[3]->setIsNPC();
+			players[0]->setStrategy(&as);
+			players[1]->setStrategy(&rs);
+			players[2]->setStrategy(&cs);
+			players[3]->setStrategy(&cs);
 			//play for getMaxTurn() turns
+			game.giveCountriesToPlayers();
+			game.placeInitialArmies();
+			View *v;
+			//loop game loop for number of turns
 			//give points to whoever won or to anyoen alive during a draw using player.incrementScore method I created.
 		}
 		incrementMap();
