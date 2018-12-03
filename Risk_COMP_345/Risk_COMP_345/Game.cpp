@@ -32,6 +32,16 @@ Game::Game(Map* newMap)
 	//placeInitialArmies();
 }
 
+Game::Game(string mapname)
+{
+	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
+	gameOver = false; // game is obviously not over, it has just started
+					  //setup();
+	//worldMap = 
+	chooseMap(mapname);
+	//placeInitialArmies();
+}
+
 void Game::setup()
 {
 	chooseMap();
@@ -115,6 +125,32 @@ void Game::chooseMap() {
 	string mapname;
 	cin >> mapname;
    // string mapname = "/Users/stevenmoore/Desktop/RISK/Aden.map";
+	cout << "YOU CHOSE " << mapname << endl;
+
+	MapLoader* map = new MapLoader();
+
+	cout << "MAP IS NOW CREATED" << endl;
+
+	worldMap = map->MapLoad(mapname);
+
+	vector<Country*> allCountries = worldMap->GetAllCountries();
+	vector<Country*> allNeighbors;
+	cout << "MAP IS NOW LOADED" << endl;
+	cout << "Here are the list of all the countries - and their neighbors:" << endl;
+	for (int i = 0; i < allCountries.size(); i++)
+	{
+		cout << allCountries[i]->getCountryName() << endl;
+		for (int j = 0; j < (allCountries[i]->getNeighbors()).size(); j++)
+		{
+			allNeighbors = allCountries[i]->getNeighbors();
+			cout << "     -";
+			cout << allNeighbors[j]->getCountryName() << endl;
+		}
+	}
+}
+
+void Game::chooseMap(string mapname)
+{
 	cout << "YOU CHOSE " << mapname << endl;
 
 	MapLoader* map = new MapLoader();

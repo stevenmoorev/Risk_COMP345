@@ -14,9 +14,11 @@ class Game : public SubjectPhase {
 public:
 	Game();
 	Game(Map* gameMap);
+	Game(string mapname);
 	void setup();
 	void setNumberOfPlayers();
 	void chooseMap();
+	void chooseMap(string mapname);
 	void assignCountries();
 	void placeInitialArmies();
 	void assignOneRound();

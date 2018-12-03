@@ -21,8 +21,8 @@ public:
 	void ChooseMaxTurn();
 	void initializePlayers(int x);
 	void loadMapNames();
-	void AddMap(string* s);
-	string* getCurrentMap();
+	void AddMap(string s);
+	string getCurrentMap();
 	void setCurrentMap(int x);
 	void incrementMap() { currentMap++; };
 	void displayResults();
@@ -33,7 +33,7 @@ private:
 	int numOfPlayers;
 	int maxTurn;
 	vector<Player*> players;
-	vector<string*> mapNames;
+	vector<string> mapNames;
 	int currentMap;
 };
 

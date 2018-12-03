@@ -16,11 +16,13 @@ Tournament::Tournament() {
 
 	//for each map
 	for (int i = 0; i < getMapNum(); i++) {
-		string* map = getCurrentMap();
+		string map = getCurrentMap();
 		//for each game
 		for (int g = 0; g < getBestOf(); g++) {
 			//make a game with the current map
+			Game game = Game(map);
 			//assign strategies
+
 			//play for getMaxTurn() turns
 			//give points to whoever won or to anyoen alive during a draw using player.incrementScore method I created.
 		}
@@ -38,11 +40,11 @@ void Tournament::setCurrentMap(int x) {
 	currentMap = x;
 }
 
-string* Tournament::getCurrentMap() {
+string Tournament::getCurrentMap() {
 	return mapNames[currentMap];
 }
 
-void Tournament::AddMap(string* map) {
+void Tournament::AddMap(string map) {
 	mapNames.push_back(map);
 }
 
