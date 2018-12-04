@@ -61,6 +61,7 @@ Tournament::Tournament() {
 				game.getPlayers()[i]->incrementScore();
 			}
 		}
+		delete game;
 		incrementMap();
 	}
 	displayResults();
@@ -68,7 +69,9 @@ Tournament::Tournament() {
 
 void Tournament::displayResults() {//THIS METHOD IS JUST A COUT METHOD.
 	cout << "TOURNAMENT IS OVER. HERE ARE THE RESULTS:" << endl;
-	//TODO: DISPLAY RESULTS
+	for (int i = 0; i < players.size(); i++) {
+		cout << "Player " + players[i]->getName() + " has " + players[i]->getScore() + " points." << endl;
+	}
 }
 
 void Tournament::setCurrentMap(int x) {
