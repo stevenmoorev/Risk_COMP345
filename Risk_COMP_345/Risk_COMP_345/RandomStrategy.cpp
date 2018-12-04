@@ -19,6 +19,7 @@ RandomStrategy::~RandomStrategy(){
 
 //Random player reinforces to strongest country
 void RandomStrategy::reinforce(Player *p1){
+	Notify();
 	cout << "==== RANDOM REINFORCE ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));
@@ -41,6 +42,7 @@ void RandomStrategy::reinforce(Player *p1){
 }
 
 void RandomStrategy::attack(Player *p1) {
+	Notify();
 	cout << "==== RANDOM ATTACK ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));
@@ -168,6 +170,7 @@ void RandomStrategy::attack(Player *p1) {
 }
 
 void RandomStrategy::fortify(Player *p1){
+	Notify();
 	cout << "==== RANDOM FORTIFY ====" << endl;
 	/* initialize random seed: */
 	srand(time(NULL));

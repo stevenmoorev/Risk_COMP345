@@ -11,6 +11,7 @@ AggressiveStrategy::~AggressiveStrategy(){
 
 //aggressive player reinforces to strongest country
 void AggressiveStrategy::reinforce(Player *p1){
+	Notify();
 	cout << "==== AGGRESSIVE REINFORCE ====" << endl;
 	//reinforce strongest country
     int indexLargest = 0;
@@ -33,6 +34,7 @@ void AggressiveStrategy::reinforce(Player *p1){
 }
 
 void AggressiveStrategy::attack(Player *p1) {
+	Notify();
 	cout << "==== AGGRESSIVE ATTACK ====" << endl;
 	int armyCount = 0;
 	bool attackPhase = true;
@@ -132,6 +134,7 @@ do {
 }
 
 void AggressiveStrategy::fortify(Player *p1){
+	Notify();
 	cout << "==== AGGRESSIVE FORTIFY ====" << endl;
 	//aggregate forces in one country
     int indexLargest = 0;

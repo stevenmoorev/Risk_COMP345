@@ -43,9 +43,6 @@ public:
 	Player* getCurrentPlayer() { return currentPlayer; };
 	vector<Player*> getPlayers() { return players; };
 	Map* getWorldMap() { return worldMap; };
-	
-
-	//attach observer? 
   
 private:
 	string phaseName;

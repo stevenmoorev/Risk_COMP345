@@ -5,10 +5,10 @@
 #include <string>
 #include "Strategy.h"
 #include "Player.h"
-
+#include "SubjectPhase.h"
 using namespace std;
 
-class CheaterStrategy : public Strategy {
+class CheaterStrategy : public Strategy, SubjectPhase {
 public:
 	CheaterStrategy();
 	~CheaterStrategy();

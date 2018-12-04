@@ -13,10 +13,11 @@
 #include <string>
 #include "Strategy.h"
 #include "Player.h"
+#include "SubjectPhase.h"
 
 using namespace std;
 
-class AggressiveStrategy : public Strategy{
+class AggressiveStrategy : public Strategy, SubjectPhase{
 public:
     AggressiveStrategy();
     ~AggressiveStrategy();

@@ -11,6 +11,7 @@ CheaterStrategy::~CheaterStrategy() {
 
 //double all your country armies
 void CheaterStrategy::reinforce(Player *p1) {
+	Notify();
 	cout << "==== CHEATER REINFORCE ====" << endl;
 	cout << "Player "<< p1->getName()<< "is reinforcing all his countries..."<< endl;
 	cout << "All his countries have now doubled their army size!" << endl;
@@ -28,6 +29,7 @@ void CheaterStrategy::reinforce(Player *p1) {
 //for each of those countries, loop through all its neighbors. B
 //for each of those neighbors, IF is not owned by this player, jsut give it to the AI. C
 void CheaterStrategy::attack(Player *p1) {
+	Notify();
 	cout << "==== CHEATER ATTACK ====" << endl;
 	cout << "ALL OF NEIGHBOR COUTNRIES NOW BELONG TO PLAYER "<< p1->getName() << "!!! HAHAHAHA!" << endl;
 	vector<Country*> countries = p1->getCountries();
@@ -48,6 +50,7 @@ void CheaterStrategy::attack(Player *p1) {
 //for each country, check if it has any enemy neighbors. B
 //if it does, double armies
 void CheaterStrategy::fortify(Player *p1) {
+	Notify();
 	cout << "==== CHEATER FORTIFY ====" << endl;
 	cout << "Must fortify countries..... checking to see if any have neighbors..." << endl;
 	vector<Country*> countries = p1->getCountries();

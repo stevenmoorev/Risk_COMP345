@@ -13,10 +13,10 @@
 #include <string>
 #include "Strategy.h"
 #include "Player.h"
-
+#include "SubjectPhase.h"
 using namespace std;
 
-class RandomStrategy : public Strategy{
+class RandomStrategy : public Strategy, SubjectPhase{
 public:
     RandomStrategy();
     ~RandomStrategy();
