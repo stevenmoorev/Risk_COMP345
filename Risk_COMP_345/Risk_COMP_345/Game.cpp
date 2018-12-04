@@ -21,10 +21,12 @@ Game::Game()
 	//Create a View that is connected to the Game  
     View *view = new View(this); 
 	startGameLoop();
+	tie = false;
 }
 
 Game::Game(Map* newMap)
 {
+	tie = false;
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 	//setup();
@@ -34,6 +36,7 @@ Game::Game(Map* newMap)
 
 Game::Game(string mapname)
 {
+	tie = false;
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 					  //setup();
@@ -79,30 +82,40 @@ void Game::startGameLoop() {
 	//each player gets a reinforce, then each player gets an attack, then each player gets a fortify
 
 	//while there is still more than 1 player or less than 30 turns left keep looping
-	while (players.size() != 1 || getTurnNumber() != 30) {
+	while (players.size() != 1 || getTurnNumber() != turnLimit) {
 		cout << "The players currently still alive are: "<< endl;
 		for (int i = 0; i < players.size(); i++) {
-			cout << players[i]->getName();
+			cout << players[i]->getName() << endl;
 		}
 		cout << endl;
 		///////for each player, reinforce
-		for (int i = 0; i < players.size(); i++) {
-			if (players[i]->getStrategy() != NULL) {
-				players[i]->getStrategy()->reinforce(players[i]);
-				players[i]->getStrategy()->attack(players[i]);
-				players[i]->getStrategy()->fortify(players[i]);
-			}
-			else {
-				reinforcementPhase(i);
-				attackPhase(i);
-				checkDeath();
-				fortificationPhase(i);
-			}
+		if (getTurnNumber() >= turnLimit) {
+			endInTie();
+			setTie(true);
+			return;
 		}
-		incrementTurn();
+		else {
+			for (int i = 0; i < players.size(); i++) {
+				if (players[i]->getStrategy() != NULL) {
+					players[i]->getStrategy()->reinforce(players[i]);
+					players[i]->getStrategy()->attack(players[i]);
+					players[i]->getStrategy()->fortify(players[i]);
+				}
+				else {
+					reinforcementPhase(i);
+					attackPhase(i);
+					checkDeath();
+					fortificationPhase(i);
+				}
+			}
+			incrementTurn();
+		}
 	}
-	cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
-	cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
+	if (tie != true) {
+		cout << "THERE IS ONLY ONE PLAYER LEFT IN THE GAME> WE HAVE A WINNER!" << endl;
+		cout << "CONGRATULATIONS " << players[0]->getName() << "!!!!!!" << endl;
+		return;
+	}
 	//break it
 }
 
@@ -760,4 +773,16 @@ int Game::compareThrownDicesAtt(vector<int> attDicesRolled, vector<int> defDices
 		}
 	}
 	return attackersEliminated;
+}
+
+void Game::endInTie() {
+	cout << "ROUND LIMIT REACHED. GAME HAS ENDED IN A TIE." << endl;
+}
+
+void Game::setTurnLimit(int n) {
+	turnLimit = n;
+}
+
+void Game::setTie(bool t) {
+	tie = t;
 }

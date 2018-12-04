@@ -57,6 +57,7 @@ public:
 	void setIsNPC() { isNPC = true; };
     void setCountries();
     void setName();
+	void setName(string n);
     void setArmies(int armies);
 	void removeCountry(Country* oldCountry);
     Strategy* getStrategy(){return strategy;};

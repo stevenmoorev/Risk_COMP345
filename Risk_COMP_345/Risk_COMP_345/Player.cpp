@@ -70,6 +70,10 @@ void Player::removeAnArmy() {
 	}
 }
 
+void Player::setName(string n) {
+	name = n;
+}
+
 string Player::getName() {
 	return name;
 }

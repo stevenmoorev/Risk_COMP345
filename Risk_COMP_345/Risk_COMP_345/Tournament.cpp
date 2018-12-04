@@ -29,6 +29,7 @@ Tournament::Tournament() {
 		for (int g = 0; g < getBestOf(); g++) {
 			//make a game with the current map
 			Game game = Game(map);
+			game.setTurnLimit(maxTurn);
 			game.setPlayers(players);
 			//assign strategies
 			//as ra ch ch
@@ -92,7 +93,7 @@ void Tournament::loadMapNames() {
 
 void Tournament::initializePlayers(int x) {
 	for (int i = 0; i < x; i++) {
-		Player* player = new Player();
+		Player* player = new Player("Player number "+(char)i);
 		players.push_back(player);
 	}
 }

@@ -38,11 +38,14 @@ public:
 	void setTurnNumber(int x);
 	int getTurnNumber() { return turnNumber; };
 	void incrementTurn();
+	void endInTie();
 	void setPlayers(vector<Player*> p) { players = p; };
 	string getPhaseName() { return phaseName; };
 	Player* getCurrentPlayer() { return currentPlayer; };
 	vector<Player*> getPlayers() { return players; };
 	Map* getWorldMap() { return worldMap; };
+	void setTurnLimit(int n);
+	void setTie(bool t);
   
 private:
 	string phaseName;
@@ -52,6 +55,8 @@ private:
 	Map* worldMap;
 	int bonus = 5;
 	int turnNumber;
+	int turnLimit;
+	bool tie;
 };
 
 #endif
