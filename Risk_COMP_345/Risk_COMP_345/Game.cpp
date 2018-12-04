@@ -276,7 +276,7 @@ void Game::placeInitialArmies()
 		assignOneRound();
 		numberOfInitialArmiesLeft--;
 		cout << "Number of armies left to allocate :"<< numberOfInitialArmiesLeft <<endl;
-		if (numberOfInitialArmiesLeft == 0) {
+		if (numberOfInitialArmiesLeft <= 0) {
 			allArmiesAllocated = true;
 		}
 	}
