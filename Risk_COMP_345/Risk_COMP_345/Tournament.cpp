@@ -93,7 +93,7 @@ void Tournament::loadMapNames() {
 
 void Tournament::initializePlayers(int x) {
 	for (int i = 0; i < x; i++) {
-		Player* player = new Player("Player number "+(char)i);
+		Player* player = new Player("NPC DUDE");
 		players.push_back(player);
 	}
 }
