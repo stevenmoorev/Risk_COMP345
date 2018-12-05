@@ -70,7 +70,7 @@ Tournament::Tournament() {
 void Tournament::displayResults() {//THIS METHOD IS JUST A COUT METHOD.
 	cout << "TOURNAMENT IS OVER. HERE ARE THE RESULTS:" << endl;
 	for (int i = 0; i < players.size(); i++) {
-		cout << "Player " + players[i]->getName() + " has " + players[i]->getScore() + " points." << endl;
+		cout << "Player " << players[i]->getName() << " has " << players[i]->getScore() << " points." << endl;
 	}
 }
 
