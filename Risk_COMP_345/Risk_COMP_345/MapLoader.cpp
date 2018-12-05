@@ -5,7 +5,6 @@ using std::cout;
 using std::getline;
 using std::find_if;
 std::string STRING;
-std::ifstream in;
 //graph implementation
 class Graph
 {
@@ -90,6 +89,8 @@ Map* MapLoader::MapLoad(string const &path) {
 	string continentName;
 	string countryName;
 	string score;
+	std::ifstream in;
+
 	map = new Map();
 	int x, y;
 	const char flag = '\n';
@@ -108,6 +109,8 @@ Map* MapLoader::MapLoad(string const &path) {
 	vector<Continent*> continents;
 	while (in.peek() != flag)
 	{
+		
+
 		getline(in, continentName, '=');
 		continents.push_back(new Continent(continentName, 0));
 		getline(in, score, '\n');
@@ -283,6 +286,8 @@ Map* MapLoader::MapLoad(string const &path) {
 	else {
 		cout << "The provided map doesn't fit the game requirements" << endl;
 	}
+
+	in.close();
 }
 
 Map* MapLoader::getMap() {
