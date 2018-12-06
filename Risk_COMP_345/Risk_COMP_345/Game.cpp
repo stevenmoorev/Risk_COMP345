@@ -14,7 +14,6 @@ namespace fs = std::experimental::filesystem;
 
 Game::Game() 
 {
-	setTurnLimit(1);
 	cout << "WELCOME TO THE GAME OF RISK, YOUR GAME HAS BEEN STARTED" << endl;
 	gameOver = false; // game is obviously not over, it has just started
 	setup();
@@ -453,7 +452,8 @@ void Game::reinforcementPhase(int playerNumber) {
 			cout << j << " - " << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << " with " << (players[playerNumber]->getCountries()[j])->getNumberOfArmies() << " armies" << endl;
 		}
         //THIS IS THE STRATEGY
-			//players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
+            players[playerNumber]->getStrategy()->reinforce(players[playerNumber]);
+        
 		cout << "Enter the number of the country to add armies to " << endl;
 		cin >> selectedCountryForReinforcement;
 		(players[playerNumber]->getCountries()[selectedCountryForReinforcement])->addArmy();
@@ -514,7 +514,7 @@ void Game::attackPhase(int attackerPlayerNum)
 		bool countryNotEnoughArmy = true;
 		
         //THIS IS THE STRATEGY
-        //players[attackerPlayerNum]->getStrategy()->attack(players[attackerPlayerNum]);
+        players[attackerPlayerNum]->getStrategy()->attack(players[attackerPlayerNum]);
 
         
 		//Player selects a owned country
@@ -665,8 +665,8 @@ void Game::fortificationPhase(int playerNumber) {
 			cout << "Country named " << players[playerNumber]->getCountries()[j]->getCountryName() << " in continent " << players[playerNumber]->getCountries()[j]->GetContinent()->GetName() << endl;
 		}
         
-        ////THIS IS THE STRATEGY
-        //players[playerNumber]->getStrategy()->fortify(players[playerNumber]);
+        //THIS IS THE STRATEGY
+        players[playerNumber]->getStrategy()->fortify(players[playerNumber]);
         
 		cout << "Enter the name of the country to move armies from " << endl;
 		cin >> selectedCountryString;

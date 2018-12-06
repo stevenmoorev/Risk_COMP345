@@ -6,15 +6,11 @@ int main() {
 	cin >> i;
 	if (i == 1) {
 		Tournament* t = new Tournament();
-		int y;
-		cin >> y;
 		delete t;
 		return 0;
 	}
 	else if (i == 2) {
 		Game* g = new Game();
-		int y;
-		cin >> y;
 		delete g;
 		return 0;
 	}
